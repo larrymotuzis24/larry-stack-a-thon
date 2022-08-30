@@ -16,7 +16,9 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@daypilot/daypilot-lite-react": "^3.10.1",
     "bcrypt": "^5.0.1",
+    "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2021.4.5151.tar.gz",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
