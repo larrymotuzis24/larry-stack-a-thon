@@ -1,40 +1,31 @@
 import axios from 'axios';
-import history from '../history';
+
 
 const TOKEN = 'token'
 
-/**
- * ACTION TYPES
- */
-const SET_WORKSHIFTS = 'SET_WORKSHIFTS'
-
-/**
- * ACTION CREATORS
- */
-const setWorkshift = () => ({type: SET_WORKSHIFTS, workshifts})
-
-/**
- * THUNK CREATORS
- */
-export const getWorkshifts = () => async dispatch => {
-  const token = window.localStorage.getItem(TOKEN)
-  if (token) {
-    const res = await axios.get('/api/workshifts', {
-      headers: {
-        authorization: token
-      }
-    })
-    return dispatch(setWorkshift(res.data))
+const workshifts = (state = [], action)=> {
+  if(action.type === 'SET_WORKSHIFTS'){
+    state = action.workshifts;
   }
+  return state;
+};
+
+export const _setWorkShifts = (workshifts) => {
+  return {
+    type:'SET_WORKSHIFTS',
+    workshifts
+  }    
+};  
+
+export const fetchWorkShifts = () => async dispatch => {
+const response = await axios.get('/workshifts', {
+  headers: {
+    authorization: window.localStorage.getItem('token')
+  }
+})
+    
+    return dispatch(_setWorkShifts(response.data))
 }
 
 
-
-export default function(state = {}, action) {
-  switch (action.type) {
-    case SET_WORKSHIFTS:
-      return action.workshifts
-    default:
-      return state
-  }
-}
+export default workshifts;

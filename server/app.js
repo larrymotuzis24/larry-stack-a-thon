@@ -1,8 +1,11 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
+const Workshift = require('./db/models/Workshift')
 const app = express()
+
 module.exports = app
+
 
 // logging middleware
 app.use(morgan('dev'))
@@ -14,7 +17,18 @@ app.use(express.json())
 app.use('/auth', require('./auth'))
 app.use('/api', require('./api'))
 
+
+
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
+
+app.get('/workshifts', async(req, res, next) => {
+  try{
+    res.send(await Workshift.findAll())
+  }
+  catch(ex){
+    next(ex)
+  }
+})
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))

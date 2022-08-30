@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { models: { User }} = require('../db')
+const Workshift = require('../db/models/Workshift')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -15,3 +16,4 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
