@@ -1,6 +1,7 @@
-'use strict'
 
-const {db, models: {User} } = require('../server/db')
+
+const {db, models: {User, Worklocation, Workshift} } = require('../server/db')
+
 
 /**
  * seed - this function clears the database, updates tables to
@@ -11,18 +12,32 @@ async function seed() {
   console.log('db synced!')
 
   // Creating Users
-  const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+  
+  const Cody = await User.create({ username: 'cody', password: '123' });
+   const Murphy = await User.create({ username: 'murphy', password: '123' });
+ 
+
+  //creating WorkLocation
+  const worklocations = await Promise.all([
+    Worklocation.create({gymName:'OakBrook Park District', address:'122 lane', city:'Oakbrook', state:'IL', zipCode:'60516'}),
+    Worklocation.create({gymName:'Connect 44', address:'1554 main steet', city:'Lombard', state:'IL', zipCode:'60516'}),
+    Worklocation.create({gymName:'Hinsdale Community House', address:'123123 ave', city:'Hinsdale', state:'IL', zipCode:'60516'})
   ])
 
-  console.log(`seeded ${users.length} users`)
+  //creating workshifts
+  const workshifts = await Promise.all([
+    Workshift.create({shiftStart:'12:00', shiftEnd:'19:00', userId:Cody.id}),
+    Workshift.create({shiftStart:'14:00', shiftEnd:'18:00', userId:Cody.id}),
+    Workshift.create({shiftStart:'02:00', shiftEnd:'10:00', userId:Murphy.id}),
+
+  ])
+
+  console.log(`seeded ${worklocations.length} worklocations`)
+  console.log(`seeded ${workshifts.length} worklocations`)
+
   console.log(`seeded successfully`)
   return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    }
+ 
   }
 }
 
