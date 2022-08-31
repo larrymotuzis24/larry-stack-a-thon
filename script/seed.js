@@ -33,9 +33,9 @@ async function seed() {
   ])
 
   const classes = await Promise.all([
-    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'04:30', endTime:'06:00', practiceDays:'Monday/Wednsday/Friday'}),
-    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'06:00', endTime:'07:30', practiceDays:'Monday/Wednsday/Friday'}),
-    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'07:30', endTime:'09:00', practiceDays:'Monday/Wendsday/Friday'})
+    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'2022-09-05T04:30:00', endTime:'2022-09-06:00:00', practiceDays:'Monday/Wednsday/Friday'}),
+    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'2022-09-05T06:00:00',endTime:'2022-09-07:30:00',  practiceDays:'Monday/Wednsday/Friday'}),
+    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'2022-09-05T06:00:00',endTime:'2022-09-07:30:00', practiceDays:'Monday/Wendsday/Friday'})
   ])
 
 

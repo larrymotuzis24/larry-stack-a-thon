@@ -1,4 +1,5 @@
 const { INTEGER } = require('sequelize');
+const { DATE } = require('sequelize');
 const { TIME } = require('sequelize');
 const Sequelize = require('sequelize')
 const { STRING } = Sequelize;
@@ -13,7 +14,7 @@ const ClassInfo = db.define('classInfo', {
         type:INTEGER
     },
     startTime:{
-        type:TIME
+        type:DATE
     },
     endType:{
         type:TIME

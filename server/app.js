@@ -33,7 +33,7 @@ app.get('/workshifts', async(req, res, next) => {
 
 app.get('/classes', async(req, res, next) => {
   try{
-    res.send(await ClassInfo.findAll())
+     res.send(await ClassInfo.findAll())
   }
   catch(ex){
     console.log(ex)
