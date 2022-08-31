@@ -1,7 +1,8 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const Workshift = require('./db/models/Workshift')
+const Workshift = require('./db/models/ClassInfo')
+const ClassInfo = require('./db/models/ClassInfo')
 const app = express()
 
 module.exports = app
@@ -27,6 +28,15 @@ app.get('/workshifts', async(req, res, next) => {
   }
   catch(ex){
     next(ex)
+  }
+})
+
+app.get('/classes', async(req, res, next) => {
+  try{
+    res.send(await ClassInfo.findAll())
+  }
+  catch(ex){
+    console.log(ex)
   }
 })
 

@@ -4,6 +4,7 @@ import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store';
+import { fetchClasses } from './store/classInfo';
 import { fetchWorkShifts } from './store/workshifts';
 
 
@@ -53,7 +54,8 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me()),
-      dispatch(fetchWorkShifts())
+      dispatch(fetchWorkShifts()),
+      dispatch(fetchClasses())
     }
   }
 }

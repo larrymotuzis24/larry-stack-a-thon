@@ -5,9 +5,9 @@ const Scheduel = require('./models/Scheduel')
 
 const User = require('./models/User');
 const Worklocation = require('./models/Worklocation');
-const Workshift = require('./models/Workshift');
+const Workshift = require('./models/ClassInfo');
 const Roster = require('./models/Roster');
-const Class = require('./models/Class');
+const ClassInfo = require('./models/ClassInfo');
 const PlayerProfile = require('./models/PlayerProfile');
 
 //associations could go here!
@@ -16,9 +16,9 @@ User.hasMany(Workshift);
 Scheduel.hasMany(Workshift);
 Workshift.hasOne(Worklocation);
 Worklocation.belongsTo(Workshift)
-Class.belongsTo(Workshift);
-Class.hasMany(User)
-Roster.belongsTo(Class);
+ClassInfo.belongsTo(Workshift);
+ClassInfo.hasMany(User)
+Roster.belongsTo(ClassInfo);
 Roster.hasMany(PlayerProfile);
 
 
@@ -31,6 +31,7 @@ module.exports = {
      Worklocation,
      Roster,
      PlayerProfile,
-     Scheduel
+     Scheduel,
+     ClassInfo
   },
 }

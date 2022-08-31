@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
-const {TIME } = require('sequelize');
+const {TIME } = Sequelize;
 
 
 const Workshift = db.define('workshift', {
@@ -10,6 +10,6 @@ const Workshift = db.define('workshift', {
     shiftEnd: {
         type: TIME
     }
-});
+})
 
 module.exports = Workshift

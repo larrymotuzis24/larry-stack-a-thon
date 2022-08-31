@@ -1,29 +1,31 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 
-import { DayPilotCalendar, DayPilot } from '@daypilot/daypilot-lite-react'
 
 
 class Scheduel extends Component {
-        constructor(props) {
-            super(props);
-            this.state = {
-            
-            };
-        }
+    render(){
+        const userWorkshifts = this.props.workShifts.filter(workshift => workshift.userId === this.props.auth.id);
         
-        render() {
-            return (
-              <div>
-                <DayPilotCalendar
-                  viewType={"Week"}
-                />
-              </div>
-          );
-        }
-  }
-  
+        return (
+            <div>
+                <h2> Your Week  </h2>
+                <div>
+                    <DayPilotCalendar
+                     scale={"Week"}
+                     days={7}
 
+                
+                    
+                    />
+                
+                </div>
+
+            </div>
+        )
+    }
+};
 
 const mapStateToProps = (state) => {
     return state
