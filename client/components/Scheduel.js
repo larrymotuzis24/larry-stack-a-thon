@@ -28,6 +28,8 @@ class Scheduel extends Component {
       classes:[],
       viewType: "Days",
       days:7,
+      theme:"calendar_green",
+      headerDateFormat:"dddd M/d",
       timeFormat:'Clock12Hours',
       startDate:'2022-09-05',
       durationBarVisible: false,
@@ -80,8 +82,13 @@ class Scheduel extends Component {
     
     const startDate = "2022-08-31";
     let updatedClasses = this.props.classes.map(c => {
-      let classInfo = `${c.classTitle} </br> Location${c.location}`
+      let classInfo = `${c.classTitle} </br> Location${c.location}, ${c.start} - ${c.end}`
 
+      // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
+      // let playersInClass = this.props.players.filter(player => {
+      //   return playerRosters.filter(pr => pr.playerProfileId === player.id)
+      // })
+      // console.log(playersInClass)
 
       c.text = classInfo
       return c
@@ -100,6 +107,7 @@ class Scheduel extends Component {
 
       let updatedClasses = this.props.classes.map(c => {
         let classInfo = `${c.classTitle} Location: ${c.location}`
+      
         c.text = classInfo
         return c
         
@@ -114,11 +122,11 @@ class Scheduel extends Component {
 
   render() {
           // let studentsInClass = this.props.players.filter(player => player.id === )
-   
   
     return (
       <div style={styles.wrap}>
         <div style={styles.left}>
+          <div style={{padding:'10px'}}>
           <DayPilotNavigator
             selectMode={"week"}
             startDate={DayPilot.Date.today()}
@@ -131,12 +139,17 @@ class Scheduel extends Component {
             {...this.state.onBeforeEventDomAdd}
           />
         </div>
+
+          </div>
         <div style={styles.main}>
+          <div style={{padding:'5px'}}>
           <DayPilotCalendar
             {...this.state}
 
             ref={this.calendarRef}
           />
+
+          </div>
         </div>
       </div>
     );

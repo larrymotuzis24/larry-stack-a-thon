@@ -8,11 +8,11 @@ import Scheduel from './Scheduel'
  * COMPONENT
  */
 export const Home = props => {
-  const {username} = props
+  const {firstName} = props
 
   return (
     <div>
-      <h3>Welcome, {username} </h3>
+      <h3>Welcome, Coach {firstName} </h3>
       <Scheduel />
     </div>
   )
@@ -23,7 +23,7 @@ export const Home = props => {
  */
 const mapState = state => {
   return {
-    username: state.auth.username
+    firstName: state.auth.firstName
   }
 }
 

@@ -15,9 +15,12 @@ const ClassInfo = db.define('classInfo', {
         type:INTEGER
     },
     start:{
-        type:DATE
+        type:TIME
     },
     end:{
+        type:TIME
+    },
+    date:{
         type:DATE
     },
     practiceDays:{

@@ -11,8 +11,9 @@ const ClassInfo = require('./models/ClassInfo');
 const PlayerProfile = require('./models/PlayerProfile');
 
 //associations could go here!
-ClassRoster.belongsTo(PlayerProfile)
-ClassRoster.belongsTo(ClassInfo)
+PlayerProfile.belongsToMany(ClassInfo, { through: ClassRoster });
+ClassInfo.belongsToMany(PlayerProfile, { through: ClassRoster });
+
 
 
 module.exports = {

@@ -19,8 +19,8 @@ async function seed() {
   
   // Creating Users
   
-  const Cody = await User.create({ username: 'cody', password: '123' });
-  const Murphy = await User.create({ username: 'murphy', password: '123' });
+  const Mirko = await User.create({ username: 'coachMirko1', password: '123', firstName:'Mirko', lastName:'Gircic' });
+  const Frank = await User.create({ username: 'coachFrank23', password: '123', firstName:'Frank', lastName:'Miterra'});
   
     const playerRoster = []
   
@@ -46,46 +46,36 @@ async function seed() {
 
   
   const classes = await Promise.all([
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T11:30:00', end:'2022-09-05T13:00:00', practiceDays:'Mondays', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T13:00:00',end:'2022-09-05T14:30:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T14:30:00',end:'2022-09-05T16:00:00', practiceDays:'Monday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-05T11:30:00', end:'2022-09-05T13:00:00', practiceDays:'Mondays', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-05T13:00:00',end:'2022-09-05T14:30:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-05T14:30:00',end:'2022-09-05T16:00:00', practiceDays:'Monday', location:'OakBrook Park District'}),
 
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-07T11:30:00', end:'2022-09-07T13:00:00', practiceDays:'Wednsday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-07T13:00:00',end:'2022-09-07T14:30:00',  practiceDays:'Wednsday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-07T14:30:00',end:'2022-09-07T16:00:00', practiceDays:'Wendsday', location:'OakBrook Park District'}),
-
-
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-09T11:30:00', end:'2022-09-09T13:00:00', practiceDays:'Friday', location:'Hinsdale Community House'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-09T13:00:00',end:'2022-09-09T14:30:00',  practiceDays:'Friday', location:'Hinsdale Community House'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-09T14:30:00',end:'2022-09-09T16:00:00', practiceDays:'Friday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-07T11:30:00', end:'2022-09-07T13:00:00', practiceDays:'Wednsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-07T13:00:00',end:'2022-09-07T14:30:00',  practiceDays:'Wednsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-07T14:30:00',end:'2022-09-07T16:00:00', practiceDays:'Wendsday', location:'OakBrook Park District'}),
 
 
-
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T11:00:00', end:'2022-09-06T12:00:00', practiceDays:'Tuesday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T12:00:00',end:'2022-09-06T13:30:00',  practiceDays:'Tusday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T13:30:00',end:'2022-09-06T15:00:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T15:00:00',end:'2022-09-06T16:30:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
-
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T11:00:00', end:'2022-09-08T12:00:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T12:00:00',end:'2022-09-08T13:30:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T13:30:00',end:'2022-09-08T15:00:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T15:00:00',end:'2022-09-08T16:30:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-09T11:30:00', end:'2022-09-09T13:00:00', practiceDays:'Friday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-09T13:00:00',end:'2022-09-09T14:30:00',  practiceDays:'Friday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Mirko.id, start:'2022-09-09T14:30:00',end:'2022-09-09T16:00:00', practiceDays:'Friday', location:'Hinsdale Community House'}),
 
 
-    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T11:00:00',end:'2022-09-11T12:30:00', practiceDays:'Thursday'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T12:30:00',end:'2022-09-11T14:00:00',  practiceDays:'Thursday'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T14:00:00',end:'2022-09-11T15:30:00', practiceDays:'Thursday'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T15:30:00',end:'2022-09-11T17:00:00', practiceDays:'Thursday'}),
 
-    ClassRoster.create({playerProfileId:2, classInfoId:3}),
-    ClassRoster.create({playerProfileId:3, classInfoId:3}),
-    ClassRoster.create({playerProfileId:4, classInfoId:3}),
-    ClassRoster.create({playerProfileId:5, classInfoId:3}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-06T11:00:00', end:'2022-09-06T12:00:00', practiceDays:'Tuesday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-06T12:00:00',end:'2022-09-06T13:30:00',  practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-06T13:30:00',end:'2022-09-06T15:00:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-06T15:00:00',end:'2022-09-06T16:30:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
 
-    ClassRoster.create({playerProfileId:6, classInfoId:2}),
-    ClassRoster.create({playerProfileId:7, classInfoId:2}),
-    ClassRoster.create({playerProfileId:8, classInfoId:2}),
-    ClassRoster.create({playerProfileId:9, classInfoId:2}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-08T11:00:00', end:'2022-09-08T12:00:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-08T12:00:00',end:'2022-09-08T13:30:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-08T13:30:00',end:'2022-09-08T15:00:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Mirko.id, start:'2022-09-08T15:00:00',end:'2022-09-08T16:30:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+
+
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Mirko.id, start:'2022-09-11T11:00:00',end:'2022-09-11T12:30:00', practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Mirko.id, start:'2022-09-11T12:30:00',end:'2022-09-11T14:00:00',  practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Mirko.id, start:'2022-09-11T14:00:00',end:'2022-09-11T15:30:00', practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Mirko.id, start:'2022-09-11T15:30:00',end:'2022-09-11T17:00:00', practiceDays:'Thursday'}),
 
     ClassRoster.create({playerProfileId:2, classInfoId:3}),
     ClassRoster.create({playerProfileId:3, classInfoId:3}),
@@ -96,6 +86,16 @@ async function seed() {
     ClassRoster.create({playerProfileId:7, classInfoId:2}),
     ClassRoster.create({playerProfileId:8, classInfoId:2}),
     ClassRoster.create({playerProfileId:9, classInfoId:2}),
+
+    ClassRoster.create({playerProfileId:10, classInfoId:3}),
+    ClassRoster.create({playerProfileId:11, classInfoId:3}),
+    ClassRoster.create({playerProfileId:12, classInfoId:3}),
+    ClassRoster.create({playerProfileId:13, classInfoId:3}),
+
+    ClassRoster.create({playerProfileId:14, classInfoId:2}),
+    ClassRoster.create({playerProfileId:15, classInfoId:2}),
+    ClassRoster.create({playerProfileId:16, classInfoId:2}),
+    ClassRoster.create({playerProfileId:17, classInfoId:2}),
 
     
 
