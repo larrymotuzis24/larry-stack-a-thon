@@ -3,6 +3,7 @@ const express = require('express')
 const morgan = require('morgan')
 const ClassInfo = require('./db/models/ClassInfo')
 const PlayerProfile = require('./db/models/PlayerProfile')
+const ClassRoster = require('./db/models/ClassRoster')
 const app = express()
 
 module.exports = app
@@ -34,6 +35,15 @@ app.get('/players', async(req, res, next) => {
 app.get('/classes', async(req, res, next) => {
   try{
      res.send(await ClassInfo.findAll())
+  }
+  catch(ex){
+    console.log(ex)
+  }
+})
+
+app.get('/classRosters', async(req, res, next) => {
+  try{
+     res.send(await ClassRoster.findAll())
   }
   catch(ex){
     console.log(ex)

@@ -4,6 +4,7 @@ const {db, models: {User, Worklocation, Workshift, ClassInfo, PlayerProfile} } =
 
 
 const {faker} = require('@faker-js/faker');
+const ClassRoster = require('../server/db/models/ClassRoster');
 console.log(faker)
 
 
@@ -15,12 +16,26 @@ console.log(faker)
 async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
-
+  
   // Creating Users
   
   const Cody = await User.create({ username: 'cody', password: '123' });
-   const Murphy = await User.create({ username: 'murphy', password: '123' });
- 
+  const Murphy = await User.create({ username: 'murphy', password: '123' });
+  
+    const playerRoster = []
+  
+  
+  
+  
+  Array.from({ length: 300 }).forEach(async() => {
+      playerRoster.push(await PlayerProfile.create({ firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        emergencyContact:`${faker.name.firstName()} ${faker.name.lastName()}`,
+        emergencyContactPhone: faker.phone.number()}));
+    });
+  
+    
+  
 
   //creating WorkLocation
   const worklocations = await Promise.all([
@@ -29,14 +44,7 @@ async function seed() {
     Worklocation.create({gymName:'Hinsdale Community House', address:'123123 ave', city:'Hinsdale', state:'IL', zipCode:'60516'})
   ])
 
-  //creating workshifts
-  const workshifts = await Promise.all([
-    Workshift.create({shiftStart:'12:00', shiftEnd:'19:00', userId:Cody.id}),
-    Workshift.create({shiftStart:'14:00', shiftEnd:'18:00', userId:Cody.id}),
-    Workshift.create({shiftStart:'02:00', shiftEnd:'10:00', userId:Murphy.id}),
-
-  ])
-
+  
   const classes = await Promise.all([
     ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T11:30:00', end:'2022-09-05T13:00:00', practiceDays:'Mondays', location:'OakBrook Park District'}),
     ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T13:00:00',end:'2022-09-05T14:30:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
@@ -64,28 +72,35 @@ async function seed() {
     ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T15:00:00',end:'2022-09-08T16:30:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
 
 
-    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T11:00:00', end:'2022-09-11T12:30:00', practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T11:00:00',end:'2022-09-11T12:30:00', practiceDays:'Thursday'}),
     ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T12:30:00',end:'2022-09-11T14:00:00',  practiceDays:'Thursday'}),
     ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T14:00:00',end:'2022-09-11T15:30:00', practiceDays:'Thursday'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T15:30:00',end:'2022-09-11T17:00:00', practiceDays:'Thursday'})
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T15:30:00',end:'2022-09-11T17:00:00', practiceDays:'Thursday'}),
 
+    ClassRoster.create({playerProfileId:2, classInfoId:3}),
+    ClassRoster.create({playerProfileId:3, classInfoId:3}),
+    ClassRoster.create({playerProfileId:4, classInfoId:3}),
+    ClassRoster.create({playerProfileId:5, classInfoId:3}),
+
+    ClassRoster.create({playerProfileId:6, classInfoId:2}),
+    ClassRoster.create({playerProfileId:7, classInfoId:2}),
+    ClassRoster.create({playerProfileId:8, classInfoId:2}),
+    ClassRoster.create({playerProfileId:9, classInfoId:2}),
+
+    ClassRoster.create({playerProfileId:2, classInfoId:3}),
+    ClassRoster.create({playerProfileId:3, classInfoId:3}),
+    ClassRoster.create({playerProfileId:4, classInfoId:3}),
+    ClassRoster.create({playerProfileId:5, classInfoId:3}),
+
+    ClassRoster.create({playerProfileId:6, classInfoId:2}),
+    ClassRoster.create({playerProfileId:7, classInfoId:2}),
+    ClassRoster.create({playerProfileId:8, classInfoId:2}),
+    ClassRoster.create({playerProfileId:9, classInfoId:2}),
+
+    
 
 
   ])
-
-  const playerRoster = []
-
-
-
-
-Array.from({ length: 300 }).forEach(async() => {
-    playerRoster.push(await PlayerProfile.create({ firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      emergencyContact:`${faker.name.firstName()} ${faker.name.lastName()}`,
-      emergencyContactPhone: faker.phone.number()}));
-  });
-
-  
 
 
   
@@ -93,7 +108,6 @@ Array.from({ length: 300 }).forEach(async() => {
 
 
   console.log(`seeded ${worklocations.length} worklocations`)
-  console.log(`seeded ${workshifts.length} worklocations`)
   console.log(classes)
   console.log(`seeded successfully`)
   return {

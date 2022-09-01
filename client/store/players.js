@@ -12,7 +12,6 @@ export const _setPlayers = (players) => {
 };  
 
 export const fetchPlayers = () => async dispatch => {
-    console.log('fetchPlayers')
   const response = await axios.get('/players', {
     headers: {
       authorization: window.localStorage.getItem('token')

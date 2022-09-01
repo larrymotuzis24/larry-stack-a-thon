@@ -1,44 +1,12 @@
-// import {DayPilot, DayPilotCalendar} from "@daypilot/daypilot-lite-react";
 
-
-
-// class Scheduel extends Component {
-    //     render(){
-        
-        //         const coachClasses = this.props.classes.filter(c => c.leadCoach === this.props.auth.id);
-        //         console.log(coachClasses)
-        
-        //         return (
-            //             <div>
-            //                 <h2> Your Week  </h2>
-            //                 <div>
-            //                     <DayPilotCalendar
-            //                      scale={"Week"}
-            //                      days={7}
-            //                      timeRangeSelectedHandling={"Enabled"}
-            //                      ressources={
-                //                         coachClasses.map(c => c)
-                //                      }
-                
-                
-                //                     />
-                
-                //                 </div>
-                
-                //             </div>
-                //         )
-                //     }
-                // };
-                
          
-                            import React, {Component} from 'react';
-                            import { fetchClasses } from '../store/classInfo';
+ import React, {Component} from 'react';
+  import { fetchClasses } from '../store/classInfo';
                     
-                   import {connect} from 'react-redux'
-                            import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
+  import {connect} from 'react-redux'
+     import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
                          
-                            
-                            const styles = {
+  const styles = {
   wrap: {
     display: "flex"
   },
@@ -93,7 +61,6 @@ class Scheduel extends Component {
         const modal = await DayPilot.Modal.prompt("Update event text:", args.e.text());
         if (!modal.result) { return; }
         const e = args.e;
-        console.log(e.data.practiceDays)
         e.data.text = modal.result;
         dp.events.update(e);
       },
@@ -109,10 +76,13 @@ class Scheduel extends Component {
     this.props.fetchClass()
     this.setState({classes:this.props.classes})
 
+
     
     const startDate = "2022-08-31";
     let updatedClasses = this.props.classes.map(c => {
       let classInfo = `${c.classTitle} </br> Location${c.location}`
+
+
       c.text = classInfo
       return c
       
@@ -143,6 +113,8 @@ class Scheduel extends Component {
 
 
   render() {
+          // let studentsInClass = this.props.players.filter(player => player.id === )
+   
   
     return (
       <div style={styles.wrap}>
@@ -171,10 +143,11 @@ class Scheduel extends Component {
   }
 }
 
-const mapStateToProps = ({classes, auth}) => {
+const mapStateToProps = ({classes,classRosters, auth}) => {
   return {
     classes,
-    auth
+    auth,
+    classRosters
   }
 };
 
