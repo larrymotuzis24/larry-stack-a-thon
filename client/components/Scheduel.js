@@ -30,19 +30,11 @@
                 //     }
                 // };
                 
-                const mapStateToProps = (state) => {
-                        return state
-                    };
-                    
-                    const mapDispatchToProps = ( dispatch) => {
-                            return {
-                            
-                                }
-                            };
-                            
+         
                             import React, {Component} from 'react';
+                            import { fetchClasses } from '../store/classInfo';
                     
-                            import {connect} from 'react-redux'
+                   import {connect} from 'react-redux'
                             import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
                          
                             
@@ -59,14 +51,30 @@
 };
 
 class Scheduel extends Component {
-
+  
   constructor(props) {
     super(props);
+    console.log(props)
     this.calendarRef = React.createRef();
     this.state = {
-      viewType: "Week",
+
+      classes:[],
+      viewType: "Days",
+      days:7,
+      timeFormat:'Clock12Hours',
+      startDate:'2022-09-05',
       durationBarVisible: false,
       timeRangeSelectedHandling: "Enabled",
+
+      onBeforeEventDomAdd: args => {
+        args.element = <div>
+          {args.e.data.text}
+          <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
+               onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
+        </div>;
+      },
+    
+    
       onTimeRangeSelected: async args => {
         const dp = this.calendar;
         const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
@@ -79,65 +87,66 @@ class Scheduel extends Component {
           text: modal.result
         });
       },
+
       eventDeleteHandling: "Update",
       onEventClick: async args => {
         const dp = this.calendar;
         const modal = await DayPilot.Modal.prompt("Update event text:", args.e.text());
         if (!modal.result) { return; }
         const e = args.e;
+        console.log(e.data.practiceDays)
         e.data.text = modal.result;
         dp.events.update(e);
       },
+      
     };
   }
 
   get calendar() {
     return this.calendarRef.current.control;
   }
+  
+  componentDidMount(){
+    this.props.fetchClass()
+    this.setState({classes:this.props.classes})
 
-  componentDidMount() {
-    console.log(this.props)
-   
-    const events = [
-      {
-        id: 1,
-        text: "Event 1",
-        start: "2023-03-07T10:30:00",
-        end: "2023-03-07T13:00:00"
-      },
-      {
-        id: 2,
-        text: "Event 2",
-        start: "2023-03-08T09:30:00",
-        end: "2023-03-08T11:30:00",
-        backColor: "#6aa84f"
-      },
-      {
-        id: 3,
-        text: "Event 3",
-        start: "2023-03-08T12:00:00",
-        end: "2023-03-08T15:00:00",
-        backColor: "#f1c232"
-      },
-      {
-        id: 4,
-        text: "Event 4",
-        start: "2023-03-06T11:30:00",
-        end: "2023-03-06T14:30:00",
-        backColor: "#cc4125"
-      },
-    ];
+    
+    const startDate = "2022-08-31";
+    let updatedClasses = this.props.classes.map(c => {
+      let classInfo = `${c.classTitle}, ${c.location}`
+      c.text = classInfo
+      return c
+      
+    })
 
-    const startDate = "2022-09-05";
+    let classes = updatedClasses.filter(c => c.leadCoach === this.props.auth.id);
+    
+    console.log()
+    
+    this.calendar.update({startDate, classes});
+  }
+  componentDidUpdate(previousProps){
+    if(previousProps.classes !== this.props.classes){
+      const startDate = "2022-08-31";
+      this.setState({classes:this.props.classes})
 
-    this.calendar.update({startDate, events});
+      let updatedClasses = this.props.classes.map(c => {
+        let classInfo = `${c.classTitle}, ${c.location}`
+        c.text = classInfo
+        return c
+        
+      })
 
+      let events =  updatedClasses.filter(c => c.leadCoach === this.props.auth.id);
+      this.setState({classes:events})
+      this.calendar.update({startDate, events});
+      console.log('2')
+    }
   }
 
-  render() {
-    const coachClasses = this.props.classes.filter(c => c.leadCoach === this.props.auth.id);
-    console.log(coachClasses)
 
+  render() {
+  
     return (
       <div style={styles.wrap}>
         <div style={styles.left}>
@@ -150,11 +159,13 @@ class Scheduel extends Component {
                 startDate: args.day
               });
             }}
+            {...this.state.onBeforeEventDomAdd}
           />
         </div>
         <div style={styles.main}>
           <DayPilotCalendar
             {...this.state}
+
             ref={this.calendarRef}
           />
         </div>
@@ -163,5 +174,17 @@ class Scheduel extends Component {
   }
 }
 
+const mapStateToProps = ({classes, auth}) => {
+  return {
+    classes,
+    auth
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchClass: ()=>  dispatch(fetchClasses())
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Scheduel)

@@ -1,30 +1,31 @@
 import axios from 'axios';
 
 
-const TOKEN = 'token'
+const SET_CLASSES = 'SET_CLASSES';
 
-const classes = (state = [], action)=> {
-  if(action.type === 'SET_CLASSES'){
-    state = action.classes;
-  }
-  return state;
-};
 
 export const _setClasses = (classes) => {
   return {
-    type:'SET_CLASSES',
+    type:SET_CLASSES,
     classes
   }    
 };  
 
 export const fetchClasses = () => async dispatch => {
-const response = await axios.get('/classes', {
-  headers: {
-    authorization: window.localStorage.getItem('token')
-  }
-})
-    
-    return dispatch(_setClasses(response.data))
+  const response = await axios.get('/classes', {
+    headers: {
+      authorization: window.localStorage.getItem('token')
+    }
+  })
+  
+  dispatch(_setClasses(response.data))
 }
 
-export default classes
+export default function(state = [], action) {
+  switch (action.type) {
+    case SET_CLASSES:
+      return action.classes
+    default:
+      return state
+  }
+}

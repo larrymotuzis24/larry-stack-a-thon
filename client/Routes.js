@@ -5,7 +5,6 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store';
 import { fetchClasses } from './store/classInfo';
-import { fetchWorkShifts } from './store/workshifts';
 
 
 /**
@@ -14,8 +13,9 @@ import { fetchWorkShifts } from './store/workshifts';
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
-    console.log(this.props)
+  
   }
+
 
   render() {
     const {isLoggedIn} = this.props
@@ -46,15 +46,15 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    classes: state.classes
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
-      dispatch(me()),
-      dispatch(fetchWorkShifts()),
+      dispatch(me())
       dispatch(fetchClasses())
     }
   }

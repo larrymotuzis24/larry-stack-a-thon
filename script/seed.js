@@ -33,9 +33,39 @@ async function seed() {
   ])
 
   const classes = await Promise.all([
-    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'2022-09-05T04:30:00', endTime:'2022-09-06:00:00', practiceDays:'Monday/Wednsday/Friday'}),
-    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'2022-09-05T06:00:00',endTime:'2022-09-07:30:00',  practiceDays:'Monday/Wednsday/Friday'}),
-    ClassInfo.create({className:'PREP SCHOOL', leadCoach:Cody.id, startTime:'2022-09-05T06:00:00',endTime:'2022-09-07:30:00', practiceDays:'Monday/Wendsday/Friday'})
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T11:30:00', end:'2022-09-05T13:00:00', practiceDays:'Mondays', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T13:00:00',end:'2022-09-05T14:30:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-05T14:30:00',end:'2022-09-05T16:00:00', practiceDays:'Monday', location:'OakBrook Park District'}),
+
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-07T11:30:00', end:'2022-09-07T13:00:00', practiceDays:'Wednsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-07T13:00:00',end:'2022-09-07T14:30:00',  practiceDays:'Wednsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-07T14:30:00',end:'2022-09-07T16:00:00', practiceDays:'Wendsday', location:'OakBrook Park District'}),
+
+
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-09T11:30:00', end:'2022-09-09T13:00:00', practiceDays:'Friday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-09T13:00:00',end:'2022-09-09T14:30:00',  practiceDays:'Friday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', leadCoach:Cody.id, start:'2022-09-09T14:30:00',end:'2022-09-09T16:00:00', practiceDays:'Friday', location:'Hinsdale Community House'}),
+
+
+
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T11:00:00', end:'2022-09-06T12:00:00', practiceDays:'Tuesday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T12:00:00',end:'2022-09-06T13:30:00',  practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T13:30:00',end:'2022-09-06T15:00:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-06T15:00:00',end:'2022-09-06T16:30:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
+
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T11:00:00', end:'2022-09-08T12:00:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T12:00:00',end:'2022-09-08T13:30:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T13:30:00',end:'2022-09-08T15:00:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'GBL', leadCoach:Cody.id, start:'2022-09-08T15:00:00',end:'2022-09-08T16:30:00', practiceDays:'Thursday', location:'Connect 44 Center'}),
+
+
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T11:00:00', end:'2022-09-11T12:30:00', practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T12:30:00',end:'2022-09-11T14:00:00',  practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T14:00:00',end:'2022-09-11T15:30:00', practiceDays:'Thursday'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', leadCoach:Cody.id, start:'2022-09-11T15:30:00',end:'2022-09-11T17:00:00', practiceDays:'Thursday'})
+
+
+
   ])
 
 

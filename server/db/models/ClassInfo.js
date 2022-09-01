@@ -1,5 +1,6 @@
 const { INTEGER } = require('sequelize');
 const { DATE } = require('sequelize');
+const { TEXT } = require('sequelize');
 const { TIME } = require('sequelize');
 const Sequelize = require('sequelize')
 const { STRING } = Sequelize;
@@ -7,19 +8,22 @@ const db = require('../db')
 
 
 const ClassInfo = db.define('classInfo', {
-    className:{
+    classTitle:{
         type:STRING
     },
     leadCoach:{
         type:INTEGER
     },
-    startTime:{
+    start:{
         type:DATE
     },
-    endType:{
-        type:TIME
+    end:{
+        type:DATE
     },
     practiceDays:{
+        type:STRING
+    },
+    location:{
         type:STRING
     }
 });
