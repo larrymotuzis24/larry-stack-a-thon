@@ -12,10 +12,12 @@ class App extends Component {
       classes:[]
     }
   }
+  componentDidMount(){
+    console.log(this.props)
+  }
 
 
   render(){
-    console.log(this.props.classes)
     return (
       <div>
         <div>
@@ -35,7 +37,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      fetchClass: ()=>  dispatch(fetchClasses())
     }
 }
 

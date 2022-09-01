@@ -54,7 +54,6 @@ class Scheduel extends Component {
   
   constructor(props) {
     super(props);
-    console.log(props)
     this.calendarRef = React.createRef();
     this.state = {
 
@@ -113,7 +112,7 @@ class Scheduel extends Component {
     
     const startDate = "2022-08-31";
     let updatedClasses = this.props.classes.map(c => {
-      let classInfo = `${c.classTitle}, ${c.location}`
+      let classInfo = `${c.classTitle} </br> Location${c.location}`
       c.text = classInfo
       return c
       
@@ -121,7 +120,6 @@ class Scheduel extends Component {
 
     let classes = updatedClasses.filter(c => c.leadCoach === this.props.auth.id);
     
-    console.log()
     
     this.calendar.update({startDate, classes});
   }
@@ -131,7 +129,7 @@ class Scheduel extends Component {
       this.setState({classes:this.props.classes})
 
       let updatedClasses = this.props.classes.map(c => {
-        let classInfo = `${c.classTitle}, ${c.location}`
+        let classInfo = `${c.classTitle} Location: ${c.location}`
         c.text = classInfo
         return c
         
@@ -140,7 +138,6 @@ class Scheduel extends Component {
       let events =  updatedClasses.filter(c => c.leadCoach === this.props.auth.id);
       this.setState({classes:events})
       this.calendar.update({startDate, events});
-      console.log('2')
     }
   }
 

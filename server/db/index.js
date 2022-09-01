@@ -1,5 +1,6 @@
 //this is the access point for all things database related!
 
+
 const db = require('./db')
 const Scheduel = require('./models/Scheduel')
 
@@ -13,13 +14,11 @@ const PlayerProfile = require('./models/PlayerProfile');
 //associations could go here!
 Scheduel.belongsTo(User);
 User.hasMany(Workshift);
-Scheduel.hasMany(Workshift);
-Workshift.hasOne(Worklocation);
-Worklocation.belongsTo(Workshift)
-ClassInfo.belongsTo(Workshift);
 ClassInfo.hasMany(User)
 Roster.belongsTo(ClassInfo);
 Roster.hasMany(PlayerProfile);
+PlayerProfile.belongsTo(ClassInfo);
+ClassInfo.hasMany(PlayerProfile)
 
 
 module.exports = {

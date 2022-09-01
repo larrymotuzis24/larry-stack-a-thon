@@ -2,9 +2,9 @@ const { INTEGER } = require('sequelize');
 const { DATE } = require('sequelize');
 const { TEXT } = require('sequelize');
 const { TIME } = require('sequelize');
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 const { STRING } = Sequelize;
-const db = require('../db')
+const db = require('../db');
 
 
 const ClassInfo = db.define('classInfo', {
@@ -27,6 +27,7 @@ const ClassInfo = db.define('classInfo', {
         type:STRING
     }
 });
+
 
 
 module.exports = ClassInfo;

@@ -5,6 +5,7 @@ import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store';
 import { fetchClasses } from './store/classInfo';
+import { fetchPlayers } from './store/players';
 
 
 /**
@@ -56,6 +57,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchClasses())
+      dispatch(fetchPlayers())
     }
   }
 }

@@ -1,8 +1,8 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const Workshift = require('./db/models/ClassInfo')
 const ClassInfo = require('./db/models/ClassInfo')
+const PlayerProfile = require('./db/models/PlayerProfile')
 const app = express()
 
 module.exports = app
@@ -22,9 +22,9 @@ app.use('/api', require('./api'))
 
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
 
-app.get('/workshifts', async(req, res, next) => {
+app.get('/players', async(req, res, next) => {
   try{
-    res.send(await Workshift.findAll())
+    res.send(await PlayerProfile.findAll())
   }
   catch(ex){
     next(ex)

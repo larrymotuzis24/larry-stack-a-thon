@@ -1,6 +1,11 @@
 
 
-const {db, models: {User, Worklocation, Workshift, ClassInfo} } = require('../server/db')
+const {db, models: {User, Worklocation, Workshift, ClassInfo, PlayerProfile} } = require('../server/db');
+
+
+const {faker} = require('@faker-js/faker');
+console.log(faker)
+
 
 
 /**
@@ -68,11 +73,28 @@ async function seed() {
 
   ])
 
+  const playerRoster = []
+
+
+
+
+Array.from({ length: 300 }).forEach(async() => {
+    playerRoster.push(await PlayerProfile.create({ firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      emergencyContact:`${faker.name.firstName()} ${faker.name.lastName()}`,
+      emergencyContactPhone: faker.phone.number()}));
+  });
+
+  
+
+
+  
+
 
 
   console.log(`seeded ${worklocations.length} worklocations`)
   console.log(`seeded ${workshifts.length} worklocations`)
-console.log(classes)
+  console.log(classes)
   console.log(`seeded successfully`)
   return {
  
