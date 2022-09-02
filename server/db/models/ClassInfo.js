@@ -11,23 +11,23 @@ const ClassInfo = db.define('classInfo', {
     classTitle:{
         type:STRING
     },
-    leadCoach:{
-        type:INTEGER
-    },
     start:{
-        type:TIME
+        type:DATE
     },
     end:{
-        type:TIME
-    },
-    date:{
         type:DATE
+    },
+    timeRange:{
+        type:STRING
     },
     practiceDays:{
         type:STRING
     },
     location:{
         type:STRING
+    },
+    description:{
+        type:TEXT
     }
 });
 

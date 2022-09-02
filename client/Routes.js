@@ -8,7 +8,7 @@ import {me} from './store';
 import { fetchClasses } from './store/classInfo';
 import { fetchRosters } from './store/classRoster';
 import { fetchPlayers } from './store/players';
-
+import Players from './components/Players';
 
 /**
  * COMPONENT
@@ -28,7 +28,8 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route to="/account" component={CoachAccount} />
+            <Route path="/account" component={CoachAccount} />
+            <Route path="/players" component={Players} />
           </Switch>
         ) : (
           <Switch>

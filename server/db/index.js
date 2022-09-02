@@ -11,8 +11,10 @@ const ClassInfo = require('./models/ClassInfo');
 const PlayerProfile = require('./models/PlayerProfile');
 
 //associations could go here!
-PlayerProfile.belongsToMany(ClassInfo, { through: ClassRoster });
-ClassInfo.belongsToMany(PlayerProfile, { through: ClassRoster });
+ClassRoster.belongsTo(ClassInfo);
+ClassRoster.belongsTo(PlayerProfile);
+ClassInfo.belongsTo(User);
+
 
 
 

@@ -5,6 +5,8 @@
                     
   import {connect} from 'react-redux'
      import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
+import Navbar from './Navbar';
+import players from '../store/players';
                          
   const styles = {
   wrap: {
@@ -16,21 +18,24 @@
   main: {
     flexGrow: "1"
   }
-};
-
+};let id = '';
 class Scheduel extends Component {
   
   constructor(props) {
     super(props);
     this.calendarRef = React.createRef();
     this.state = {
-
+      classId:'',
       classes:[],
       viewType: "Days",
       days:7,
+      businessBeginsHour: 15,
+      businessEndsHour: 23,
+      height:400,
       theme:"calendar_green",
       headerDateFormat:"dddd M/d",
       timeFormat:'Clock12Hours',
+      timeDisplay:'9:00',
       startDate:'2022-09-05',
       durationBarVisible: false,
       timeRangeSelectedHandling: "Enabled",
@@ -59,8 +64,10 @@ class Scheduel extends Component {
 
       eventDeleteHandling: "Update",
       onEventClick: async args => {
+        this.setState({classId: args.e.value()});
+        
         const dp = this.calendar;
-        const modal = await DayPilot.Modal.prompt("Update event text:", args.e.text());
+        const modal = await DayPilot.Modal.prompt(<Navbar />);
         if (!modal.result) { return; }
         const e = args.e;
         e.data.text = modal.result;
@@ -82,7 +89,7 @@ class Scheduel extends Component {
     
     const startDate = "2022-08-31";
     let updatedClasses = this.props.classes.map(c => {
-      let classInfo = `${c.classTitle} </br> Location${c.location}, ${c.start} - ${c.end}`
+      let classInfo = `${c.classTitle} </br> Location${c.location}`
 
       // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
       // let playersInClass = this.props.players.filter(player => {
@@ -95,7 +102,7 @@ class Scheduel extends Component {
       
     })
 
-    let classes = updatedClasses.filter(c => c.leadCoach === this.props.auth.id);
+    let classes = updatedClasses.filter(c => c.userId === this.props.auth.id);
     
     
     this.calendar.update({startDate, classes});
@@ -106,14 +113,17 @@ class Scheduel extends Component {
       this.setState({classes:this.props.classes})
 
       let updatedClasses = this.props.classes.map(c => {
-        let classInfo = `${c.classTitle} Location: ${c.location}`
+
+        let classInfo = `${c.classTitle} 
+        Location: ${c.location} 
+        ${c.timeRange}`
       
         c.text = classInfo
         return c
         
       })
 
-      let events =  updatedClasses.filter(c => c.leadCoach === this.props.auth.id);
+      let events =  updatedClasses.filter(c => c.userId === this.props.auth.id);
       this.setState({classes:events})
       this.calendar.update({startDate, events});
     }
@@ -122,6 +132,17 @@ class Scheduel extends Component {
 
   render() {
           // let studentsInClass = this.props.players.filter(player => player.id === )
+          const rosters = this.props.classRosters.filter(roster => {
+           return roster.classInfoId*1 === this.state.classId*1
+          })
+
+         const roster = rosters.map(r => {
+            return this.props.players.find(player => {
+              return player.id === r.playerProfileId
+            })
+          })
+        
+    console.log(roster)
   
     return (
       <div style={styles.wrap}>
@@ -150,17 +171,41 @@ class Scheduel extends Component {
           />
 
           </div>
+          <div style={{
+            width:"fitContent"
+          }}>
+            {
+              roster.map(player => {
+                return (
+                  <div key={player.id}> 
+                    <div style={{
+                      display:'flex',
+                      padding:'3px'
+                    }}>
+                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> {player.firstName} </a>
+                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> {player.lastName}</a>
+                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> Emergency Contact:{player.emergencyContact}</a>
+                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> Phone Number:{player.emergencyContactPhone}</a>
+                    </div>
+
+                    </div>
+                )
+              })
+            }
+
+          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({classes,classRosters, auth}) => {
+const mapStateToProps = ({classes,classRosters, players,auth}) => {
   return {
     classes,
     auth,
-    classRosters
+    classRosters,
+    players
   }
 };
 
