@@ -7,6 +7,7 @@
      import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
 import Navbar from './Navbar';
 import players from '../store/players';
+
                          
   const styles = {
   wrap: {
@@ -26,6 +27,7 @@ class Scheduel extends Component {
     this.calendarRef = React.createRef();
     this.state = {
       classId:'',
+      cellHeight:40,
       classes:[],
       viewType: "Days",
       days:7,
@@ -180,12 +182,13 @@ class Scheduel extends Component {
                   <div key={player.id}> 
                     <div style={{
                       display:'flex',
-                      padding:'3px'
+                      padding:'3px',
+                      justifyContent:'space-around'
                     }}>
-                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> {player.firstName} </a>
-                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> {player.lastName}</a>
-                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> Emergency Contact:{player.emergencyContact}</a>
-                         <a style={{borderRight:'solid black', padding:'2px',fontSize:'12px'}}> Phone Number:{player.emergencyContactPhone}</a>
+                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> {player.firstName} </a>
+                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> {player.lastName}</a>
+                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> Emergency Contact:{player.emergencyContact}</a>
+                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> Phone Number:{player.emergencyContactPhone}</a>
                     </div>
 
                     </div>
