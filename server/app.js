@@ -23,6 +23,7 @@ app.use('/api', require('./api'))
 
 app.get('/', (req, res)=> res.sendFile(path.join(__dirname, '..', 'public/index.html')));
 
+
 app.get('/players', async(req, res, next) => {
   try{
     res.send(await PlayerProfile.findAll())

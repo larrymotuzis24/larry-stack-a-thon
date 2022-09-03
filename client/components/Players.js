@@ -29,7 +29,7 @@ class Players extends Component {
       onChange(ev) {
         this.setState({ [ev.target.name]: ev.target.value });
         if (window.location.href.includes('/page/')) {
-          window.location.href = '/players/page/1';
+          window.location.href = '/allPlayers/page/1';
         }
         const filters = document.getElementsByClassName('category-filters');
         const filtersArr = Array.from(filters);
@@ -49,6 +49,7 @@ class Players extends Component {
       }
 
       render() {
+        console.log('321312312')
         const pageNumber = this.props.match.params.id * 1;
         const { players } = this.props;
         const { option } = this.state;
@@ -98,7 +99,7 @@ class Players extends Component {
                   >
                     <Link
                       id={player.id}
-                      to={`/players/${player.id}`}
+                      to={`/allPlayers/${player.id}`}
                       className="text-decoration-none"
                     >
                       <div

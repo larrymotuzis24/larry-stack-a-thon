@@ -10,7 +10,7 @@ import { fetchRosters } from './store/classRoster';
 import { fetchPlayers } from './store/players';
 import Players from './components/Players';
 import auth from './store/auth';
-import isAdminView from '../server/db/models/isAdminView';
+import isAdminView from './components/isAdminView';
 import CreateClass from './components/CreateClass';
 
 /**
@@ -24,24 +24,28 @@ class Routes extends Component {
 
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, auth} = this.props
     console.log(this.props)
 
     return (
       <div>
         { isLoggedIn ? (
-          <Switch>
+         <Switch>
             <Route path="/home" component={Home} />
             <Route path="/account" component={CoachAccount} />
-            <Route path="/players" component={Players} />
-            {auth.isAdmin ? (
-              <Fragment>
-                  <Route path="/adminPrivlage" component={isAdminView} />
-                  <Route path="/createClass" component={CreateClass} />
+            {
+            auth.isAdmin ? (
+              <Switch>
+                <Route path="/allPlayers" component={Players} />
+                <Route path="/createClass" component={CreateClass} />
 
-              </Fragment>
+                </Switch>
+
+           
+             
             ) : null}
           </Switch>
+
         ) : (
           <Switch>
             <Route path='/' exact component={ Login } />

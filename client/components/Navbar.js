@@ -12,7 +12,7 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/account"> Account </Link>
-          <Link to="/players"> Players </Link>
+          <Link to="/allPlayers"> Players </Link>
           {
             isAdmin ? (
               <Fragment>
