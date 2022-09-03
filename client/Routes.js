@@ -11,6 +11,7 @@ import { fetchPlayers } from './store/players';
 import Players from './components/Players';
 import auth from './store/auth';
 import isAdminView from '../server/db/models/isAdminView';
+import CreateClass from './components/CreateClass';
 
 /**
  * COMPONENT
@@ -34,7 +35,11 @@ class Routes extends Component {
             <Route path="/account" component={CoachAccount} />
             <Route path="/players" component={Players} />
             {auth.isAdmin ? (
-              <Route path="/adminPrivlage" component={isAdminView} />
+              <Fragment>
+                  <Route path="/adminPrivlage" component={isAdminView} />
+                  <Route path="/createClass" component={CreateClass} />
+
+              </Fragment>
             ) : null}
           </Switch>
         ) : (

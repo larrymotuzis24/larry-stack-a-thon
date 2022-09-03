@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { conect } from 'react-redux';
+import { connect } from 'react-redux';
 
 
 class CreateClass extends Component {
@@ -16,6 +16,7 @@ class CreateClass extends Component {
         }
     }
     render(){
+        console.log('readasd')
         return (
             <div>
                 <div>
@@ -49,3 +50,5 @@ const mapDispatchToProps = (dispacth) => {
 
     }
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateClass)
