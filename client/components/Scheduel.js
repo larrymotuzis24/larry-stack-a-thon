@@ -68,12 +68,12 @@ class Scheduel extends Component {
       onEventClick: async args => {
         this.setState({classId: args.e.value()});
         
-        const dp = this.calendar;
-        const modal = await DayPilot.Modal.prompt(<Navbar />);
-        if (!modal.result) { return; }
-        const e = args.e;
-        e.data.text = modal.result;
-        dp.events.update(e);
+        // const dp = this.calendar;
+        // const modal = await DayPilot.Modal.prompt(<Navbar />);
+        // if (!modal.result) { return; }
+        // const e = args.e;
+        // e.data.text = modal.result;
+        // dp.events.update(e);
       },
       
     };
@@ -91,7 +91,7 @@ class Scheduel extends Component {
     
     const startDate = "2022-08-31";
     let updatedClasses = this.props.classes.map(c => {
-      let classInfo = `${c.classTitle} </br> Location${c.location}`
+      let classInfo = `${c.classTitle} ${c.location}`
 
       // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
       // let playersInClass = this.props.players.filter(player => {
@@ -117,7 +117,7 @@ class Scheduel extends Component {
       let updatedClasses = this.props.classes.map(c => {
 
         let classInfo = `${c.classTitle} 
-        Location: ${c.location} 
+        ${c.location} 
         ${c.timeRange}`
       
         c.text = classInfo

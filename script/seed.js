@@ -5,8 +5,6 @@ const {db, models: {User, Worklocation, Workshift, ClassInfo, PlayerProfile} } =
 
 const {faker} = require('@faker-js/faker');
 const ClassRoster = require('../server/db/models/ClassRoster');
-console.log(faker)
-
 
 
 /**
@@ -20,7 +18,7 @@ async function seed() {
   // Creating Users
   
   const Mirko = await User.create({ username: 'coachMirko1', password: '123', firstName:'Ryan', lastName:'Lant' });
-  const Frank = await User.create({ username: 'coachFrank23', password: '123', firstName:'Frank', lastName:'Miterra'});
+  const Frank = await User.create({ username: 'coachFrank23', password: '123', firstName:'Frank', lastName:'Miterra', isAdmin:true });
   
     const playerRoster = []
   
@@ -42,6 +40,12 @@ async function seed() {
     Worklocation.create({gymName:'OakBrook Park District', address:'122 lane', city:'Oakbrook', state:'IL', zipCode:'60516'}),
     Worklocation.create({gymName:'Connect 44', address:'1554 main steet', city:'Lombard', state:'IL', zipCode:'60516'}),
     Worklocation.create({gymName:'Hinsdale Community House', address:'123123 ave', city:'Hinsdale', state:'IL', zipCode:'60516'})
+  ])
+
+  const addedBreakawayPlayers = await Promise.all([
+    PlayerProfile.create({firstName:'Anesti', lastName:'Stavros', emergencyContact:'Bill Stavros', emergencyContactPhone:'708-322-3215'}),
+    PlayerProfile.create({firstName:'Elena', lastName:'Stavros', emergencyContact:'Bill Stavros', emergencyContactPhone:'708-322-3215'}),
+    PlayerProfile.create({firstName:'Michael', lastName:'Knighting', emergencyContact:'jen knighting', emergencyContactPhone:'332-642-5517'})
   ])
 
   
@@ -77,25 +81,270 @@ async function seed() {
     ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Mirko.id, start:'2022-09-11T13:00:00',end:'2022-09-11T14:30:00',timeRange:'6:00 - 7:30',  practiceDays:'Thursday', location:'OakBrook Park District'}),
     ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Mirko.id, start:'2022-09-11T14:30:00',end:'2022-09-11T16:00:00', timeRange:'7:30 - 9:00', practiceDays:'Thursday', location:'OakBrook Park District'}),
 
-    ClassRoster.create({playerProfileId:2, classInfoId:3}),
-    ClassRoster.create({playerProfileId:3, classInfoId:3}),
-    ClassRoster.create({playerProfileId:4, classInfoId:3}),
-    ClassRoster.create({playerProfileId:5, classInfoId:3}),
+    ClassRoster.create({playerProfileId:2, classInfoId:1}),
+    ClassRoster.create({playerProfileId:3, classInfoId:1}),
+    ClassRoster.create({playerProfileId:4, classInfoId:1}),
+    ClassRoster.create({playerProfileId:5, classInfoId:1}),
+    
+    ClassRoster.create({playerProfileId:10, classInfoId:1}),
+    ClassRoster.create({playerProfileId:11, classInfoId:1}),
+    ClassRoster.create({playerProfileId:12, classInfoId:1}),
+    ClassRoster.create({playerProfileId:13, classInfoId:1}),
 
     ClassRoster.create({playerProfileId:6, classInfoId:2}),
     ClassRoster.create({playerProfileId:7, classInfoId:2}),
     ClassRoster.create({playerProfileId:8, classInfoId:2}),
     ClassRoster.create({playerProfileId:9, classInfoId:2}),
 
-    ClassRoster.create({playerProfileId:10, classInfoId:3}),
-    ClassRoster.create({playerProfileId:11, classInfoId:3}),
-    ClassRoster.create({playerProfileId:12, classInfoId:3}),
-    ClassRoster.create({playerProfileId:13, classInfoId:3}),
 
     ClassRoster.create({playerProfileId:14, classInfoId:2}),
     ClassRoster.create({playerProfileId:15, classInfoId:2}),
     ClassRoster.create({playerProfileId:16, classInfoId:2}),
     ClassRoster.create({playerProfileId:17, classInfoId:2}),
+
+    ClassRoster.create({playerProfileId:2, classInfoId:3}),
+    ClassRoster.create({playerProfileId:3, classInfoId:3}),
+    ClassRoster.create({playerProfileId:4, classInfoId:3}),
+    ClassRoster.create({playerProfileId:5, classInfoId:3}),
+
+    ClassRoster.create({playerProfileId:6, classInfoId:3}),
+    ClassRoster.create({playerProfileId:7, classInfoId:3}),
+    ClassRoster.create({playerProfileId:8, classInfoId:3}),
+    ClassRoster.create({playerProfileId:9, classInfoId:3}),
+
+    ClassRoster.create({playerProfileId:10, classInfoId:4}),
+    ClassRoster.create({playerProfileId:11, classInfoId:4}),
+    ClassRoster.create({playerProfileId:12, classInfoId:4}),
+    ClassRoster.create({playerProfileId:13, classInfoId:4}),
+
+    ClassRoster.create({playerProfileId:14, classInfoId:4}),
+    ClassRoster.create({playerProfileId:15, classInfoId:4}),
+    ClassRoster.create({playerProfileId:16, classInfoId:4}),
+    ClassRoster.create({playerProfileId:17, classInfoId:4}),
+
+    ClassRoster.create({playerProfileId:6, classInfoId:3}),
+    ClassRoster.create({playerProfileId:7, classInfoId:3}),
+    ClassRoster.create({playerProfileId:8, classInfoId:3}),
+    ClassRoster.create({playerProfileId:9, classInfoId:3}),
+
+    ClassRoster.create({playerProfileId:10, classInfoId:5}),
+    ClassRoster.create({playerProfileId:11, classInfoId:5}),
+    ClassRoster.create({playerProfileId:12, classInfoId:5}),
+    ClassRoster.create({playerProfileId:13, classInfoId:5}),
+
+    ClassRoster.create({playerProfileId:14, classInfoId:5}),
+    ClassRoster.create({playerProfileId:15, classInfoId:5}),
+    ClassRoster.create({playerProfileId:16, classInfoId:5}),
+    ClassRoster.create({playerProfileId:17, classInfoId:5}),
+
+
+    ClassRoster.create({playerProfileId:10, classInfoId:6}),
+    ClassRoster.create({playerProfileId:11, classInfoId:6}),
+    ClassRoster.create({playerProfileId:12, classInfoId:6}),
+    ClassRoster.create({playerProfileId:13, classInfoId:6}),
+
+    ClassRoster.create({playerProfileId:72, classInfoId:6}),
+    ClassRoster.create({playerProfileId:99, classInfoId:6}),
+    ClassRoster.create({playerProfileId:88, classInfoId:6}),
+    ClassRoster.create({playerProfileId:68, classInfoId:6}),
+
+
+    ClassRoster.create({playerProfileId:69, classInfoId:7}),
+    ClassRoster.create({playerProfileId:23, classInfoId:7}),
+    ClassRoster.create({playerProfileId:24, classInfoId:7}),
+    ClassRoster.create({playerProfileId:47, classInfoId:7}),
+
+    ClassRoster.create({playerProfileId:298, classInfoId:7}),
+    ClassRoster.create({playerProfileId:153, classInfoId:7}),
+    ClassRoster.create({playerProfileId:162, classInfoId:7}),
+    ClassRoster.create({playerProfileId:170, classInfoId:7}),
+
+
+    ClassRoster.create({playerProfileId:100, classInfoId:8}),
+    ClassRoster.create({playerProfileId:14, classInfoId:8}),
+    ClassRoster.create({playerProfileId:121, classInfoId:8}),
+    ClassRoster.create({playerProfileId:13, classInfoId:8}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:8}),
+    ClassRoster.create({playerProfileId:22, classInfoId:8}),
+    ClassRoster.create({playerProfileId:33, classInfoId:8}),
+    ClassRoster.create({playerProfileId:43, classInfoId:8}),
+
+
+    ClassRoster.create({playerProfileId:100, classInfoId:9}),
+    ClassRoster.create({playerProfileId:14, classInfoId:9}),
+    ClassRoster.create({playerProfileId:121, classInfoId:9}),
+    ClassRoster.create({playerProfileId:13, classInfoId:9}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:9}),
+    ClassRoster.create({playerProfileId:22, classInfoId:9}),
+    ClassRoster.create({playerProfileId:33, classInfoId:9}),
+    ClassRoster.create({playerProfileId:43, classInfoId:9}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:10}),
+    ClassRoster.create({playerProfileId:14, classInfoId:10}),
+    ClassRoster.create({playerProfileId:121, classInfoId:10}),
+    ClassRoster.create({playerProfileId:13, classInfoId:10}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:10}),
+    ClassRoster.create({playerProfileId:22, classInfoId:10}),
+    ClassRoster.create({playerProfileId:33, classInfoId:10}),
+    ClassRoster.create({playerProfileId:43, classInfoId:10}),
+
+
+    ClassRoster.create({playerProfileId:100, classInfoId:11}),
+    ClassRoster.create({playerProfileId:14, classInfoId:11}),
+    ClassRoster.create({playerProfileId:121, classInfoId:11}),
+    ClassRoster.create({playerProfileId:13, classInfoId:11}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:11}),
+    ClassRoster.create({playerProfileId:22, classInfoId:11}),
+    ClassRoster.create({playerProfileId:33, classInfoId:11}),
+    ClassRoster.create({playerProfileId:43, classInfoId:11}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:12}),
+    ClassRoster.create({playerProfileId:14, classInfoId:12}),
+    ClassRoster.create({playerProfileId:121, classInfoId:12}),
+    ClassRoster.create({playerProfileId:13, classInfoId:12}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:12}),
+    ClassRoster.create({playerProfileId:22, classInfoId:12}),
+    ClassRoster.create({playerProfileId:33, classInfoId:12}),
+    ClassRoster.create({playerProfileId:43, classInfoId:12}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:13}),
+    ClassRoster.create({playerProfileId:14, classInfoId:13}),
+    ClassRoster.create({playerProfileId:121, classInfoId:13}),
+    ClassRoster.create({playerProfileId:13, classInfoId:13}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:13}),
+    ClassRoster.create({playerProfileId:22, classInfoId:13}),
+    ClassRoster.create({playerProfileId:33, classInfoId:13}),
+    ClassRoster.create({playerProfileId:43, classInfoId:13}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:14}),
+    ClassRoster.create({playerProfileId:14, classInfoId:14}),
+    ClassRoster.create({playerProfileId:121, classInfoId:14}),
+    ClassRoster.create({playerProfileId:13, classInfoId:14}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:14}),
+    ClassRoster.create({playerProfileId:22, classInfoId:14}),
+    ClassRoster.create({playerProfileId:33, classInfoId:14}),
+    ClassRoster.create({playerProfileId:43, classInfoId:14}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:15}),
+    ClassRoster.create({playerProfileId:14, classInfoId:15}),
+    ClassRoster.create({playerProfileId:121, classInfoId:15}),
+    ClassRoster.create({playerProfileId:13, classInfoId:15}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:15}),
+    ClassRoster.create({playerProfileId:22, classInfoId:15}),
+    ClassRoster.create({playerProfileId:33, classInfoId:15}),
+    ClassRoster.create({playerProfileId:43, classInfoId:15}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:16}),
+    ClassRoster.create({playerProfileId:14, classInfoId:16}),
+    ClassRoster.create({playerProfileId:121, classInfoId:16}),
+    ClassRoster.create({playerProfileId:13, classInfoId:16}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:16}),
+    ClassRoster.create({playerProfileId:22, classInfoId:16}),
+    ClassRoster.create({playerProfileId:33, classInfoId:16}),
+    ClassRoster.create({playerProfileId:43, classInfoId:16}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:17}),
+    ClassRoster.create({playerProfileId:14, classInfoId:17}),
+    ClassRoster.create({playerProfileId:121, classInfoId:17}),
+    ClassRoster.create({playerProfileId:13, classInfoId:17}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:17}),
+    ClassRoster.create({playerProfileId:22, classInfoId:17}),
+    ClassRoster.create({playerProfileId:33, classInfoId:17}),
+    ClassRoster.create({playerProfileId:43, classInfoId:17}),
+
+
+    ClassRoster.create({playerProfileId:100, classInfoId:18}),
+    ClassRoster.create({playerProfileId:14, classInfoId:18}),
+    ClassRoster.create({playerProfileId:121, classInfoId:18}),
+    ClassRoster.create({playerProfileId:13, classInfoId:18}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:18}),
+    ClassRoster.create({playerProfileId:22, classInfoId:18}),
+    ClassRoster.create({playerProfileId:33, classInfoId:18}),
+    ClassRoster.create({playerProfileId:43, classInfoId:18}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:19}),
+    ClassRoster.create({playerProfileId:14, classInfoId:19}),
+    ClassRoster.create({playerProfileId:121, classInfoId:19}),
+    ClassRoster.create({playerProfileId:13, classInfoId:19}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:19}),
+    ClassRoster.create({playerProfileId:22, classInfoId:19}),
+    ClassRoster.create({playerProfileId:33, classInfoId:19}),
+    ClassRoster.create({playerProfileId:43, classInfoId:19}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:20}),
+    ClassRoster.create({playerProfileId:14, classInfoId:20}),
+    ClassRoster.create({playerProfileId:121, classInfoId:20}),
+    ClassRoster.create({playerProfileId:13, classInfoId:20}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:20}),
+    ClassRoster.create({playerProfileId:22, classInfoId:20}),
+    ClassRoster.create({playerProfileId:33, classInfoId:20}),
+    ClassRoster.create({playerProfileId:43, classInfoId:20}),
+
+    ClassRoster.create({playerProfileId:100, classInfoId:21}),
+    ClassRoster.create({playerProfileId:14, classInfoId:21}),
+    ClassRoster.create({playerProfileId:121, classInfoId:21}),
+    ClassRoster.create({playerProfileId:13, classInfoId:21}),
+
+    ClassRoster.create({playerProfileId:122, classInfoId:21}),
+    ClassRoster.create({playerProfileId:22, classInfoId:21}),
+    ClassRoster.create({playerProfileId:33, classInfoId:21}),
+    ClassRoster.create({playerProfileId:43, classInfoId:21}),
+
+    ClassRoster.create({playerProfileId:301, classInfoId:1}),
+    ClassRoster.create({playerProfileId:301, classInfoId:8}),
+    ClassRoster.create({playerProfileId:301, classInfoId:15}),
+    ClassRoster.create({playerProfileId:301, classInfoId:20}),
+
+    ClassRoster.create({playerProfileId:302, classInfoId:2}),
+    ClassRoster.create({playerProfileId:302, classInfoId:6}),
+    ClassRoster.create({playerProfileId:302, classInfoId:13}),
+    ClassRoster.create({playerProfileId:302, classInfoId:21}),
+
+    ClassRoster.create({playerProfileId:303, classInfoId:1}),
+    ClassRoster.create({playerProfileId:303, classInfoId:5}),
+    ClassRoster.create({playerProfileId:303, classInfoId:9}),
+    ClassRoster.create({playerProfileId:303, classInfoId:15}),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
 
     
 

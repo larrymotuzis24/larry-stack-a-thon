@@ -9,6 +9,8 @@ import { fetchClasses } from './store/classInfo';
 import { fetchRosters } from './store/classRoster';
 import { fetchPlayers } from './store/players';
 import Players from './components/Players';
+import auth from './store/auth';
+import isAdminView from '../server/db/models/isAdminView';
 
 /**
  * COMPONENT
@@ -22,14 +24,18 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn} = this.props
+    console.log(this.props)
 
     return (
       <div>
-        {isLoggedIn ? (
+        { isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/account" component={CoachAccount} />
             <Route path="/players" component={Players} />
+            {auth.isAdmin ? (
+              <Route path="/adminPrivlage" component={isAdminView} />
+            ) : null}
           </Switch>
         ) : (
           <Switch>
@@ -52,7 +58,8 @@ const mapState = state => {
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
     classes: state.classes,
-    players: state.players
+    players: state.players,
+    auth:state.auth
   }
 }
 

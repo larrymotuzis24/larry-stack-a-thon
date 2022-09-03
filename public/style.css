@@ -24,6 +24,39 @@ form div {
 {
 	border: 1px solid #999;
 }
+nav#page-list {
+	display: flex;
+	justify-content: center;
+  }
+  
+  ul#pages {
+	display: flex;
+	list-style-type: none;
+	font-weight: bold;
+  }
+  
+  ul#pages li {
+	padding: 0.3rem;
+  }
+  
+  .buttonStyle {
+	margin-left: 16px;
+	background: black;
+	color: white !important;
+  }
+  button a {
+	color: black;
+  }
+  
+  ul#pages li.pageSelected {
+	background-color: grey;
+	border-radius: 0.25rem;
+  }
+  
+  ul#pages li.pageSelected a {
+	color: black;
+  }
+  
 
 .calendar_green_colheader
 {

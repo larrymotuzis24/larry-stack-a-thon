@@ -42,35 +42,17 @@ class CoachAccount extends Component {
         <h2 style={{}}>Account Details</h2>
         <div className="w-100 row row-cols-2 g-4 justify-content-between">
           <div className="mt-5 col-md-6" style={{}}>
-            <h6 className="mb-3"> FirstName: </h6>
+            <h6 className="mb-3"> FirstName:  {auth.firstName}  </h6>
             <hr />
             <div className="" style={{}}>
-              {path === '/user' ? (
+              {path === '/account' ? (
                 <div className="flex-column">
                   <div className="d-flex align-items-center my-4">
-                    {!avatar ? (
-                      <img
-                        style={{
-                          width: '8rem',
-                          height: '8rem',
-                          borderRadius: '1000px',
-                        }}
-                        src={auth.imageUrl}
-                      />
-                    ) : (
-                      <img
-                        src={avatar}
-                        style={{
-                          width: '8rem',
-                          height: '8rem',
-                          borderRadius: '1000px',
-                        }}
-                      />
-                    )}
+                   
 
                     <div className="ms-3">
                       <p style={{}}>
-                        {auth.firstName} {auth.lastName}
+             
                         <br />
                         {auth.email}
                       </p>
@@ -92,7 +74,7 @@ class CoachAccount extends Component {
             </div>
           </div>
           <div className="mt-5 col-md-6" style={{}}>
-            <h6 className="mb-3">lastName </h6>
+            <h6 className="mb-3">LastName: {auth.lastName} </h6>
             <hr />
           </div>
         </div>
