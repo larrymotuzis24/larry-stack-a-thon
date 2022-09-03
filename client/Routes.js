@@ -12,6 +12,8 @@ import Players from './components/Players';
 import auth from './store/auth';
 import isAdminView from './components/isAdminView';
 import CreateClass from './components/CreateClass';
+import Coaches from './components/AllCoaches';
+import { fetchCoaches } from './store/coaches';
 
 /**
  * COMPONENT
@@ -38,6 +40,7 @@ class Routes extends Component {
               <Switch>
                 <Route path="/allPlayers" component={Players} />
                 <Route path="/createClass" component={CreateClass} />
+                <Route path="/coaches" component={Coaches} />
 
                 </Switch>
 
@@ -68,7 +71,8 @@ const mapState = state => {
     isLoggedIn: !!state.auth.id,
     classes: state.classes,
     players: state.players,
-    auth:state.auth
+    auth:state.auth,
+    coaches:state.coaches
   }
 }
 
@@ -79,6 +83,7 @@ const mapDispatch = dispatch => {
       dispatch(fetchClasses())
       dispatch(fetchPlayers())
       dispatch(fetchRosters())
+      dispatch(fetchCoaches())
     }
   }
 }

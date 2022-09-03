@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const ClassInfo = require('./db/models/ClassInfo')
 const PlayerProfile = require('./db/models/PlayerProfile')
 const ClassRoster = require('./db/models/ClassRoster')
+const User = require('./db/models/User')
 const app = express()
 
 module.exports = app
@@ -31,7 +32,7 @@ app.get('/players', async(req, res, next) => {
   catch(ex){
     next(ex)
   }
-})
+});
 
 app.get('/classes', async(req, res, next) => {
   try{
@@ -40,16 +41,25 @@ app.get('/classes', async(req, res, next) => {
   catch(ex){
     console.log(ex)
   }
-})
+});
 
 app.get('/classRosters', async(req, res, next) => {
   try{
      res.send(await ClassRoster.findAll())
   }
   catch(ex){
-    console.log(ex)
+    next(ex)
   }
-})
+});
+
+app.get('/allCoaches', async(req, res, next) => {
+  try{
+    res.send(await User.findAll())
+  }
+  catch(ex){
+    next(ex)
+  }
+});
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))
@@ -63,16 +73,16 @@ app.use((req, res, next) => {
   } else {
     next()
   }
-})
+});
 
 // sends index.html
 app.use('*', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'public/index.html'));
-})
+});
 
 // error handling endware
 app.use((err, req, res, next) => {
   console.error(err)
   console.error(err.stack)
   res.status(err.status || 500).send(err.message || 'Internal server error.')
-})
+});

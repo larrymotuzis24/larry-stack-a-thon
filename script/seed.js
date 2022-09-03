@@ -17,8 +17,21 @@ async function seed() {
   
   // Creating Users
   
-  const Mirko = await User.create({ username: 'coachMirko1', password: '123', firstName:'Ryan', lastName:'Lant' });
+  const Mirko = await User.create({ username: 'coachMirko1', password: '123', firstName:'Ryan', lastName:'Lant' })
   const Frank = await User.create({ username: 'coachFrank23', password: '123', firstName:'Frank', lastName:'Miterra', isAdmin:true });
+
+
+   const assistantCoaches = await Promise.all([
+    await User.create({ username: 'coachNate', password: '123', firstName:'Nate', lastName:'Poody' }),
+    await User.create({ username: 'coachRyan', password: '123', firstName:'Ryan', lastName:'Lant' }),
+    await User.create({ username: 'coachMattDacey', password: '123', firstName:'Matt', lastName:'Dacey' }),
+    await User.create({ username: 'coachAlec', password: '123', firstName:'Alec', lastName:'Roundsville' }),
+    await User.create({ username: 'coachJD', password: '123', firstName:'JD', lastName:'Anderson' }),
+    await User.create({ username: 'coachLarry', password: '123', firstName:'Larry', lastName:'Motuzis' })
+
+
+  ])
+
   
     const playerRoster = []
   
