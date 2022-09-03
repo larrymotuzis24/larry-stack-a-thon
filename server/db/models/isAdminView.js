@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
 
-class isAdminView extends COmponent {
+class isAdminView extends Component {
     constructor(){
         super();
         this.state= {

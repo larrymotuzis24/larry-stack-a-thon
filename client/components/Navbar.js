@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
   <div>
     <h1> Breakaway Basketball </h1>
     <nav>
@@ -13,6 +13,17 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/home">Home</Link>
           <Link to="/account"> Account </Link>
           <Link to="/players"> Players </Link>
+          {
+            isAdmin ? (
+              <Fragment>
+                 <Link to="/createClass"> Create Class </Link>
+                 <Link to="/coaches"> All Coaches </Link>
+              </Fragment>
+            ): null
+          }
+ 
+        
+
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -34,7 +45,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.isAdmin
   }
 }
 
