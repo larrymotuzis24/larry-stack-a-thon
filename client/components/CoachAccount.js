@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Button } from 'react-bootstrap';
 class CoachAccount extends Component {
   constructor() {
     super();
@@ -59,16 +59,17 @@ class CoachAccount extends Component {
                     </div>
                   </div>
                   <hr />
-                  <a
+                  <Button
                     href="#editUser"
                     className="btn btn-light border-dark mb-4 mt-3"
                   >
                     EDIT INFORMATION
-                  </a>
+                  </Button>
                   <br />
-                  <a href="#passwordUser" className="btn btn-dark">
+                  <Button href="#passwordUser" color='green'>
                     CHANGE PASSWORD
-                  </a>
+                    </Button>
+                 
                 </div>
               ) : null}
             </div>

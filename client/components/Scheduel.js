@@ -2,6 +2,7 @@
          
  import React, {Component} from 'react';
   import { fetchClasses } from '../store/classInfo';
+  import Table from 'react-bootstrap/Table';
                     
   import {connect} from 'react-redux'
      import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
@@ -176,26 +177,31 @@ class Scheduel extends Component {
           <div style={{
             width:"fitContent"
           }}>
-            {
-              roster.map(player => {
-                return (
-                  <div key={player.id}> 
-                    <div style={{
-                      display:'flex',
-                      padding:'3px',
-                      justifyContent:'space-around'
-                    }}>
-                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> {player.firstName} </a>
-                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> {player.lastName}</a>
-                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> Emergency Contact:{player.emergencyContact}</a>
-                         <a style={{borderRight:'solid black', paddingRight:'10px',fontSize:'12px'}}> Phone Number:{player.emergencyContactPhone}</a>
-                    </div>
+             <Table striped bordered hover variant="dark">
+              <thead>
+                <tr>
+                  <th> firstName </th>
+                  <th> lastName </th>
+                  <th> Emergency Contact </th>
+                  <th> Phone number </th>
+                </tr>
+              </thead>
+              <tbody>
+                  {
+                    roster.map(player => {
+                      return (
+                        <tr>
+                          <th> {player.firstName}</th>
+                          <th> {player.lastName}</th>
+                          <th> {player.emergencyContact}</th>
+                          <th> {player.emergencyContactPhone}</th>
 
-                    </div>
-                )
-              })
-            }
-
+                        </tr>
+                        )
+                    })
+                  }
+              </tbody>
+             </Table>
           </div>
         </div>
       </div>

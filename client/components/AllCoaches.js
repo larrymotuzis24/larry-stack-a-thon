@@ -24,6 +24,7 @@ class Coaches extends Component {
         this.state={
             coachId:'',
             classId:'',
+            classToDisplay:{},
             coachClasses:[],
             viewType: "Days",
             days:7,
@@ -42,13 +43,11 @@ class Coaches extends Component {
 
             eventDeleteHandling: "Update",
              onEventClick: async args => {
-                console.log('updated')
-            this.setState({classId: args.e.value()});
-        
-        const dp = this.calendar;
-        const e = args.e;
-        dp.events.update(e);
-            },
+            const classToDisplay = this.props.classes.find(c => c.id === args.e.value());
+            this.setState({classId: args.e.value(), classToDisplay:classToDisplay});
+            console.log(this.state)
+                
+            }
         }
     }
     get calendar() {
@@ -83,10 +82,8 @@ class Coaches extends Component {
       }
 
       componentDidUpdate(prevProps, prevState){
-        console.log(prevState, this.state)
-          if(prevState.coachId !== this.state.coachId){
+          if(prevState.coachId !== this.state.coachId ){
               const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-              console.log(coachClasses)
               
 
           const startDate = "2022-08-31";
@@ -114,8 +111,8 @@ class Coaches extends Component {
     render(){
         const allCoaches = this.props.coaches;
 
-        console.log(this.state.coachId, 'coachid')
         return (
+            <div>
             <div style={styles.wrap}>
                 <div>
                     <select onChange={(e) => this.setState({ coachId: e.target.value })}> 
@@ -155,7 +152,19 @@ class Coaches extends Component {
 
           </div>
         </div>
+        <div>
         </div>
+        </div>
+            <div>
+                { 
+                    this.state.classToDisplay ? (
+                        <div>  
+                            <h6> { this.state.classToDisplay.classTitle } </h6>    
+                          </div>
+                    ):null
+                }
+            </div>
+            </div>
         )
     }
 };
