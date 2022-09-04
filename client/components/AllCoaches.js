@@ -20,6 +20,7 @@ const styles = {
 class Coaches extends Component {
     constructor(){
         super();
+        this.calendarRef = React.createRef();
         this.state={
             coachId:'',
             classId:'',
@@ -29,88 +30,100 @@ class Coaches extends Component {
             businessBeginsHour: 15,
             businessEndsHour: 23,
 
+            onBeforeEventDomAdd: args => {
+                args.element = <div>
+                  {args.e.data.text}
+                  <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
+                       onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
+                </div>;
+              },
+            
+            
+
             eventDeleteHandling: "Update",
              onEventClick: async args => {
+                console.log('updated')
             this.setState({classId: args.e.value()});
         
-        // const dp = this.calendar;
-        // const modal = await DayPilot.Modal.prompt(<Navbar />);
-        // if (!modal.result) { return; }
-        // const e = args.e;
-        // e.data.text = modal.result;
-        // dp.events.update(e);
+        const dp = this.calendar;
+        const e = args.e;
+        dp.events.update(e);
             },
         }
     }
+    get calendar() {
+        return this.calendarRef.current.control;
+      }
+    
     componentDidMount(){
         const coachClasses = this.props.classes.filter(c => c.userId === this.state.coachId );
-        console.log(coachClasses)
-    //     this.props.fetchClass()
-    //     this.setState({coachClasses:this.props.classes})
+        this.setState({coachClasses:coachClasses})
+
+        
+        const startDate = "2022-08-31";
+
+        let updatedClasses = coachClasses.map(c => {
+          let classInfo = `${c.classTitle} ${c.location}`
     
+          // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
+          // let playersInClass = this.props.players.filter(player => {
+          //   return playerRosters.filter(pr => pr.playerProfileId === player.id)
+          // })
+          // console.log(playersInClass)
     
-    //     const startDate = "2022-08-31";
-    //     let updatedClasses = this.props.classes.map(c => {
-    //       let classInfo = `${c.classTitle} ${c.location}`
-    
-    //       // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
-    //       // let playersInClass = this.props.players.filter(player => {
-    //       //   return playerRosters.filter(pr => pr.playerProfileId === player.id)
-    //       // })
-    //       // console.log(playersInClass)
-    
-    //       c.text = classInfo
-    //       return c
+          c.text = classInfo
+          return c
           
-    //     })
+        })
     
-    //     let classes = updatedClasses.filter(c => c.userId === this.props.auth.id);
+
+        let classes = updatedClasses.filter(c => c.userId === this.props.auth.id) || [];
         
-        
-    //     this.calendar.update({startDate, classes});
+        this.calendar.update({startDate, classes});
       }
 
-      componentDidUpdate(previousProps){
-        const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-        console.log(coachClasses)
-    //     if(previousProps.coachId !== this.state.coachId){
-    //         this.setState({ coachId: this.state.coachId})
-    //         console.log(this.state.coachId)
-    //       const startDate = "2022-08-31";
-    //       this.setState({coachClasses:this.props.classes})
-    
-    //       let updatedClasses = this.props.classes.map(c => {
-    
-    //         let classInfo = `${c.classTitle} 
-    //         ${c.location} 
-    //         ${c.timeRange}`
-          
-    //         c.text = classInfo
-    //         return c
-            
-    //       })
-    
-    //       let events =  updatedClasses.filter(c => c.userId === this.props.auth.id);
-    //       this.setState({classes:events})
-    //       this.calendar.update({startDate, events});
-        }
-    //   }
-    
+      componentDidUpdate(prevProps, prevState){
+        console.log(prevState, this.state)
+          if(prevState.coachId !== this.state.coachId){
+              const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+              console.log(coachClasses)
+              
 
+          const startDate = "2022-08-31";
+        //   this.setState({coachClasses:this.props.classes})
+    
+           let updatedCoachClasses = coachClasses.map(c => {
+    
+            let classInfo = `${c.classTitle} 
+            ${c.location} 
+            ${c.timeRange}`
+          
+            c.text = classInfo
+            return c
+            
+          })
+    
+          let events =  updatedCoachClasses.filter(c => c.userId === this.state.coachId*1);
+          this.setState({coachClasses:events})
+          this.calendar.update({startDate, events});
+        }
+      
+      }
     
 
     render(){
-        console.log(this.props)
         const allCoaches = this.props.coaches;
+
+        console.log(this.state.coachId, 'coachid')
         return (
             <div style={styles.wrap}>
                 <div>
-                    <select onChange={(e) => this.setState({ coachId: e.target.value.id })}> 
-                        <option> --select coach-- </option>
+                    <select onChange={(e) => this.setState({ coachId: e.target.value })}> 
+                        <option value=''> --select coach-- </option>
                         {
                             allCoaches.map(coach => {
                                 return (
-                                    <option> {coach.firstName} {coach.lastName} </option> 
+                                    <option key={coach.id} value={coach.id}> {coach.firstName} {coach.lastName} </option> 
                                 )
                             })
                         }
@@ -123,6 +136,12 @@ class Coaches extends Component {
                          selectMode={"week"}
                          startDate={DayPilot.Date.today()}
                          selectionDay={DayPilot.Date.today()}
+                         onTimeRangeSelected={ args => {
+                            this.calendar.update({
+                              startDate: args.day
+                            });
+                          }}
+                          {...this.state.onBeforeEventDomAdd}
                          />
                   </div>            
              </div>
