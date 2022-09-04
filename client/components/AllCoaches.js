@@ -96,9 +96,9 @@ class Coaches extends Component {
       }
 
       componentDidUpdate(prevProps, prevState){
-          if(prevState.coachId !== this.state.coachId ){
-              const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-              
+        if(prevState.coachId !== this.state.coachId ){
+          const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+          
 
           const startDate = "2022-08-31";
         //   this.setState({coachClasses:this.props.classes})
@@ -124,13 +124,24 @@ class Coaches extends Component {
 
     render(){
         const allCoaches = this.props.coaches;
-        console.log(this.props)
+
+        const rosters = this.props.classRosters.filter(roster => {
+          return roster.classInfoId*1 === this.state.classId*1
+         })
+
+        const roster = rosters.map(r => {
+           return this.props.players.find(player => {
+             return player.id === r.playerProfileId
+           })
+         })
+
+
         return (
             <div>
             <div style={styles.wrap}>
                 <div>
                     <select onChange={(e) => this.setState({ coachId: e.target.value })}> 
-                        <option value={this.props.classes}> --all coach scheduels -- </option>
+                        <option value={this.props.classes}> --select a coach-- </option>
                         {
                             allCoaches.map(coach => {
                                 return (
@@ -172,35 +183,35 @@ class Coaches extends Component {
         </div>
             <div>
                 { 
-                    this.state.classToDisplay ? (
+                    !!this.state.coachClasses  ? (
                         <div style={{
                             width:"fitContent"
                           }}>
-                             <Table striped bordered hover variant="dark">
-                              <thead>
-                                <tr>
-                                  <th> Class Titile </th>
-                                  <th> Time </th>
-                                  <th> Location </th>
-                                  <th> Coaches Assigned </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  
-                               <tr>
-                                 <th> {this.state.classToDisplay.classTitle}</th>
-                                 <th> {this.state.classToDisplay.timeRange }</th>
-                                 <th> {this.state.classToDisplay.location}</th>
-                                 <th> </th>
-                
-                                 </tr>
-                                        
-                                    
-                                      
-                                    
-                                  
-                              </tbody>
-                             </Table>
+                              <Table striped bordered hover variant="dark">
+                            <thead>
+                              <tr>
+                                <th> firstName </th>
+                                <th> lastName </th>
+                                <th> Emergency Contact </th>
+                                <th> Phone number </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                  roster.map(player => {
+                                    return (
+                                      <tr>
+                                        <th> {player.firstName}</th>
+                                        <th> {player.lastName}</th>
+                                        <th> {player.emergencyContact}</th>
+                                        <th> {player.emergencyContactPhone}</th>
+
+                                      </tr>
+                                      )
+                                  })
+                                }
+                            </tbody>
+                          </Table>
                           </div>
                     ):null
                 }
@@ -211,12 +222,13 @@ class Coaches extends Component {
 };
 
 
-const mapStateToProps = ({auth, players, coaches, classes}) => {
+const mapStateToProps = ({auth, players, coaches, classes, classRosters}) => {
     return {
         auth, 
         players, 
         coaches,
-        classes
+        classes,
+        classRosters
     }
 };
 
