@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import auth from '../store/auth'
+import AllCoaches from './AllCoaches'
 import IsAdminView from './isAdminView'
 import Scheduel from './Scheduel'
 
@@ -18,7 +19,7 @@ export const Home = props => {
       <h3>Welcome, Coach {firstName} </h3>
       {
         isAdmin ? (
-          <IsAdminView />
+          <AllCoaches />
         ): <Scheduel />
       }
      

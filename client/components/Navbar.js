@@ -17,7 +17,6 @@ const Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
             isAdmin ? (
               <Fragment>
                  <Link to="/createClass"> Create Class </Link>
-                 <Link to="/coaches"> All Coaches </Link>
               </Fragment>
             ): null
           }

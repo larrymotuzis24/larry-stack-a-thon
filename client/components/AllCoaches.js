@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 
 import { connect } from "react-redux";
-import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
+import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "daypilot-pro-react";
+
+import Table from 'react-bootstrap/Table';
+                    
 
                          
 const styles = {
@@ -28,16 +31,28 @@ class Coaches extends Component {
             coachClasses:[],
             viewType: "Days",
             days:7,
-            businessBeginsHour: 15,
+            cellDuration:15,
+            businessBeginsHour: 16,
             businessEndsHour: 23,
+            theme:"calendar_green",
+            cellHeight:'25',
+            headerDateFormat:"dddd M/d",
+            timeFormat:'Clock12Hours',
+            timeDisplay:'9:00',
+            startDate:DayPilot.Date.today(),
+            durationBarVisible: false,
+            timeRangeSelectedHandling: "Disabled",
+            width:'80%',
+            heightSpec:"Fixed",
+            height:600,
 
-            onBeforeEventDomAdd: args => {
-                args.element = <div>
-                  {args.e.data.text}
-                  <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
-                       onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
-                </div>;
-              },
+            // onBeforeEventDomAdd: args => {
+            //     args.element = <div>
+            //       {args.e.data.text}
+            //       <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
+            //            onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
+            //     </div>;
+            //   },
             
             
 
@@ -45,7 +60,6 @@ class Coaches extends Component {
              onEventClick: async args => {
             const classToDisplay = this.props.classes.find(c => c.id === args.e.value());
             this.setState({classId: args.e.value(), classToDisplay:classToDisplay});
-            console.log(this.state)
                 
             }
         }
@@ -110,13 +124,13 @@ class Coaches extends Component {
 
     render(){
         const allCoaches = this.props.coaches;
-
+        console.log(this.props)
         return (
             <div>
             <div style={styles.wrap}>
                 <div>
                     <select onChange={(e) => this.setState({ coachId: e.target.value })}> 
-                        <option value=''> --select coach-- </option>
+                        <option value={this.props.classes}> --all coach scheduels -- </option>
                         {
                             allCoaches.map(coach => {
                                 return (
@@ -145,6 +159,7 @@ class Coaches extends Component {
             <div style={styles.main}>
           <div style={{padding:'5px'}}>
           <DayPilotCalendar
+        
             {...this.state}
 
             ref={this.calendarRef}
@@ -158,8 +173,34 @@ class Coaches extends Component {
             <div>
                 { 
                     this.state.classToDisplay ? (
-                        <div>  
-                            <h6> { this.state.classToDisplay.classTitle } </h6>    
+                        <div style={{
+                            width:"fitContent"
+                          }}>
+                             <Table striped bordered hover variant="dark">
+                              <thead>
+                                <tr>
+                                  <th> Class Titile </th>
+                                  <th> Time </th>
+                                  <th> Location </th>
+                                  <th> Coaches Assigned </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  
+                               <tr>
+                                 <th> {this.state.classToDisplay.classTitle}</th>
+                                 <th> {this.state.classToDisplay.timeRange }</th>
+                                 <th> {this.state.classToDisplay.location}</th>
+                                 <th> </th>
+                
+                                 </tr>
+                                        
+                                    
+                                      
+                                    
+                                  
+                              </tbody>
+                             </Table>
                           </div>
                     ):null
                 }

@@ -5,9 +5,7 @@
   import Table from 'react-bootstrap/Table';
                     
   import {connect} from 'react-redux'
-     import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "@daypilot/daypilot-lite-react";
-import Navbar from './Navbar';
-import players from '../store/players';
+  import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "daypilot-pro-react";
 
                          
   const styles = {
@@ -28,42 +26,45 @@ class Scheduel extends Component {
     this.calendarRef = React.createRef();
     this.state = {
       classId:'',
-      cellHeight:40,
       classes:[],
       viewType: "Days",
       days:7,
-      businessBeginsHour: 15,
+      businessBeginsHour: 16,
       businessEndsHour: 23,
-      height:400,
+      cellDuration:15,
       theme:"calendar_green",
+      cellHeight:'25',
       headerDateFormat:"dddd M/d",
       timeFormat:'Clock12Hours',
       timeDisplay:'9:00',
       startDate:'2022-09-05',
       durationBarVisible: false,
-      timeRangeSelectedHandling: "Enabled",
+      timeRangeSelectedHandling: "Disabled",
+      width:'80%',
+      heightSpec:"Fixed",
+      height:600,
 
-      onBeforeEventDomAdd: args => {
-        args.element = <div>
-          {args.e.data.text}
-          <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
-               onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
-        </div>;
-      },
+      // onBeforeEventDomAdd: args => {
+      //   args.element = <div>
+      //     {args.e.data.text}
+      //     <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
+      //          onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
+      //   </div>;
+      // },
     
     
-      onTimeRangeSelected: async args => {
-        const dp = this.calendar;
-        const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
-        dp.clearSelection();
-        if (!modal.result) { return; }
-        dp.events.add({
-          start: args.start,
-          end: args.end,
-          id: DayPilot.guid(),
-          text: modal.result
-        });
-      },
+      // onTimeRangeSelected: async args => {
+      //   const dp = this.calendar;
+      //   const modal = await DayPilot.Modal.prompt("Create a new event:", "Event 1");
+      //   dp.clearSelection();
+      //   if (!modal.result) { return; }
+      //   dp.events.add({
+      //     start: args.start,
+      //     end: args.end,
+      //     id: DayPilot.guid(),
+      //     text: modal.result
+      //   });
+      // },
 
       eventDeleteHandling: "Update",
       onEventClick: async args => {
