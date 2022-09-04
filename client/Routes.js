@@ -35,10 +35,10 @@ class Routes extends Component {
          <Switch>
             <Route path="/home" component={Home} />
             <Route path="/account" component={CoachAccount} />
+            <Route path="/allPlayers" component={Players} />
             {
             auth.isAdmin ? (
               <Switch>
-                <Route path="/allPlayers" component={Players} />
                 <Route path="/createClass" component={CreateClass} />
                 <Route path="/coaches" component={Coaches} />
 
