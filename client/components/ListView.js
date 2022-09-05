@@ -13,7 +13,9 @@ class ListView extends Component {
             classToDisplay:{},
             classesToDisplay:[],
             coachClasses:[],
-            gymFilter:''
+            gymFilter:'',
+            classTimeFilter:''
+
         }
     }
     componentDidMount(){
@@ -33,15 +35,50 @@ class ListView extends Component {
                this.setState({classesToDisplay:filteredClasses})
                 
             }
-            else {
+            else  if(this.state.gymFilter === 'Hinsdale Community House'){
                 
                    let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+                   let filteredClasses = coachClasses.filter(c => c.location === 'Hinsdale Community House');
                     
                          
-                    this.setState({classesToDisplay:coachClasses})
+                    this.setState({classesToDisplay:filteredClasses})
+
+            }
+            else  if(this.state.gymFilter === 'Connect 44 Center'){
+                
+                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+                let filteredClasses = coachClasses.filter(c => c.location === 'Connect 44 Center');
+                 
+                      
+                 this.setState({classesToDisplay:filteredClasses})
+
+         }
+         else  if(this.state.gymFilter === 'Lemont Park District'){
+                
+            let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+            let filteredClasses = coachClasses.filter(c => c.location === 'Lemont Park District');
+             
+                  
+             this.setState({classesToDisplay:filteredClasses})
+         }
+
+            else {
+                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+    
+                 
+                      
+                 this.setState({classesToDisplay:coachClasses})
 
             }
       
+        }
+        if(prevState.classTimeFilter !== this.state.classTimeFilter ){
+            const classesTofilter = this.state.classesToDisplay;
+            let filteredClasses = classesTofilter.filter(c => {
+                console.log(c.start)
+                return c.start === this.state.classTimeFilter
+            })
+            console.log(filteredClasses)
         }
       
       }
@@ -70,10 +107,32 @@ class ListView extends Component {
                         <option value={allClasses}> --filter by gym-- </option>
                         <option value={'OakBrook Park District'}> OakBrook Park District </option>
                         <option value={'Lemont Park District'}> Lemont Park District </option>
-                        <option value={'Connect 44 Center '}> Connect 44 </option>
+                        <option value={'Connect 44 Center'}> Connect 44 Center </option>
                         <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
 
                         
+                    </select>
+                    <select onChange={(e) => this.setState({ classTimeFilter: e.target.value })}> 
+                        <option value={allClasses}> --filter by start time-- </option>
+                        <option value={'11:00:00'}> 4:00 PM </option>
+                        <option value={'11:15:00'}> 4:15 PM </option>
+                        <option value={'11:30:00'}> 4:30 PM </option>
+                        <option value={'11:45:00'}> 4:45 PM </option>
+                        <option value={'12:00:00'}> 5:00 PM </option>
+                        <option value={'12:15:00'}> 5:15 PM </option>
+                        <option value={'12:30:00'}> 5:30 PM </option>
+                        <option value={'12:45:00'}> 5:45 PM </option>
+                        <option value={'13:00:00'}> 6:00 PM </option>
+                        <option value={'13:15:00'}> 6:15 PM </option>
+                        <option value={'13:30:00'}> 6:30 PM </option>
+                        <option value={'13:45:00'}> 6:45 PM </option>
+                        <option value={'14:00:00'}> 7:00 PM </option>
+                        <option value={'14:15:00'}> 7:15 PM </option>
+                        <option value={'14:30:00'}> 7:30 PM </option>
+                        <option value={'14:45:00'}> 7:45 PM </option>
+                        <option value={'15:00:00'}> 8:00 PM </option>
+                        <option value={'15:15:00'}> 8:15 PM </option>
+                                
                     </select>
 
 
