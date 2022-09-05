@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "daypilot-pro-react";
 
 import Table from 'react-bootstrap/Table';
-                    
 
                          
 const styles = {
@@ -25,9 +24,10 @@ class Coaches extends Component {
         super();
         this.calendarRef = React.createRef();
         this.state={
+          
             coachId:'',
             classId:'',
-            classToDisplay:'',
+            classToDisplay:{},
             coachClasses:[],
             viewType: "Days",
             days:7,
