@@ -28,7 +28,6 @@ export const Home = props => {
   
   return (
     <div>
-      <h3>Welcome, Coach {firstName} </h3>
       <>
       <ButtonGroup>
         {displayViews.map((dp, idx) => (
