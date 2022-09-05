@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import Navbar from './components/Navbar'
+import _Navbar from './components/Navbar'
 import Routes from './Routes'
 
 
@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div>
         <div>
-          <Navbar />
+          <_Navbar />
           <Routes />
         </div>
 
