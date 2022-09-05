@@ -13,20 +13,34 @@ class ListView extends Component {
             classToDisplay:{},
             classesToDisplay:[],
             coachClasses:[],
+            gymFilter:''
         }
     }
     componentDidMount(){
-        this.setState({classesToDisplay:this.props.classes})
+        this.setState({classesToDisplay:this.props.classes, gymFilter:''})
 
     }
 
       componentDidUpdate(prevProps, prevState){
-        if(prevState.coachId !== this.state.coachId ){
-          const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+        if(prevState.coachId !== this.state.coachId || prevState.gymFilter !== this.state.gymFilter){
+            if(this.state.gymFilter === 'OakBrook Park District'){
+               let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+               console.log(coachClasses)
 
-    
-         
-          this.setState({classesToDisplay:coachClasses})
+               let filteredClasses = coachClasses.filter(c => c.location === 'OakBrook Park District');
+               console.log(filteredClasses)
+
+               this.setState({classesToDisplay:filteredClasses})
+                
+            }
+            else {
+                
+                   let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+                    
+                         
+                    this.setState({classesToDisplay:coachClasses})
+
+            }
       
         }
       
@@ -35,6 +49,7 @@ class ListView extends Component {
     
     render(){
         const allCoaches = this.props.coaches;
+
         const allClasses = this.props.classes;
         return (
             <div>
@@ -50,6 +65,17 @@ class ListView extends Component {
                             })
                         }
                     </select>
+
+                    <select onChange={(e) => this.setState({ gymFilter: e.target.value })}> 
+                        <option value={allClasses}> --filter by gym-- </option>
+                        <option value={'OakBrook Park District'}> OakBrook Park District </option>
+                        <option value={'Lemont Park District'}> Lemont Park District </option>
+                        <option value={'Connect 44 Center '}> Connect 44 </option>
+                        <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
+
+                        
+                    </select>
+
 
                 </div>
                 <div>
