@@ -4,6 +4,12 @@ object-assign
 @license MIT
 */
 
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
 /**
  * @license React
  * react-dom.production.min.js
@@ -17,6 +23,16 @@ object-assign
 /**
  * @license React
  * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * react-jsx-runtime.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -63,6 +79,14 @@ object-assign
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+/**
+@license
+DayPilot Pro for JavaScript 2021.4.5151 (trial)
+Copyright (c) 2005 - 2021 Annpoint s.r.o.
+https://www.daypilot.org/
+Use of this software is subject to license terms.
+*/
 
 /** @license React v16.13.1
  * react-is.production.min.js

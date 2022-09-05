@@ -40,7 +40,6 @@ class Scheduel extends Component {
       startDate:'2022-09-05',
       durationBarVisible: false,
       timeRangeSelectedHandling: "Disabled",
-      width:'80%',
       heightSpec:"Fixed",
       height:600,
 
@@ -191,7 +190,7 @@ class Scheduel extends Component {
                   {
                     roster.map(player => {
                       return (
-                        <tr>
+                        <tr key={player.id }>
                           <th> {player.firstName}</th>
                           <th> {player.lastName}</th>
                           <th> {player.emergencyContact}</th>

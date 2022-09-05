@@ -27,7 +27,7 @@ class Coaches extends Component {
         this.state={
             coachId:'',
             classId:'',
-            classToDisplay:{},
+            classToDisplay:'',
             coachClasses:[],
             viewType: "Days",
             days:7,
@@ -42,7 +42,6 @@ class Coaches extends Component {
             startDate:DayPilot.Date.today(),
             durationBarVisible: false,
             timeRangeSelectedHandling: "Disabled",
-            width:'80%',
             heightSpec:"Fixed",
             height:600,
 
@@ -58,8 +57,10 @@ class Coaches extends Component {
 
             eventDeleteHandling: "Update",
              onEventClick: async args => {
+              console.log(args.e.value())
             const classToDisplay = this.props.classes.find(c => c.id === args.e.value());
             this.setState({classId: args.e.value(), classToDisplay:classToDisplay});
+            console.log(this.state)
                 
             }
         }
@@ -73,7 +74,6 @@ class Coaches extends Component {
         this.setState({coachClasses:coachClasses})
 
         
-        const startDate = "2022-08-31";
 
         let updatedClasses = coachClasses.map(c => {
           let classInfo = `${c.classTitle} ${c.location}`
@@ -92,15 +92,14 @@ class Coaches extends Component {
 
         let classes = updatedClasses.filter(c => c.userId === this.props.auth.id) || [];
         
-        this.calendar.update({startDate, classes});
+        this.calendar.update({classes});
       }
 
       componentDidUpdate(prevProps, prevState){
         if(prevState.coachId !== this.state.coachId ){
           const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-          
 
-          const startDate = "2022-08-31";
+          
         //   this.setState({coachClasses:this.props.classes})
     
            let updatedCoachClasses = coachClasses.map(c => {
@@ -115,8 +114,9 @@ class Coaches extends Component {
           })
     
           let events =  updatedCoachClasses.filter(c => c.userId === this.state.coachId*1);
-          this.setState({coachClasses:events})
-          this.calendar.update({startDate, events});
+          this.setState({coachClasses:events, classToDisplay:''})
+          this.calendar.update({events});
+          console.log(this.state,'componennt did update')
         }
       
       }
@@ -135,25 +135,18 @@ class Coaches extends Component {
            })
          })
 
+         const classDisplay = this.state.classToDisplay;
+
 
         return (
             <div>
             <div style={styles.wrap}>
-                <div>
-                    <select onChange={(e) => this.setState({ coachId: e.target.value })}> 
-                        <option value={this.props.classes}> --select a coach-- </option>
-                        {
-                            allCoaches.map(coach => {
-                                return (
-                                    <option key={coach.id} value={coach.id}> {coach.firstName} {coach.lastName} </option> 
-                                )
-                            })
-                        }
-                    </select>
-
-                </div>
+              
                  <div style={styles.left}>
-                    <div style={{padding:'10px'}}>
+                    <div style={{
+                      padding:'10px', 
+                      display:'flex'
+                      }}>
                         <DayPilotNavigator 
                          selectMode={"week"}
                          startDate={DayPilot.Date.today()}
@@ -166,6 +159,26 @@ class Coaches extends Component {
                           {...this.state.onBeforeEventDomAdd}
                          />
                   </div>            
+             <div>
+                    <select onChange={(e) => this.setState({ coachId: e.target.value, classToDisplay:{} })}> 
+                        <option value={this.props.classes}> --select a coach-- </option>
+                        {
+                            allCoaches.map(coach => {
+                                return (
+                                    <option key={coach.id} value={coach.id}> {coach.firstName} {coach.lastName} </option> 
+                                )
+                            })
+                        }
+                    </select>
+
+                </div>
+                <div id={'coachDisplay'}>
+                  <p> Coach Details </p>
+                  <a> Hours this week: </a>
+                  <br>
+                  </br>
+                  <a> avg hours perDay: </a>
+                </div>
              </div>
             <div style={styles.main}>
           <div style={{padding:'5px'}}>
@@ -182,40 +195,46 @@ class Coaches extends Component {
         </div>
         </div>
             <div>
-                { 
-                    !!this.state.coachClasses  ? (
-                        <div style={{
-                            width:"fitContent"
-                          }}>
-                              <Table striped bordered hover variant="dark">
-                            <thead>
-                              <tr>
-                                <th> firstName </th>
-                                <th> lastName </th>
-                                <th> Emergency Contact </th>
-                                <th> Phone number </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                  roster.map(player => {
-                                    return (
-                                      <tr>
-                                        <th> {player.firstName}</th>
-                                        <th> {player.lastName}</th>
-                                        <th> {player.emergencyContact}</th>
-                                        <th> {player.emergencyContactPhone}</th>
-
-                                      </tr>
-                                      )
-                                  })
-                                }
-                            </tbody>
-                          </Table>
-                          </div>
-                    ):null
-                }
+             
+                      <div>
+                        {
+                          classDisplay ? (
+                            <div style={{
+                              width:"fitContent"
+                            }}>
+                                <Table striped bordered hover variant="dark">
+                              <thead>
+                                <tr>
+                                  <th> firstName </th>
+                                  <th> lastName </th>
+                                  <th> Emergency Contact </th>
+                                  <th> Phone number </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  {
+                                    roster.map(player => {
+                                      return (
+                                        <tr>
+                                          <th> {player.firstName}</th>
+                                          <th> {player.lastName}</th>
+                                          <th> {player.emergencyContact}</th>
+                                          <th> {player.emergencyContactPhone}</th>
+  
+                                        </tr>
+                                        )
+                                    })
+                                  }
+                              </tbody>
+                            </Table>
+                            </div>
+                          ):null
+                        }
+                      
+                </div>
+            
             </div>
+                        
             </div>
         )
     }

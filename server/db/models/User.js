@@ -23,6 +23,9 @@ const User = db.define('user', {
   lastName: {
     type:STRING
   },
+  email:{
+    type:STRING
+  },
   isAdmin: {
     type:BOOLEAN,
     defaultValue:false
