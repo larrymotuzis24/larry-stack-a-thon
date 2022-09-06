@@ -61,6 +61,16 @@ app.get('/allCoaches', async(req, res, next) => {
   }
 });
 
+app.post('/classes',async (req, res, next) => {
+  try{
+    const newClass = await ClassInfo.create(req.body);
+    res.send(newClass)
+  }
+  catch(ex){
+    next(ex)
+  }
+})
+
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')))
 
