@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import Table from 'react-bootstrap/Table';
 
+import TimePicker from 'react-bootstrap-time-picker';
+
 class ListView extends Component {
     constructor(){
         super();
@@ -14,85 +16,123 @@ class ListView extends Component {
             classesToDisplay:[],
             coachClasses:[],
             gymFilter:'',
-            classTimeFilter:''
+            classTimeFilter:'',
+            classDayFilter:'',
+            data:[],
+        }
+        this.getData = this.getData.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.showCoachClasses = this.showCoachClasses.bind(this)
+    }
 
+    showCoachClasses(coach){
+        if(this.state.coachId !== coach.id ){
+            this.setState({coachId:id});
+            this.handleFilter(this.state.coachId)
+            
+        } else {
+            this.setState({ citySelected: '' })
+            this.getData()
         }
     }
-    componentDidMount(){
-        this.setState({classesToDisplay:this.props.classes, gymFilter:''})
+    // handleFilter(){
+
+    //     if(this.state.gymFilter === 'OakBrook Park District'){
+    //         let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+          
+
+    //         let filteredClasses = coachClasses.filter(c => c.location === 'OakBrook Park District');
+    //         console.log(filteredClasses, 'filtered by oakbrook')
+
+    //         this.setState({classesToDisplay:filteredClasses})
+             
+    //      }
+    // }
+
+    
+    componentDidMount(prevProps){
+        this.setState({classesToDisplay:this.props.classes, gymFilter:'', classDayFilter:''})
 
     }
 
       componentDidUpdate(prevProps, prevState){
-        if(prevState.coachId !== this.state.coachId || prevState.gymFilter !== this.state.gymFilter){
+        if(prevState.coachId !== this.state.coachId || prevState.gymFilter !== this.state.gymFilter || prevState.classDayFilter !== this.state.classDayFilter ){
+            console.log('outer IF')
             if(this.state.gymFilter === 'OakBrook Park District'){
                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-               console.log(coachClasses)
+             
 
                let filteredClasses = coachClasses.filter(c => c.location === 'OakBrook Park District');
-               console.log(filteredClasses)
+               console.log(filteredClasses, 'filtered by oakbrook')
 
                this.setState({classesToDisplay:filteredClasses})
                 
             }
-            else  if(this.state.gymFilter === 'Hinsdale Community House'){
-                
-                   let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-                   let filteredClasses = coachClasses.filter(c => c.location === 'Hinsdale Community House');
+             if(this.state.gymFilter === 'Hinsdale Community House'){
+                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+                let filteredClasses = coachClasses.filter(c => c.location === 'Hinsdale Community House');
+                console.log(filteredClasses, 'hinsdale')
                     
                          
                     this.setState({classesToDisplay:filteredClasses})
 
             }
             else  if(this.state.gymFilter === 'Connect 44 Center'){
-                
                 let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
                 let filteredClasses = coachClasses.filter(c => c.location === 'Connect 44 Center');
+                console.log(filteredClasses, 'connecr 44 center')
                  
                       
                  this.setState({classesToDisplay:filteredClasses})
 
          }
          else  if(this.state.gymFilter === 'Lemont Park District'){
-                
-            let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-            let filteredClasses = coachClasses.filter(c => c.location === 'Lemont Park District');
+             let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+             let filteredClasses = coachClasses.filter(c => c.location === 'Lemont Park District');
+             console.log(filteredClasses, 'LPD')
              
                   
              this.setState({classesToDisplay:filteredClasses})
          }
 
-            else {
-                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+            // else {
+            //     let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
     
-                 
-                      
-                 this.setState({classesToDisplay:coachClasses})
+            //     console.log(coachClasses, 'none')
+            //      this.setState({classesToDisplay:coachClasses})
 
-            }
+            // }
       
         }
-        if(prevState.classTimeFilter !== this.state.classTimeFilter ){
+        // if(prevState.classTimeFilter !== this.state.classTimeFilter ){
+        //     const classesTofilter = this.state.classesToDisplay;
+        //     let filteredClasses = classesTofilter.filter(c => {
+        //         return c.start === this.state.classTimeFilter
+        //     })
+        //     console.log(filteredClasses)
+        // }
+        if(prevState.classDayFilter !== this.state.classDayFilter ){
             const classesTofilter = this.state.classesToDisplay;
-            let filteredClasses = classesTofilter.filter(c => {
-                console.log(c.start)
-                return c.start === this.state.classTimeFilter
-            })
-            console.log(filteredClasses)
+            console.log(classesTofilter, this.state.classDayFilter)
+            let filteredClasses = classesTofilter.filter(c =>  c.practiceDays === this.state.classDayFilter);
+            
+            console.log(filteredClasses, 'classDAyfilter')
+            this.setState({classesToDisplay:filteredClasses})
         }
+        
       
       }
     
     
     render(){
         const allCoaches = this.props.coaches;
-
-        const allClasses = this.props.classes;
+        const {getCoachClasses}= this;
+        const allClasses = this.state.classesToDisplay;
         return (
             <div>
                 <h2> List View </h2>
                 <div>
-                    <select onChange={(e) => this.setState({ coachId: e.target.value, classToDisplay:{} })}> 
+                    <select onChange={(e) => this.setState({ coachId: e.target.value })}> 
                         <option value={allClasses}> --select a coach-- </option>
                         {
                             allCoaches.map(coach => {
@@ -112,7 +152,7 @@ class ListView extends Component {
 
                         
                     </select>
-                    <select onChange={(e) => this.setState({ classTimeFilter: e.target.value })}> 
+                    {/* <select onChange={(e) => this.setState({ classTimeFilter: e.target.value })}> 
                         <option value={allClasses}> --filter by start time-- </option>
                         <option value={'11:00:00'}> 4:00 PM </option>
                         <option value={'11:15:00'}> 4:15 PM </option>
@@ -133,6 +173,20 @@ class ListView extends Component {
                         <option value={'15:00:00'}> 8:00 PM </option>
                         <option value={'15:15:00'}> 8:15 PM </option>
                                 
+                    </select> */}
+               
+
+                    <select onChange={(e) => this.setState({ classDayFilter: e.target.value })}> 
+                        <option value={allClasses}> --filter by classDay-- </option>
+                        <option value={'Monday'}> Monday  </option>
+                        <option value={'Tuesday'}> Tuesday </option>
+                        <option value={'Wednsday'}> Wednsday </option>
+                        <option value={'Thursday'}> Thursday </option>
+                        <option value={'Friday'}> Friday </option>
+                        <option value={'Saturday'}> Saturday </option>
+                        <option value={'Sunday'}> Sunday </option>
+
+                        
                     </select>
 
 
