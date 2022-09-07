@@ -21,9 +21,12 @@ export const fetchClasses = () => async dispatch => {
   dispatch(_setClasses(response.data))
 }
 
-export const createClass = (c) => async(dispatch) => {
-  const response = await axios.post('/classes', c);
+export const createClass = (classArr) => async(dispatch) => {
+  console.log(classArr)
+  const response = await axios.post('/classes', classArr);
+  console.log(response)
   const newClass = response.data
+
   dispatch({type:'CREATE_CLASS', newClass})
 }
 

@@ -6,7 +6,8 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import ClassTimeCreator from "./ClassTimeCreator";
 import { createClass } from "../store/classInfo";
-
+import DatePicker from "react-multi-date-picker";
+import DatePanel from "react-multi-date-picker/plugins/date_panel"
 
 
 
@@ -22,7 +23,9 @@ class CreateClass extends Component {
             leadCoachId:'', 
             coachesToDisplay:[],
             gymLocations:[],
-            classLocation:''
+            classLocation:'',
+            classDates:[],
+            classesToCreate:[]
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -35,18 +38,26 @@ class CreateClass extends Component {
         this.setState({classTitle: value});
         console.log('updated Input', this.state)
       }
+      
       confirm(e){
-        e.preventDefault();
-        let formatedStartTime = `${this.state.classDate}T${this.state.startTime}:00`
-        let formatedEndTime = `${this.state.classDate}T${this.state.endTime}:00`
-        const classToCreate = {
-            classTitle:this.state.classTitle,
-            start:formatedStartTime,
-            end:formatedEndTime,
-            userId:this.state.leadCoachId,
-            location:this.state.classLocation
+        console.log(this.state.classDates)
+        const datesArray = this.state.classDates.split(',')
+        
+        for(let i = 0; i < datesArray.length; i++){
+           
+            let classToCreate = {
+                classTitle:this.state.classTitle,
+                start:`${datesArray[i]}T${this.state.startTime}:00`,
+                end:`${datesArray[i]}T${this.state.endTime}:00`,
+                userId:this.state.leadCoachId,
+                location:this.state.classLocation
+            }
+            console.log(classToCreate)
+            this.state.classesToCreate.push(classToCreate)
+            
         }
-        this.props.create(classToCreate)
+        this.props.create(this.state.classesToCreate)
+        console.log(this.state.classesToCreate)
         this.setState({
             classTitle:'',
             classDate:'',
@@ -56,6 +67,7 @@ class CreateClass extends Component {
             leadCoachId:'', 
             coachesToDisplay:[],
             gymLocations:[],
+            classDates:[],
             classLocation:''
         })
       }
@@ -71,23 +83,29 @@ class CreateClass extends Component {
         console.log('setCoachesState', this.props)
  
     }
-    componentDidUpdate(prevState){
-        if(this.state.classTitle !== prevState.classTitle){
-            console.log(this.state, 'componentDidUpdate')
-        }
-    }
+  
     
       render() {
         const { handleSubmit, handleChange, confirm } = this;
         const { coachesToDisplay } = this.props
         return (
-            <div>
+            <div style={{
+                display:'flex',
+                justifyContent:'center'
+            }}>
                 <div style={{
-                    border:'solid black 2px'
+                    display:'flex',
+                    flexDirection:'column',
+                    border:'solid black 2px',
+                    justifyContent:'center',
+                    width:'800px'
                 }}>
+                    <h3> Create A New Class </h3>
+                    <hr />
                     <form style={{
                         display:'flex',
-                        flexDirection:'column'
+                        flexDirection:'column',
+                        justifyContent:'center'
                     }}>
                         <div>
                           <input 
@@ -97,23 +115,14 @@ class CreateClass extends Component {
                           /> 
 
                         </div>
-                        <input
-                         type='date' 
-                         onChange={(e) => this.setState({classDate:e.target.value})}
-                         />
 
                         <div>
                            
+                        <div>
+                       
+                </div>
 
-                        <input 
-                        type='time'
-                        onChange={(e) => this.setState({startTime:e.target.value})}
-                         /> 
-
-                        <input 
-                        type='time' 
-                        onChange={(e) => this.setState({endTime:e.target.value})}
-                        />
+                      
 
                         </div>
 
@@ -125,29 +134,54 @@ class CreateClass extends Component {
                             /> 
 
                         </div>
-                        <select onChange={(e) => this.setState({leadCoachId:e.target.value})}>
-                            <option value={''} > --assign a lead coach </option>
-                            {
-                                coachesToDisplay.map(coach => {
-                                    return (
-                                        <option key={coach.id} value={coach.id}> {coach.firstName} {coach.lastName}</option>
-                                    )
-                                })
-                            }
-                        </select>
+                        <div>
+                            <select onChange={(e) => this.setState({leadCoachId:e.target.value})}>
+                                <option value={''} > --assign a lead coach </option>
+                                {
+                                    coachesToDisplay.map(coach => {
+                                        return (
+                                            <option key={coach.id} value={coach.id}> {coach.firstName} {coach.lastName}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                       
+                            <select onChange={(e) => this.setState({classLocation:e.target.value})}>
+                                <option value={''}> Select Location </option>
+                                <option value={'OakBrook Park District'}> OakBrook Park District </option>
+                                <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
+                                <option value={'Connect 44 Center'}> Connect 44 Center </option>
+                                
+                            </select>
+
+                        </div>
+
                         
-                        <select onChange={(e) => this.setState({classLocation:e.target.value})}>
-                            <option value={''}> Select Location </option>
-                            <option value={'OakBrook Park District'}> OakBrook Park District </option>
-                            <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
-                            <option value={'Connect 44 Center'}> Connect 44 Center </option>
-                            
-                        </select>
+                    </form>
+                    <div>
+                        <DatePicker
+                                multiple
+                                    format="YYYY-MM-dd"
+                                    onChange={array => { 
+                                    this.setState({classDates: array.join()})
+                                        }}
+                        />
+                          <input 
+                        type='time'
+                        onChange={(e) => this.setState({startTime:e.target.value})}
+                         /> 
+
+                        <input 
+                        type='time' 
+                        onChange={(e) => this.setState({endTime:e.target.value})}
+                        />
+
+                    </div>
+                    
 
                         <button onClick={(e)=> confirm(e)}> Create Class </button>
-                    </form>
                 </div>
-
+                    
             </div>
         );
       }
@@ -161,8 +195,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatch = (dispatch)=> {
     return {
-        create:(c)=> {
-           dispatch(createClass(c))
+        create:(classArr)=> {
+           dispatch(createClass(classArr))
         }
     }
 }

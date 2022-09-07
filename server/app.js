@@ -63,8 +63,11 @@ app.get('/allCoaches', async(req, res, next) => {
 
 app.post('/classes',async (req, res, next) => {
   try{
-    const newClass = await ClassInfo.create(req.body);
-    res.send(newClass)
+    const classesToCreate = req.body
+    console.log(classesToCreate)
+    let createdClasses = classesToCreate.map(async(c) => await ClassInfo.create(c))
+    res.send(createdClasses)
+   
   }
   catch(ex){
     next(ex)
