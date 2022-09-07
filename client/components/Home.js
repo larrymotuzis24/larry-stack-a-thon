@@ -28,28 +28,28 @@ export const Home = props => {
   
   return (
     <div>
-      <>
-      <ButtonGroup>
-        {displayViews.map((dp, idx) => (
-          <ToggleButton
-            key={idx}
-            id={`radio-${idx}`}
-            type="radio"
-            size={'sm'}
-            variant={idx % 2 ? 'outline-success' : 'outline-danger'}
-            name="radio"
-            value={dp.value}
-            checked={displayValue === dp.value}
-            onChange={(e) => setDisplayValue(e.currentTarget.value)}
-          >
-            {dp.name}
-          </ToggleButton>
-        ))}
-      </ButtonGroup>
-    </>
       {
         isAdmin ? (
           <div>
+              <>
+              <ButtonGroup>
+                {displayViews.map((dp, idx) => (
+                  <ToggleButton
+                    key={idx}
+                    id={`radio-${idx}`}
+                    type="radio"
+                    size={'sm'}
+                    variant={idx % 2 ? 'outline-success' : 'outline-danger'}
+                    name="radio"
+                    value={dp.value}
+                    checked={displayValue === dp.value}
+                    onChange={(e) => setDisplayValue(e.currentTarget.value)}
+                  >
+                    {dp.name}
+                  </ToggleButton>
+                ))}
+              </ButtonGroup>
+            </>
             {
                displayValue === 'scheduel' ? (
                  <AllCoaches />

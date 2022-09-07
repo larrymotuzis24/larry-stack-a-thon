@@ -37,7 +37,7 @@ class Scheduel extends Component {
       headerDateFormat:"dddd M/d",
       timeFormat:'Clock12Hours',
       timeDisplay:'9:00',
-      startDate:'2022-09-05',
+      startDate:DayPilot.Date.today(),
       durationBarVisible: false,
       timeRangeSelectedHandling: "Disabled",
       heightSpec:"Fixed",
@@ -89,8 +89,6 @@ class Scheduel extends Component {
     this.setState({classes:this.props.classes})
 
 
-    
-    const startDate = "2022-08-31";
     let updatedClasses = this.props.classes.map(c => {
       let classInfo = `${c.classTitle} ${c.location}`
 
