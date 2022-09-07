@@ -200,8 +200,12 @@ class Coaches extends Component {
                         {
                           classDisplay ? (
                             <div style={{
-                              width:"fitContent"
+                              width:"fitContent",
+                              border:'solid black 2px'
                             }}>
+                              <div style={{
+                                padding:'10px'
+                              }}>
                                 <Table striped bordered hover variant="dark">
                               <thead>
                                 <tr>
@@ -227,6 +231,7 @@ class Coaches extends Component {
                                   }
                               </tbody>
                             </Table>
+                            </div>
                             </div>
                           ):null
                         }

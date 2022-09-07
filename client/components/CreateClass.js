@@ -100,43 +100,32 @@ class CreateClass extends Component {
                     justifyContent:'center',
                     width:'800px'
                 }}>
-                    <h3> Create A New Class </h3>
+                    <h3 style={{
+                        alignSelf:'center'
+                    }}> Create A New Class </h3>
                     <hr />
                     <form style={{
                         display:'flex',
                         flexDirection:'column',
                         justifyContent:'center'
                     }}>
-                        <div>
+                        <div style={{
+                        
+                        }}>
+                            <a> Class Title:
                           <input 
                           type={'text'}
                           placeholder={'Class Title'}
                           onChange={(e) => this.setState({classTitle:e.target.value})}
                           /> 
-
+                             </a>
                         </div>
 
                         <div>
-                           
                         <div>
-                       
-                </div>
-
-                      
-
-                        </div>
-
-                        <div>
-                            <input 
-                            type={'textarea'} 
-                            placeholder={'Class Description'}
-                            onChange={(e) => this.setState({classDescription:e.target.value})}
-                            /> 
-
-                        </div>
-                        <div>
+                            <a> Lead Coach:
                             <select onChange={(e) => this.setState({leadCoachId:e.target.value})}>
-                                <option value={''} > --assign a lead coach </option>
+                                <option value={''} >  Select Coach </option>
                                 {
                                     coachesToDisplay.map(coach => {
                                         return (
@@ -145,20 +134,30 @@ class CreateClass extends Component {
                                     })
                                 }
                             </select>
-                       
+                            </a>
+                            <a>Location:
                             <select onChange={(e) => this.setState({classLocation:e.target.value})}>
-                                <option value={''}> Select Location </option>
+                                <option value={''}>Location </option>
                                 <option value={'OakBrook Park District'}> OakBrook Park District </option>
                                 <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
                                 <option value={'Connect 44 Center'}> Connect 44 Center </option>
                                 
                             </select>
 
+                            </a>
+
                         </div>
+              
+                        </div>
+                       
 
                         
                     </form>
-                    <div>
+                    <div style={{
+                        display:'flex', 
+                        flexDirection:'row',
+                        justifyContent:'space-around'
+                    }}>
                         <DatePicker
                                 multiple
                                     format="YYYY-MM-dd"
@@ -166,6 +165,7 @@ class CreateClass extends Component {
                                     this.setState({classDates: array.join()})
                                         }}
                         />
+                        
                           <input 
                         type='time'
                         onChange={(e) => this.setState({startTime:e.target.value})}
@@ -177,6 +177,19 @@ class CreateClass extends Component {
                         />
 
                     </div>
+                    <div style={{
+                        marginTop:'20px',
+                        marginBottom:'20px'
+                    }}>   
+                        <a>Class Description
+                            <textarea 
+                            onChange={(e) => this.setState({classDescription:e.target.value})}
+                            > 
+                            
+                            </textarea>
+                            </a>
+
+                        </div>              
                     
 
                         <button onClick={(e)=> confirm(e)}> Create Class </button>
