@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import _Navbar from './components/Navbar'
 import Routes from './Routes'
+import Home from './components/Home'
 
 
 
@@ -12,16 +13,18 @@ class App extends Component {
       classes:[]
     }
   }
-  componentDidMount(){
-    console.log(this.props)
+  componentDidMount(prevProps) {
+    window.addEventListener('hashchange', () => {
+      this.props.setView(window.location.slice(1));
+    });
+
   }
-
-
   render(){
     return (
       <div>
         <div>
           <_Navbar />
+          
           <Routes />
         </div>
 
@@ -37,6 +40,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+      setView: (view) => {
+        dispatch({ type: 'SET_VIEW', view });
+      }
     }
 }
 

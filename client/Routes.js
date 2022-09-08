@@ -29,18 +29,18 @@ class Routes extends Component {
     const {isLoggedIn, auth} = this.props
 
     return (
-      <div>
+      <main>
         { isLoggedIn ? (
          <Switch>
             <Route path="/home" component={Home} />
             <Route path="/account" component={CoachAccount} />
             <Route path="/allPlayers" component={Players} />
             {
-            auth.isAdmin ? (
-              <Switch>
+              auth.isAdmin ? (
+                <Switch>
                 <Route path="/createClass" component={CreateClass} />
                 <Route path="/coaches" component={Coaches} />
-
+                <Redirect to={'/home'} />
                 </Switch>
 
            
@@ -55,7 +55,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         )}
-      </div>
+      </main>
     )
   }
 }

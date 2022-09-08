@@ -7,8 +7,9 @@ import classes from './classInfo';
 import players from './players';
 import classRosters from './classRoster';
 import coaches from './coaches';
+import view from './view';
 
-const reducer = combineReducers({ auth, classes, players, classRosters, coaches})
+const reducer = combineReducers({ auth, classes, players, classRosters, coaches, view})
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
 

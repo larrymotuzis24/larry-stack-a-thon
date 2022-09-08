@@ -108,7 +108,7 @@ class Scheduel extends Component {
   }
   componentDidUpdate(previousProps){
     if(previousProps.classes !== this.props.classes){
-      const startDate = Da
+      
       this.setState({classes:this.props.classes})
 
       let updatedClasses = this.props.classes.map(c => {

@@ -112,7 +112,7 @@ class CreateClass extends Component {
       render() {
         const { handleSubmit, onChange, confirm } = this;
         const { coachesToDisplay } = this.props
-        const {classDates} = this.state;
+        const {classDates, classTitle, startTime, endTime, classDescription} = this.state;
         return (
             <div style={{
                 display:'flex',
@@ -251,6 +251,13 @@ class CreateClass extends Component {
                     
 
                         <button 
+                        disabled={
+                            !classTitle ||
+                            !classDates ||
+                            !startTime ||
+                            !endTime ||
+                            !classDescription
+                        }
                         style={{
                             backgroundColor:'green',
                             marginTop:'10px'
