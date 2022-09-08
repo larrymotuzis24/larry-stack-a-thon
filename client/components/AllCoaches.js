@@ -2,10 +2,13 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "daypilot-pro-react";
+import { Link } from "react-router-dom";
 
 import Table from 'react-bootstrap/Table';
 
 import Alert from 'react-bootstrap/Alert';
+
+import Button from 'react-bootstrap/Button';
 
                          
 const styles = {
@@ -28,6 +31,7 @@ class Coaches extends Component {
         this.state={
           
             coachId:'',
+            showRoster:false,
             selectedCoach:'',
             classToDisplay:'',
             coachClasses:'',
@@ -53,9 +57,8 @@ class Coaches extends Component {
           
             const classToDisplay = this.props.classes.find(c => c.id === args.e.value());
     
-            this.setState({classId: args.e.value(), classToDisplay:classToDisplay, startDate:args.e.part.start.value});
-      
-            DayPilot.Modal.alert(JSON.stringify(classToDisplay));
+            this.setState({classId: args.e.value(), classToDisplay:classToDisplay, startDate:args.e.part.start.value, showRoster:true});
+    
             }
         }
 
@@ -88,7 +91,7 @@ class Coaches extends Component {
       componentDidUpdate(prevProps, prevState){
         if(this.state.coachId !== prevState.coachId  ){
           const coachToDisplay = this.props.coaches.find(c => c.id*1 === this.state.coachId*1);
-          console.log(coachToDisplay)
+          
 
            const coachClasses = this.props.classes.filter(c => c.userId*1 === coachToDisplay.id ) ;
            
@@ -154,6 +157,54 @@ class Coaches extends Component {
                     </div>
                   )
                  }
+                  {
+                          this.state.showRoster ? (
+                            <div style={{
+                              width:"fitContent",
+                              border:'solid black 2px',
+                              display:'absolute'
+                            }}>
+                              <div style={{
+                                padding:'10px'
+                              }}>
+                                <Alert >
+                                <Table striped bordered hover variant="dark">
+                              <thead>
+                                <tr>
+                                  <th> firstName </th>
+                                  <th> lastName </th>
+                                  <th> Emergency Contact </th>
+                                  <th> Phone number </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                  {
+                                    roster.map(player => {
+                                      return (
+                                        <tr>
+                                          <th> {player.firstName}</th>
+                                          <th> {player.lastName}</th>
+                                          <th> {player.emergencyContact}</th>
+                                          <th> {player.emergencyContactPhone}</th>
+  
+                                        </tr>
+                                        )
+                                    })
+                                  }
+                              </tbody>
+                            </Table>
+                            </Alert>
+                            </div>
+                            <Button onClick={() => this.setState({showRoster:false})} variant="outline-success">
+                              Close 
+                              </Button>
+                              <Button onClick={() => this.setState({showRoster:false})} variant="outline-success">
+                             <Link to={`/${classDisplay.id}`} classtoedit={classDisplay}>  Edit Class </Link>
+                              </Button>
+
+                            </div>
+                          ):null
+                        }
                    
             <div style={{
               display:'flex',
@@ -192,13 +243,23 @@ class Coaches extends Component {
                     </select>
 
                 </div>
-                <div id={'coachDisplay'}>
+                {
+                   coachToDisplay ? (
+                <div 
+                style={{
+                  border:'solid blue 5px',
+                  marginTop:'5px'
+                }}
+                id={'coachDisplay'}>
                   <p> Coach Details </p>
-                  <a> Hours this week: </a>
+                  <a> Name: {coachToDisplay?.firstName} {coachToDisplay?.lastName} </a>
                   <br>
                   </br>
-                  <a> avg hours perDay: </a>
+                  <a href={`coaches/edit/${coachToDisplay?.id}`}> Edit Account </a>
                 </div>
+
+                   ):null
+                }
              </div>
             <div style={styles.main}>
           <div style={{padding:'5px'}}>
@@ -217,44 +278,7 @@ class Coaches extends Component {
             <div>
              
                       <div>
-                        {
-                          classDisplay ? (
-                            <div style={{
-                              width:"fitContent",
-                              border:'solid black 2px'
-                            }}>
-                              <div style={{
-                                padding:'10px'
-                              }}>
-                                <Table striped bordered hover variant="dark">
-                              <thead>
-                                <tr>
-                                  <th> firstName </th>
-                                  <th> lastName </th>
-                                  <th> Emergency Contact </th>
-                                  <th> Phone number </th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                  {
-                                    roster.map(player => {
-                                      return (
-                                        <tr>
-                                          <th> {player.firstName}</th>
-                                          <th> {player.lastName}</th>
-                                          <th> {player.emergencyContact}</th>
-                                          <th> {player.emergencyContactPhone}</th>
-  
-                                        </tr>
-                                        )
-                                    })
-                                  }
-                              </tbody>
-                            </Table>
-                            </div>
-                            </div>
-                          ):null
-                        }
+                       
                       
                 </div>
             

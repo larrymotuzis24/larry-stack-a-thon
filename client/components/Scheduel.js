@@ -132,7 +132,7 @@ class Scheduel extends Component {
 
 
   render() {
-          // let studentsInClass = this.props.players.filter(player => player.id === )
+         
           const rosters = this.props.classRosters.filter(roster => {
            return roster.classInfoId*1 === this.state.classId*1
           })

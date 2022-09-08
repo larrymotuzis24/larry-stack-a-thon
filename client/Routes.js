@@ -13,6 +13,7 @@ import auth from './store/auth';
 import isAdminView from './components/isAdminView';
 import CreateClass from './components/CreateClass';
 import Coaches from './components/AllCoaches';
+import EditClass from './components/EditClass';
 import { fetchCoaches } from './store/coaches';
 
 /**
@@ -40,7 +41,9 @@ class Routes extends Component {
                 <Switch>
                 <Route path="/createClass" component={CreateClass} />
                 <Route path="/coaches" component={Coaches} />
-                <Redirect to={'/home'} />
+                <Route path="/:id" component={EditClass} />
+                  <Redirect to={'/home'} />
+
                 </Switch>
 
            

@@ -8,7 +8,8 @@ import ClassTimeCreator from "./ClassTimeCreator";
 import { createClass } from "../store/classInfo";
 import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel"
-import { parseISO } from 'date-fns'; 
+import Alert from 'react-bootstrap/Alert';
+
 
 
 
@@ -26,7 +27,8 @@ class CreateClass extends Component {
             gymLocations:[],
             classLocation:'',
             classDates:[],
-            classesToCreate:[]
+            classesToCreate:[],
+            show:false
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -56,9 +58,10 @@ class CreateClass extends Component {
             
         }
         this.props.create(this.state.classesToCreate)
-        alert(`Class: ${this.state.classTitle} on ${this.state.classDates} from ${this.state.startTime} to ${this.state.endTime} was created!`)
-     
+        // alert(`Class: ${this.state.classTitle} on ${this.state.classDates} from ${this.state.startTime} to ${this.state.endTime} was created!`)
+        
         this.setState({
+            show:true,
             classTitle:'',
             classDate:'',
             startTime:'',
@@ -77,7 +80,7 @@ class CreateClass extends Component {
    
       handleSubmit(e) {
         e.preventDefault();
-        alert('create this class', console.log(this.state));
+        ('create this class', console.log(this.state));
         
       }
 
@@ -116,7 +119,8 @@ class CreateClass extends Component {
         return (
             <div style={{
                 display:'flex',
-                justifyContent:'center',
+                alignItems:'center',
+                flexDirection:'column',
                 marginTop:'10px'
             }}>
                 <div style={{
@@ -156,7 +160,7 @@ class CreateClass extends Component {
                         }}>
                             <a> Lead Coach:
                             <select
-                            value={this.state.coachId}
+                            value={this.state.leadCoachId}
                             onChange={(e) => this.setState({leadCoachId:e.target.value})}>
                                 <option value={''} >  Select Coach </option>
                                 {
@@ -198,7 +202,7 @@ class CreateClass extends Component {
                                     value={this.state.classDates}
                                     format={"YYYY-MM-dd"}
                                     placeholder={"click to select dates"}
-                                    // value={parseISO(classDates.dateAt)}
+                                  
 
                                     onChange={ date=> {
                                         onChange(date)
@@ -268,7 +272,16 @@ class CreateClass extends Component {
                         Create Class 
                         </button>
                 </div>
-                    
+                    <Alert
+                     variant="success"
+                     show={this.state.show} >
+                    <Alert.Heading> Your Class Was Created Succesfully! </Alert.Heading>
+                        <p> Class Details </p>
+                        <Button onClick={() => this.setState({show:false})} variant="outline-success">
+                        Close 
+                        </Button>
+
+                        </Alert>
             </div>
         );
       }
