@@ -12,10 +12,10 @@ const ClassInfo = db.define('classInfo', {
         type:STRING
     },
     start:{
-        type:DATE
+        type:STRING
     },
     end:{
-        type:DATE
+        type:STRING
     },
     timeRange:{
         type:STRING

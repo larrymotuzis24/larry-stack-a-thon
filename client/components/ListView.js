@@ -11,7 +11,7 @@ class ListView extends Component {
         super();
         this.state={
             selectedCoach:'',
-            selectedCoachId:null,
+            selectedCoachId:'',
             classToDisplay:{},
             classesToDisplay:[],
             coachClasses:[],
@@ -19,108 +19,55 @@ class ListView extends Component {
             classTimeFilter:'',
             classDayFilter:'',
             data:[],
-            search:''
-        }
-        this.getData = this.getData.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.showCoachClasses = this.showCoachClasses.bind(this)
-    }
-
-    showCoachClasses(coachId){
-        console.log(coachId)
-     this.setState({selectedCoachId: coachId})
-     console.log(this.state)
-        this.getData(coachId)
-
-            console.log(this.state.selectedCoachId)
-        
-    }
-
-    onChange(e){
-        this.setState({search: e.target.value })
-        this.getData(this.state.search)
-      }
-
-    getData = async() => {
-        console.log('getDATA selectedCoachId', typeof this.state.selectedCoach)
-        let container = [...this.props.classes]
-        // if(this.state.selectedCoach.length === 0 ){
-        //   this.setState({classesToDisplay:[...container]})
-        // }
-        if(this.state.selectedCoach !== null){
-            const filteredClasses = container.filter(c => c.coachId === this.state.selectedCoach)
-            console.log(filteredClasses)
-            this.setState({classToDisplay:filteredClasses})
+            search:'',
         }
     }
-    // handleFilter(){
-
-    //     if(this.state.gymFilter === 'OakBrook Park District'){
-    //         let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-          
-
-    //         let filteredClasses = coachClasses.filter(c => c.location === 'OakBrook Park District');
-    //         console.log(filteredClasses, 'filtered by oakbrook')
-
-    //         this.setState({classesToDisplay:filteredClasses})
-             
-    //      }
-    // }
 
 
-    // componentDidMount(prevProps){
-    //     this.setState({classesToDisplay:this.props.classes, gymFilter:'', classDayFilter:''})
+      componentDidUpdate(prevProps, prevState){
+        console.log(this.state, prevState)
+        if(prevState.selectedCoachId !== this.state.selectedCoachId || prevState.gymFilter !== this.state.gymFilter ){
 
-    // }
-
-    //   componentDidUpdate(prevProps, prevState){
-    //     if(prevState.coachId !== this.state.coachId || prevState.gymFilter !== this.state.gymFilter || prevState.classDayFilter !== this.state.classDayFilter ){
-    //         if(this.state.gymFilter === 'OakBrook Park District'){
-    //            let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+            if(this.state.gymFilter === 'OakBrook Park District'){
+               let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.selectedCoachId*1 );
              
 
-    //            let filteredClasses = coachClasses.filter(c => c.location === 'OakBrook Park District');
-    //            console.log(filteredClasses, 'filtered by oakbrook')
+               let filteredClasses = coachClasses.filter(c => c.location === 'OakBrook Park District');
+               console.log(filteredClasses, 'filtered by oakbrook')
 
-    //            this.setState({classesToDisplay:filteredClasses})
+               this.setState({classesToDisplay:filteredClasses})
                 
-    //         }
-    //          if(this.state.gymFilter === 'Hinsdale Community House'){
-    //             let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-    //             let filteredClasses = coachClasses.filter(c => c.location === 'Hinsdale Community House');
-    //             console.log(filteredClasses, 'hinsdale')
+            }
+             if(this.state.gymFilter === 'Hinsdale Community House'){
+                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.selectedCoachId*1 );
+                let filteredClasses = coachClasses.filter(c => c.location === 'Hinsdale Community House');
+                console.log(filteredClasses, 'hinsdale')
                     
                          
-    //                 this.setState({classesToDisplay:filteredClasses})
+                    this.setState({classesToDisplay:filteredClasses})
 
-    //         }
-    //         else  if(this.state.gymFilter === 'Connect 44 Center'){
-    //             let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-    //             let filteredClasses = coachClasses.filter(c => c.location === 'Connect 44 Center');
-    //             console.log(filteredClasses, 'connecr 44 center')
+            }
+            if(this.state.gymFilter === 'Connect 44 Center'){
+                let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.selectedCoachId*1  );
+                let filteredClasses = coachClasses.filter(c => c.location === 'Connect 44 Center');
+                console.log(filteredClasses, 'connecr 44 center')
                  
                       
-    //              this.setState({classesToDisplay:filteredClasses})
+                 this.setState({classesToDisplay:filteredClasses})
 
-    //      }
-    //      else  if(this.state.gymFilter === 'Lemont Park District'){
-    //          let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-    //          let filteredClasses = coachClasses.filter(c => c.location === 'Lemont Park District');
-    //          console.log(filteredClasses, 'LPD')
+         }
+          if(this.state.gymFilter === 'Lemont Park District'){
+             let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.selectedCoachId*1 );
+             let filteredClasses = coachClasses.filter(c => c.location === 'Lemont Park District');
+             console.log(filteredClasses, 'LPD')
              
                   
-    //          this.setState({classesToDisplay:filteredClasses})
-    //      }
+             this.setState({classesToDisplay:filteredClasses})
+         }
 
-            // else {
-            //     let coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
-    
-            //     console.log(coachClasses, 'none')
-            //      this.setState({classesToDisplay:coachClasses})
-
-            // }
+          
       
-        //}
+        }
         // if(prevState.classTimeFilter !== this.state.classTimeFilter ){
         //     const classesTofilter = this.state.classesToDisplay;
         //     let filteredClasses = classesTofilter.filter(c => {
@@ -138,19 +85,22 @@ class ListView extends Component {
         // }
         
       
-//}
+}
     
     
     render(){
         const allCoaches = this.props.coaches;
-        const {showCoachClasses}= this;
         const allClasses = this.state.classesToDisplay;
+        const coachClasses = allClasses.filter(c => c.coachId*1 === this.state.selectedCoachId*1);
+        console.log(coachClasses)
         return (
             <div>
                 <h2> List View </h2>
                 <div>
-                    <select onChange={(e)=> showCoachClasses(e.target.value)}> 
-                        <option value={allClasses}> --select a coach-- </option>
+                    <select 
+                    value={this.state.selectedCoachId}
+                    onChange={(e)=> this.setState({selectedCoachId:e.target.value})}> 
+                        <option value={''}> --select a coach-- </option>
                         {
                             allCoaches.map(coach => {
                                 return (
@@ -160,8 +110,8 @@ class ListView extends Component {
                         }
                     </select>
 
-                    <select onChange={(e) => this.setState({ gymFilter: e.target.value })}> 
-                        <option value={allClasses}> --filter by gym-- </option>
+                    <select value={this.state.gymFilter} onChange={(e) => this.setState({ gymFilter: e.target.value })}> 
+                        <option value={''}> --filter by gym-- </option>
                         <option value={'OakBrook Park District'}> OakBrook Park District </option>
                         <option value={'Lemont Park District'}> Lemont Park District </option>
                         <option value={'Connect 44 Center'}> Connect 44 Center </option>

@@ -56,19 +56,33 @@ class CoachAccount extends Component {
                         <br />
                         {auth.email}
                       </p>
+                  <hr />
                     </div>
                   </div>
-                  <hr />
+                  <div style={{
+                    display:'flex',
+                  }}>
                   <Button
-                    href="#editUser"
+                    href="editUser"
                     className="btn btn-light border-dark mb-4 mt-3"
                   >
                     EDIT INFORMATION
                   </Button>
                   <br />
-                  <Button href="#passwordUser" color='green'>
+                  <Button 
+                  href="#passwordUser"  
+                  className="btn btn-light border-dark mb-4 mt-3"
+                  style={{
+                    background:'red',
+                    marginLeft:'5px'
+                    
+                    
+                  }
+                  }
+                  >
                     CHANGE PASSWORD
                     </Button>
+                    </div>
                  
                 </div>
               ) : null}

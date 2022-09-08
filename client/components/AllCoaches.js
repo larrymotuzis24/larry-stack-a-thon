@@ -5,6 +5,8 @@ import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "daypilot-pro-react"
 
 import Table from 'react-bootstrap/Table';
 
+import Alert from 'react-bootstrap/Alert';
+
                          
 const styles = {
     wrap: {
@@ -26,63 +28,51 @@ class Coaches extends Component {
         this.state={
           
             coachId:'',
-            classId:'',
-            classToDisplay:{},
-            coachClasses:[],
+            selectedCoach:'',
+            classToDisplay:'',
+            coachClasses:'',
             viewType: "Days",
+            businessBeginsHour:16,
+            businessEndsHour:23,
             days:7,
             cellDuration:15,
-            businessBeginsHour: 16,
-            businessEndsHour: 23,
             theme:"calendar_green",
             cellHeight:'25',
             headerDateFormat:"dddd M/d",
-            timeFormat:'Clock12Hours',
-            timeDisplay:'9:00',
             startDate:DayPilot.Date.today(),
             durationBarVisible: false,
             timeRangeSelectedHandling: "Disabled",
             heightSpec:"Fixed",
-            height:600,
+            height:700,
+            locale:"en-us",
 
-            // onBeforeEventDomAdd: args => {
-            //     args.element = <div>
-            //       {args.e.data.text}
-            //       <div style={{position: "absolute", right: "5px", top: "9px", width: "17px", height: "17px"}}
-            //            onClick={() => this.deleteEvent(args.e)}><img src={"delete-17.svg"} alt={"Delete icon"}/></div>
-            //     </div>;
-            //   },
-            
-            
+   
 
             eventDeleteHandling: "Update",
              onEventClick: async args => {
-              console.log(args.e.value())
+          
             const classToDisplay = this.props.classes.find(c => c.id === args.e.value());
-            this.setState({classId: args.e.value(), classToDisplay:classToDisplay});
-            console.log(this.state)
-                
+    
+            this.setState({classId: args.e.value(), classToDisplay:classToDisplay, startDate:args.e.part.start.value});
+      
+            DayPilot.Modal.alert(JSON.stringify(classToDisplay));
             }
         }
+
     }
     get calendar() {
         return this.calendarRef.current.control;
       }
     
     componentDidMount(){
-        const coachClasses = this.props.classes.filter(c => c.userId === this.state.coachId );
-        this.setState({coachClasses:coachClasses})
+      console.log(this.state)
+        const allClasses = this.props.classes
+        this.setState({coachClasses:allClasses})
 
         
-
-        let updatedClasses = coachClasses.map(c => {
+        let updatedClasses = allClasses.map(c => {
           let classInfo = `${c.classTitle} ${c.location}`
     
-          // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
-          // let playersInClass = this.props.players.filter(player => {
-          //   return playerRosters.filter(pr => pr.playerProfileId === player.id)
-          // })
-          // console.log(playersInClass)
     
           c.text = classInfo
           return c
@@ -90,40 +80,48 @@ class Coaches extends Component {
         })
     
 
-        let classes = updatedClasses.filter(c => c.userId === this.props.auth.id) || [];
+        let classes = updatedClasses
         
         this.calendar.update({classes});
       }
 
       componentDidUpdate(prevProps, prevState){
-        if(prevState.coachId !== this.state.coachId ){
-          const coachClasses = this.props.classes.filter(c => c.userId*1 === this.state.coachId*1 );
+        if(this.state.coachId !== prevState.coachId  ){
+          const coachToDisplay = this.props.coaches.find(c => c.id*1 === this.state.coachId*1);
+          console.log(coachToDisplay)
 
-          
-        //   this.setState({coachClasses:this.props.classes})
-    
+           const coachClasses = this.props.classes.filter(c => c.userId*1 === coachToDisplay.id ) ;
+           
            let updatedCoachClasses = coachClasses.map(c => {
     
-            let classInfo = `${c.classTitle} 
-            ${c.location} 
-            ${c.timeRange}`
-          
-            c.text = classInfo
-            return c
+            let classInfo = 
+            `${c.classTitle} 
+              ${c.location} 
+              `
+             c.text = classInfo
+              return c
             
           })
-    
+          
+       
+        
+          
           let events =  updatedCoachClasses.filter(c => c.userId === this.state.coachId*1);
-          this.setState({coachClasses:events, classToDisplay:''})
+  
+          this.setState({coachId:coachToDisplay.id, coachToDisplay:coachToDisplay})
           this.calendar.update({events});
-          console.log(this.state,'componennt did update')
+          console.log(this.state)
+        
         }
       
       }
     
+    
 
     render(){
-        const allCoaches = this.props.coaches;
+        const {coaches, coachId} = this.props;
+        const { onChange } = this;
+        const {coachToDisplay} = this.state;
 
         const rosters = this.props.classRosters.filter(roster => {
           return roster.classInfoId*1 === this.state.classId*1
@@ -140,7 +138,27 @@ class Coaches extends Component {
 
         return (
             <div>
-            <div style={styles.wrap}>
+                 {
+                  this.state.coachId ? (
+                       <div>
+                         <h4 style={{
+                          textAlign:'center'
+                         }}> Scheduel for {coachToDisplay?.firstName} </h4>
+                         </div>
+
+                  ): (
+                    <div>
+                    <h4 style={{
+                     textAlign:'center'
+                    }}> All Classes </h4>
+                    </div>
+                  )
+                 }
+                   
+            <div style={{
+              display:'flex',
+              marginTop:'10px'
+            }}>
               
                  <div style={styles.left}>
                     <div style={{
@@ -149,23 +167,25 @@ class Coaches extends Component {
                       }}>
                         <DayPilotNavigator 
                          selectMode={"week"}
-                         startDate={DayPilot.Date.today()}
+                         startDate={this.state.startDate}
+                         timeFormat={'clock24Hours'}
                          selectionDay={DayPilot.Date.today()}
+                         
                          onTimeRangeSelected={ args => {
                             this.calendar.update({
-                              startDate: args.day
+                              startDate: args.start
                             });
                           }}
                           {...this.state.onBeforeEventDomAdd}
                          />
                   </div>            
              <div>
-                    <select onChange={(e) => this.setState({ coachId: e.target.value, classToDisplay:{} })}> 
-                        <option value={this.props.classes}> --select a coach-- </option>
+                    <select onChange={(ev)=> this.setState({coachId:ev.target.value})}> 
+                        <option value=''> --select a coach-- </option>
                         {
-                            allCoaches.map(coach => {
+                            coaches?.map(coach => {
                                 return (
-                                    <option key={coach.id} value={coach.id}> {coach.firstName} {coach.lastName} </option> 
+                                    <option key={coach.id} href={`/${coach.firstName}`} value={coach.id}> {coach.firstName} {coach.lastName} </option> 
                                 )
                             })
                         }

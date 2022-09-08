@@ -35,7 +35,7 @@ class Scheduel extends Component {
       theme:"calendar_green",
       cellHeight:'25',
       headerDateFormat:"dddd M/d",
-      timeFormat:'Clock12Hours',
+      timeFormat:'Clock24Hours',
       timeDisplay:'9:00',
       startDate:DayPilot.Date.today(),
       durationBarVisible: false,
@@ -90,43 +90,43 @@ class Scheduel extends Component {
 
 
     let updatedClasses = this.props.classes.map(c => {
-      let classInfo = `${c.classTitle} ${c.location}`
+      let classInfo = `
+      ${c.classTitle} 
+      ${c.location}`
 
-      // let playerRosters = this.props.classRosters.filter(cR => cR.classInfoId === c.id)
-      // let playersInClass = this.props.players.filter(player => {
-      //   return playerRosters.filter(pr => pr.playerProfileId === player.id)
-      // })
-      // console.log(playersInClass)
+  
 
       c.text = classInfo
       return c
       
     })
-
+   
     let classes = updatedClasses.filter(c => c.userId === this.props.auth.id);
     
     
-    this.calendar.update({startDate, classes});
+    this.calendar.update({classes});
   }
   componentDidUpdate(previousProps){
     if(previousProps.classes !== this.props.classes){
-      const startDate = "2022-08-31";
+      const startDate = Da
       this.setState({classes:this.props.classes})
 
       let updatedClasses = this.props.classes.map(c => {
 
-        let classInfo = `${c.classTitle} 
+        let classInfo = `
+        ${c.classTitle} 
         ${c.location} 
-        ${c.timeRange}`
+        `
       
         c.text = classInfo
         return c
         
       })
+ 
 
       let events =  updatedClasses.filter(c => c.userId === this.props.auth.id);
       this.setState({classes:events})
-      this.calendar.update({startDate, events});
+      this.calendar.update({events});
     }
   }
 
@@ -143,7 +143,6 @@ class Scheduel extends Component {
             })
           })
         
-    console.log(roster)
   
     return (
       <div style={styles.wrap}>

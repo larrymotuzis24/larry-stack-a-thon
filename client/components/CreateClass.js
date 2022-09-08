@@ -8,6 +8,7 @@ import ClassTimeCreator from "./ClassTimeCreator";
 import { createClass } from "../store/classInfo";
 import DatePicker from "react-multi-date-picker";
 import DatePanel from "react-multi-date-picker/plugins/date_panel"
+import { parseISO } from 'date-fns'; 
 
 
 
@@ -16,8 +17,8 @@ class CreateClass extends Component {
         super(props);
         this.state = {
             classTitle:'',
-            classDate:'',
             startTime:'',
+            coachId:'',
             endTime:'',
             classDescription:'',
             leadCoachId:'', 
@@ -31,48 +32,49 @@ class CreateClass extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.confirm = this.confirm.bind(this);
+        this.onChange = this.onChange.bind(this);
       }
     
       handleChange(value) {
-        console.log('value Beofre', value)
         this.setState({classTitle: value});
-        console.log('updated Input', this.state)
       }
       
       confirm(e){
-        console.log(this.state.classDates)
-        const datesArray = this.state.classDates.split(',')
         
-        for(let i = 0; i < datesArray.length; i++){
+        
+        for(let i = 0; i < this.state.classDates.length; i++){
            
             let classToCreate = {
                 classTitle:this.state.classTitle,
-                start:`${datesArray[i]}T${this.state.startTime}:00`,
-                end:`${datesArray[i]}T${this.state.endTime}:00`,
+                start:`${this.state.classDates[i]}T${this.state.startTime}:00`,
+                end:`${this.state.classDates[i]}T${this.state.endTime}:00`,
                 userId:this.state.leadCoachId,
                 location:this.state.classLocation
             }
-            console.log(classToCreate)
+
             this.state.classesToCreate.push(classToCreate)
             
         }
         this.props.create(this.state.classesToCreate)
-        console.log(this.state.classesToCreate)
+        alert(`Class: ${this.state.classTitle} on ${this.state.classDates} from ${this.state.startTime} to ${this.state.endTime} was created!`)
+     
         this.setState({
             classTitle:'',
             classDate:'',
             startTime:'',
+            coachId:'',
             endTime:'',
             classDescription:'',
             leadCoachId:'', 
-            coachesToDisplay:[],
-            gymLocations:[],
-            classDates:[],
-            classLocation:''
+            coachesToDisplay:'',
+            gymLocations:'',
+            classDates:'',
+            classLocation:'',
         })
+        
+       
       }
- 
-    
+   
       handleSubmit(e) {
         e.preventDefault();
         alert('create this class', console.log(this.state));
@@ -83,15 +85,39 @@ class CreateClass extends Component {
         console.log('setCoachesState', this.props)
  
     }
+
+    onChange(arg){
+        let date = ''
+        let month = ''
+        let year=''
+        let day = ''
+        console.log(arg)
+        for(let i = 0; i < arg.length; i++){
+            day = `${arg[i].day}`
+            month = `${arg[i].month}`
+            year = `${arg[i].year}`
+            if(day.length < 2){
+                day = `0${arg[i].day}`
+            }
+            if(month.length < 2){
+               month = `0${arg[i].month}`
+            }
+            date= `${year}-${month}-${day}`
+        }
+        this.state.classDates.push(date)
+        console.log(this.state.classDates)
+    }
   
     
       render() {
-        const { handleSubmit, handleChange, confirm } = this;
+        const { handleSubmit, onChange, confirm } = this;
         const { coachesToDisplay } = this.props
+        const {classDates} = this.state;
         return (
             <div style={{
                 display:'flex',
-                justifyContent:'center'
+                justifyContent:'center',
+                marginTop:'10px'
             }}>
                 <div style={{
                     display:'flex',
@@ -110,11 +136,13 @@ class CreateClass extends Component {
                         justifyContent:'center'
                     }}>
                         <div style={{
-                        
+                          display:'flex',
+                          justifyContent:'center'
                         }}>
                             <a> Class Title:
                           <input 
                           type={'text'}
+                          value={this.state.classTitle}
                           placeholder={'Class Title'}
                           onChange={(e) => this.setState({classTitle:e.target.value})}
                           /> 
@@ -122,9 +150,14 @@ class CreateClass extends Component {
                         </div>
 
                         <div>
-                        <div>
+                        <div style={{
+                            display:'flex',
+                            justifyContent:'space-around'
+                        }}>
                             <a> Lead Coach:
-                            <select onChange={(e) => this.setState({leadCoachId:e.target.value})}>
+                            <select
+                            value={this.state.coachId}
+                            onChange={(e) => this.setState({leadCoachId:e.target.value})}>
                                 <option value={''} >  Select Coach </option>
                                 {
                                     coachesToDisplay.map(coach => {
@@ -136,7 +169,7 @@ class CreateClass extends Component {
                             </select>
                             </a>
                             <a>Location:
-                            <select onChange={(e) => this.setState({classLocation:e.target.value})}>
+                            <select value={this.state.classLocation} onChange={(e) => this.setState({classLocation:e.target.value})}>
                                 <option value={''}>Location </option>
                                 <option value={'OakBrook Park District'}> OakBrook Park District </option>
                                 <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
@@ -158,41 +191,75 @@ class CreateClass extends Component {
                         flexDirection:'row',
                         justifyContent:'space-around'
                     }}>
-                        <DatePicker
-                                multiple
-                                    format="YYYY-MM-dd"
-                                    onChange={array => { 
-                                    this.setState({classDates: array.join()})
-                                        }}
+                        <div>
+                            <a> Select Dates</a>
+                             <DatePicker
+                                    multiple
+                                    value={this.state.classDates}
+                                    format={"YYYY-MM-dd"}
+                                    placeholder={"click to select dates"}
+                                    // value={parseISO(classDates.dateAt)}
+
+                                    onChange={ date=> {
+                                        onChange(date)
+
+                                    }
+                                     }
                         />
-                        
+
+                        </div>
+                        <a>StartTime:
                           <input 
-                        type='time'
-                        onChange={(e) => this.setState({startTime:e.target.value})}
+                            type='time'
+                            value={this.state.startTime}
+                            onChange={(e) => this.setState({startTime:e.target.value})}
                          /> 
 
-                        <input 
-                        type='time' 
-                        onChange={(e) => this.setState({endTime:e.target.value})}
-                        />
+                        </a>
+                        <a>EndTime:
+                            <input 
+                            type='time' 
+                            value={this.state.endTime}
+                            onChange={(e) => this.setState({endTime:e.target.value})}
+                            />
+                        
+                        </a>              
 
                     </div>
                     <div style={{
-                        marginTop:'20px',
-                        marginBottom:'20px'
+                        display:'flex',
+                        flexDirection:'column',
+                        alignItems:'center',
+                        marginTop:'20px'
                     }}>   
-                        <a>Class Description
+                        <a>Class Description  </a>
                             <textarea 
+                            value={this.state.classDescription}
+                            style={{
+                                width:'80%',
+                                height:'100px',
+                                marginTop:'10px',
+                                marginBottom:'10px'
+                            }}
                             onChange={(e) => this.setState({classDescription:e.target.value})}
                             > 
                             
                             </textarea>
-                            </a>
+                           
 
                         </div>              
                     
 
-                        <button onClick={(e)=> confirm(e)}> Create Class </button>
+                        <button 
+                        style={{
+                            backgroundColor:'green',
+                            marginTop:'10px'
+                        }}
+                        onClick={(e)=> confirm(e)}
+                        
+                        > 
+                        Create Class 
+                        </button>
                 </div>
                     
             </div>
