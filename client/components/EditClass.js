@@ -22,7 +22,7 @@ class EditClass extends Component {
             showDelete:false
         }
         this.save = this.save.bind(this);
-        this.deleteClass = this.save.bind(this);
+        this.handleDelete = this.save.bind(this);
     }
     componentDidMount(props){
         const classToEdit = this.props?.classes.find(c => c.id*1 === this.props.match.params.id*1);
@@ -47,11 +47,11 @@ class EditClass extends Component {
             showDelete:false
         })
     }
-    async deleteClass(){
+    async handleDelete(){
         console.log('clasdasdasdasdasdasdadas',  this.state.classId)
     }
 
-    async save(){
+    async save(ev){
         const updatedClass = {
             id: this.state.classId,
             classTitle: this.state.classTitle,
@@ -84,7 +84,7 @@ class EditClass extends Component {
         
         const coachesToDisplay = this.props.coaches;
         const {classTitle, startTime, endTime, classDescription} = this.state;
-       const { save, deleteClass } = this;
+       const { save, handleDelete } = this;
         return (
             <div>
                   <div style={{
@@ -179,7 +179,20 @@ class EditClass extends Component {
                             />
                         
                         </a>              
+                        <div>
+                            <button 
+                            onClick={handleDelete}
+                            style={{
+                                backgroundColor:'red',
+                                marginTop:'10px'
+                            }}
+                            
+                            > 
+                            Delete Class 
+                            </button>
 
+
+                        </div>
                     </div>
                     <div style={{
                         display:'flex',
@@ -198,20 +211,7 @@ class EditClass extends Component {
                             </button>
 
                         </div>
-                        <div>
-                            <button 
-                            onClick={deleteClass}
-                            style={{
-                                backgroundColor:'red',
-                                marginTop:'10px'
-                            }}
-                            
-                            > 
-                            Delete Class 
-                            </button>
-
-
-                        </div>
+                   
 
                     </div>
               
