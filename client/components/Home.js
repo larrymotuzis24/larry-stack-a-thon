@@ -14,7 +14,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
  * COMPONENT
  */
 export const Home = props => {
-  const {firstName, isAdmin, auth} = props;
+  const {firstName, isAdmin, isLoggedIn, auth} = props;
   const [checked, setChecked] = useState(false);
   const [displayValue, setDisplayValue] = useState('scheduel');
 
@@ -25,11 +25,13 @@ export const Home = props => {
     { name: 'list', value: 'list' }
   ];
   
+  console.log(isLoggedIn, isAdmin)
   
   return (
     <div>
+      
       {
-        isAdmin ? (
+        auth.id && isAdmin ? (
           <div>
               <>
               <ButtonGroup>
@@ -72,7 +74,8 @@ const mapState = state => {
   return {
     firstName: state.auth.firstName,
     isAdmin:state.auth.isAdmin,
-    auth:state.auth
+    auth:state.auth,
+    isLoggedIn: !!state.auth.id
   }
 }
 

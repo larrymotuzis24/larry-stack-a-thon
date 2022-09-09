@@ -9,6 +9,7 @@ import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 
 import Button from 'react-bootstrap/Button';
+import EditClass from "./EditClass";
 
                          
 const styles = {
@@ -199,7 +200,7 @@ class Coaches extends Component {
                               Close 
                               </Button>
                               <Button onClick={() => this.setState({showRoster:false})} variant="outline-success">
-                             <Link to={`/${classDisplay.id}`} classtoedit={classDisplay}>  Edit Class </Link>
+                             <Link to={`/classes/${classDisplay.id}`} >  Edit Class </Link>
                               </Button>
 
                             </div>

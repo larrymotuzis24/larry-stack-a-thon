@@ -43,6 +43,17 @@ app.get('/classes', async(req, res, next) => {
   }
 });
 
+app.put('/classes/:id', async(req, res) => {
+  try{
+    const c = await ClassInfo.findByPk(req.params.id)
+    await c.update(req.body)
+    res.send(c)
+  }
+  catch(ex){
+    console.log(err)
+  }
+})
+
 app.get('/classRosters', async(req, res, next) => {
   try{
      res.send(await ClassRoster.findAll())

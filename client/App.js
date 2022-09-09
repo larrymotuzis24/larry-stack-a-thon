@@ -13,12 +13,12 @@ class App extends Component {
       classes:[]
     }
   }
-  componentDidMount(prevProps) {
-    window.addEventListener('hashchange', () => {
-      this.props.setView(window.location.slice(1));
-    });
+  // componentDidMount(prevProps) {
+  //   window.addEventListener('hashchange', () => {
+  //     this.props.setView(window.location.slice(1));
+  //   });
 
-  }
+  // }
   render(){
     return (
       <div>

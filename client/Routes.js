@@ -28,35 +28,38 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn, auth} = this.props
+   
 
     return (
       <main>
-        { isLoggedIn ? (
+        { auth.id ? (
          <Switch>
-            <Route path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
+            <Route path="/home"  component={Home}/>
             <Route path="/account" component={CoachAccount} />
             <Route path="/allPlayers" component={Players} />
-            {
-              auth.isAdmin ? (
-                <Switch>
+          
                 <Route path="/createClass" component={CreateClass} />
                 <Route path="/coaches" component={Coaches} />
-                <Route path="/:id" component={EditClass} />
-                  <Redirect to={'/home'} />
-
+                <Route path="/classes/:id" component={EditClass} />
+                <Route path="/coaches/:id" component={EditClass} />
+                
+                <Redirect to="home" />
                 </Switch>
 
-           
-             
-            ) : null}
-          </Switch>
+
 
         ) : (
-          <Switch>
-            <Route path='/' exact component={ Login } />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-          </Switch>
+          
+             
+                
+                <Switch>
+                <Route exact path='/' component={ Login } />
+                <Route path="/login" component={Login} />
+                <Route path="/signup" component={Signup} />
+                </Switch>
+                
+            
         )}
       </main>
     )

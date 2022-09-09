@@ -66,53 +66,53 @@ async function seed() {
   const classes = await Promise.all([
 
     //jake classes
-    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Jake.id, start:'2022-09-05 16:00:00', end:'2022-09-05 17:30:00', practiceDays:'Mondays', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Jake.id, start:'2022-09-05 17:30:00',end:'2022-09-05 19:00:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Jake.id, start:'2022-09-05 19:00:00',end:'2022-09-05 20:30:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Jake.id, start:'2022-09-12 16:00:00', end:'2022-09-12 17:30:00', practiceDays:'Mondays', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Jake.id, start:'2022-09-12 17:30:00',end:'2022-09-12 19:00:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Jake.id, start:'2022-09-12 19:00:00',end:'2022-09-12 20:30:00',  practiceDays:'Monday', location:'OakBrook Park District'}),
 
-    ClassInfo.create({classTitle:'SPA', userId:Jake.id, start:'2022-09-07T11:30:00', end:'2022-09-07T13:00:00',timeRange:'530 - 6:40',  practiceDays:'Wednsday', location:'Lemont Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Jake.id, start:'2022-09-07T13:00:00',end:'2022-09-07T14:30:00', timeRange:'6:40 - 8:00',  practiceDays:'Wednsday', location:'Lemont Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Jake.id, start:'2022-09-14T11:30:00', end:'2022-09-14T13:00:00',timeRange:'530 - 6:40',  practiceDays:'Wednsday', location:'Lemont Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Jake.id, start:'2022-09-14T13:00:00',end:'2022-09-14T14:30:00', timeRange:'6:40 - 8:00',  practiceDays:'Wednsday', location:'Lemont Park District'}),
 
     //matt classes
 
-    ClassInfo.create({classTitle:'SPA', userId:6, start:'2022-09-09T16:00:00', end:'2022-09-09T17:30:00', timeRange:'5:00 - 6:00', practiceDays:'Friday', location:'Lombard'}),
-    ClassInfo.create({classTitle:'SPA', userId:6, start:'2022-09-09T17:30:00',end:'2022-09-09T19:00:00', timeRange:'6:00 - 7:15',  practiceDays:'Friday', location:'Lombard'}),
-    ClassInfo.create({classTitle:'SPA', userId:6, start:'2022-09-09T19:00:00',end:'2022-09-09T20:30:00',timeRange:'7:15 - 8:30',  practiceDays:'Friday', location:'Lombard'}),
+    ClassInfo.create({classTitle:'SPA', userId:6, start:'2022-09-16T16:00:00', end:'2022-09-16T17:30:00', timeRange:'5:00 - 6:00', practiceDays:'Friday', location:'Lombard'}),
+    ClassInfo.create({classTitle:'SPA', userId:6, start:'2022-09-16T17:30:00',end:'2022-09-16T19:00:00', timeRange:'6:00 - 7:15',  practiceDays:'Friday', location:'Lombard'}),
+    ClassInfo.create({classTitle:'SPA', userId:6, start:'2022-09-16T19:00:00',end:'2022-09-16T20:30:00',timeRange:'7:15 - 8:30',  practiceDays:'Friday', location:'Lombard'}),
 
 
 
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-06T16:00:00', end:'2022-09-06T17:00:00',timeRange:'4:00 - 5:00',  practiceDays:'Tuesday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-06T17:00:00',end:'2022-09-06T18:30:00', timeRange:'5:00 - 6:30',  practiceDays:'Tusday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-06T18:30:00',end:'2022-09-06T20:00:00', timeRange:'6:30 - 8:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-06T20:00:00',end:'2022-09-06T21:30:00', timeRange:'8:00 - 9:30', practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-13T16:00:00', end:'2022-09-13T17:00:00',  practiceDays:'Tuesday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-13T17:00:00',end:'2022-09-13T18:30:00',  practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-13T18:30:00',end:'2022-09-13T20:00:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-13T20:00:00',end:'2022-09-13T21:30:00', practiceDays:'Tusday', location:'Connect 44 Center'}),
 
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-08T16:30:00', end:'2022-09-08T17:30:00',timeRange:'4:00 - 5:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-08T17:00:00',end:'2022-09-08T18:30:00', timeRange:'5:00 - 6:30',  practiceDays:'Thursday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-08T18:30:00',end:'2022-09-08T20:00:00',timeRange:'6:30 - 8:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
-    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-08T20:00:00',end:'2022-09-08T21:30:00',timeRange:'8:00 - 9:30',  practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-15T16:30:00', end:'2022-09-15T17:30:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-15T17:00:00',end:'2022-09-15T18:30:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-15T18:30:00',end:'2022-09-15T20:00:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
+    ClassInfo.create({classTitle:'HS GBL', userId:6, start:'2022-09-15T20:00:00',end:'2022-09-15T21:30:00',  practiceDays:'Thursday', location:'Connect 44 Center'}),
 
 
     // //mirko tuesday/thursday classes
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-06T16:30:00',end:'2022-09-06T18:00:00',timeRange:'4:30 - 6:00',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-06T18:00:00',end:'2022-09-06T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-06T19:30:00',end:'2022-09-06T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Tuesday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-13T16:30:00',end:'2022-09-13T18:00:00',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-13T18:00:00',end:'2022-09-13T19:30:00',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-13T19:30:00',end:'2022-09-13T21:00:00', practiceDays:'Tuesday', location:'OakBrook Park District'}),
     
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-08T16:30:00',end:'2022-09-08T18:00:00',timeRange:'4:30 - 6:00',  practiceDays:'Thursday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-08T18:00:00',end:'2022-09-08T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Thursday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-08T19:30:00',end:'2022-09-08T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Thursday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T16:30:00',end:'2022-09-15T18:00:00',  practiceDays:'Thursday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T18:00:00',end:'2022-09-15T19:30:00',  practiceDays:'Thursday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T19:30:00',end:'2022-09-15T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Thursday', location:'OakBrook Park District'}),
 
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-13T16:30:00',end:'2022-09-13T18:00:00',timeRange:'4:30 - 6:00',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-13T18:00:00',end:'2022-09-13T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-13T19:30:00',end:'2022-09-13T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Tuesday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:3, start:'2022-09-13T16:30:00',end:'2022-09-13T18:00:00',timeRange:'4:30 - 6:00',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:3, start:'2022-09-13T18:00:00',end:'2022-09-13T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'UA Experience', userId:3, start:'2022-09-13T19:30:00',end:'2022-09-13T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Tuesday', location:'OakBrook Park District'}),
     
     ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T16:30:00',end:'2022-09-15T18:00:00',timeRange:'4:30 - 6:00',  practiceDays:'Thursday',location:'OakBrook Park District'}),
     ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T18:00:00',end:'2022-09-15T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Thursday',location:'OakBrook Park District'}),
     ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T19:30:00',end:'2022-09-15T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Thursday', location:'OakBrook Park District'}),
     
     // //coach murk wed classes
-    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-07T16:30:00', end:'2022-09-07T18:00:00',timeRange:'4:30 - 6:00', practiceDays:'Wednsday', location:'Hinsdale Community House'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-07T18:00:00',end:'2022-09-07T19:30:00', timeRange:'6:00 - 7:30',  practiceDays:'Wednsday', location:'Hinsdale Community House'}),
-    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-07T19:30:00',end:'2022-09-07T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Wednsday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-14T16:30:00', end:'2022-09-14T18:00:00',timeRange:'4:30 - 6:00', practiceDays:'Wednsday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-14T18:00:00',end:'2022-09-14T19:30:00', timeRange:'6:00 - 7:30',  practiceDays:'Wednsday', location:'Hinsdale Community House'}),
+    ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-14T19:30:00',end:'2022-09-14T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Wednsday', location:'Hinsdale Community House'}),
 
     //mirko sunday classes
     ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-11T16:00:00',end:'2022-09-11T17:15:00',timeRange:'3:00 - 4:15',  practiceDays:'Sunday',location:'Hinsdale Community House'}),
@@ -127,8 +127,8 @@ async function seed() {
     
     
     
-    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-09T16:30:00',end:'2022-09-09T17:30:00',timeRange:'4:30 - 5:30',  practiceDays:'Friday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-09T17:30:00',end:'2022-09-09T18:45:00',timeRange:'5:30 - 6:45',   practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-16T16:30:00',end:'2022-09-16T17:30:00',timeRange:'4:30 - 5:30',  practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-16T17:30:00',end:'2022-09-16T18:45:00',timeRange:'5:30 - 6:45',   practiceDays:'Friday',location:'OakBrook Park District'}),
 
 
         
@@ -139,37 +139,81 @@ async function seed() {
 
     // //coach marko scheduel
 
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-06T16:30:00',end:'2022-09-06T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-06T17:45:00',end:'2022-09-06T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-06T19:00:00',end:'2022-09-06T20:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Tuesday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-06T20:15:00',end:'2022-09-06T21:30:00', timeRange:'8:15 - 9:30', practiceDays:'Tuesday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-13T16:30:00',end:'2022-09-13T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-13T17:45:00',end:'2022-09-13T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-13T19:00:00',end:'2022-09-13T20:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Tuesday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-13T20:15:00',end:'2022-09-13T21:30:00', timeRange:'8:15 - 9:30', practiceDays:'Tuesday', location:'OakBrook Park District'}),
 
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-07T16:15:00',end:'2022-09-07T17:15:00',timeRange:'4:15 - 5:15',  practiceDays:'Wendsday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-07T17:15:00',end:'2022-09-07T18:30:00',timeRange:'5:15 - 6:30',   practiceDays:'Wendsday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-07T18:30:00',end:'2022-09-07T19:45:00',timeRange:'6:30 - 7:45',  practiceDays:'Wendsday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-07T19:45:00',end:'2022-09-07T21:00:00', timeRange:'7:45 - 9:00', practiceDays:'Wendsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-14T16:15:00',end:'2022-09-14T17:15:00',timeRange:'4:15 - 5:15',  practiceDays:'Wendsday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-14T17:15:00',end:'2022-09-14T18:30:00',timeRange:'5:15 - 6:30',   practiceDays:'Wendsday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-14T18:30:00',end:'2022-09-14T19:45:00',timeRange:'6:30 - 7:45',  practiceDays:'Wendsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-14T19:45:00',end:'2022-09-14T21:00:00', timeRange:'7:45 - 9:00', practiceDays:'Wendsday', location:'OakBrook Park District'}),
 
-
-
-    
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-08T16:30:00',end:'2022-09-08T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Thursday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-08T17:45:00',end:'2022-09-08T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Thursday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-08T19:00:00',end:'2022-09-08T21:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Thursday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-08T21:15:00',end:'2022-09-08T12:30:00', timeRange:'8:15 - 9:30', practiceDays:'Thursday', location:'OakBrook Park District'}),
-    
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-09T16:15:00',end:'2022-09-09T17:15:00',timeRange:'4:15 - 5:15',  practiceDays:'Friday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-09T17:15:00',end:'2022-09-09T18:15:00',timeRange:'5:15 - 6:15',   practiceDays:'Friday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-09T18:15:00',end:'2022-09-09T19:30:00',timeRange:'6:15 - 7:30',  practiceDays:'Friday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-09T19:30:00',end:'2022-09-09T20:45:00',timeRange:'7:30 - 8:45',   practiceDays:'Friday',location:'OakBrook Park District'}),
 
 
     
-    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-11T16:00:00',end:'2022-09-11T17:00:00',timeRange:'4:00 - 5:00',  practiceDays:'Sunday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-11T17:00:00',end:'2022-09-11T18:00:00',timeRange:'5:00 - 6:00',   practiceDays:'Sunday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-11T18:00:00',end:'2022-09-11T19:30:00',timeRange:'6:00 - 7:30',  practiceDays:'Sunday', location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-11T19:30:00',end:'2022-09-11T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Sunday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-15T16:30:00',end:'2022-09-15T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Thursday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-15T17:45:00',end:'2022-09-15T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Thursday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-15T19:00:00',end:'2022-09-15T21:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Thursday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-15T21:15:00',end:'2022-09-15T12:30:00', timeRange:'8:15 - 9:30', practiceDays:'Thursday', location:'OakBrook Park District'}),
+    
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-16T16:15:00',end:'2022-09-16T17:15:00',timeRange:'4:15 - 5:15',  practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-16T17:15:00',end:'2022-09-16T18:15:00',timeRange:'5:15 - 6:15',   practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-16T18:15:00',end:'2022-09-16T19:30:00',timeRange:'6:15 - 7:30',  practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Marko.id, start:'2022-09-16T19:30:00',end:'2022-09-16T20:45:00',timeRange:'7:30 - 8:45',   practiceDays:'Friday',location:'OakBrook Park District'}),
+
+
+    
+    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-18T16:00:00',end:'2022-09-18T17:00:00',timeRange:'4:00 - 5:00',  practiceDays:'Sunday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-18T17:00:00',end:'2022-09-18T18:00:00',timeRange:'5:00 - 6:00',   practiceDays:'Sunday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-18T18:00:00',end:'2022-09-18T19:30:00',timeRange:'6:00 - 7:30',  practiceDays:'Sunday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'Sunday Night Shooting', userId:Marko.id, start:'2022-09-18T19:30:00',end:'2022-09-18T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Sunday', location:'OakBrook Park District'}),
+    
+        
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:4, start:'2022-09-18T16:00:00',end:'2022-09-18T17:00:00',practiceDays:'Sunday',location:'Hinsdale Comminity House'}),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:4, start:'2022-09-18T17:00:00',end:'2022-09-18T18:00:00',  practiceDays:'Sunday',location:'Hinsdale Comminity House'}),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:4, start:'2022-09-18T18:00:00',end:'2022-09-18T19:30:00', practiceDays:'Sunday', location:'Hinsdale Comminity House'}),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:4, start:'2022-09-18T19:30:00',end:'2022-09-18T21:00:00', practiceDays:'Sunday', location:'Hinsdale Comminity House'}),
     
     
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:5, start:'2022-09-18T16:00:00',end:'2022-09-18T17:00:00',practiceDays:'Sunday',location:'Hinsdale Comminity House'}),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:5, start:'2022-09-18T17:00:00',end:'2022-09-18T18:00:00',  practiceDays:'Sunday',location:'Hinsdale Comminity House'}),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:5, start:'2022-09-18T18:00:00',end:'2022-09-18T19:30:00', practiceDays:'Sunday', location:'Hinsdale Comminity House'}),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:5, start:'2022-09-18T19:30:00',end:'2022-09-18T21:00:00', practiceDays:'Sunday', location:'Hinsdale Comminity House'}),
+
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:6, start:'2022-09-18T16:00:00',end:'2022-09-18T17:00:00',practiceDays:'Sunday',location:'Homer Glen' }),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:6, start:'2022-09-18T17:00:00',end:'2022-09-18T18:00:00',  practiceDays:'Sunday',location:'Homer Glen' }),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:6, start:'2022-09-18T18:00:00',end:'2022-09-18T19:30:00', practiceDays:'Sunday', location:'Homer Glen' }),
+    ClassInfo.create({classTitle:'GET BETTER ACADEMY', userId:6, start:'2022-09-18T19:30:00',end:'2022-09-18T21:00:00', practiceDays:'Sunday', location:'Homer Glen' }),
+    
+    
+    
+    
+    ClassInfo.create({classTitle:'SPA', userId:7, start:'2022-09-13T16:30:00',end:'2022-09-13T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Tuesday',location:'Lemont Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:7, start:'2022-09-13T17:45:00',end:'2022-09-13T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Tuesday',location:'Lemont Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:7, start:'2022-09-13T19:00:00',end:'2022-09-13T20:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Tuesday', location:'Lemont Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:7, start:'2022-09-13T20:15:00',end:'2022-09-13T21:30:00', timeRange:'8:15 - 9:30', practiceDays:'Tuesday', location:'Lemont Park District'}),
+
+    ClassInfo.create({classTitle:'SPA', userId:8, start:'2022-09-14T16:15:00',end:'2022-09-14T17:15:00',timeRange:'4:15 - 5:15',  practiceDays:'Wendsday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:8, start:'2022-09-14T17:15:00',end:'2022-09-14T18:30:00',timeRange:'5:15 - 6:30',   practiceDays:'Wendsday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:8, start:'2022-09-14T18:30:00',end:'2022-09-14T19:45:00',timeRange:'6:30 - 7:45',  practiceDays:'Wendsday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:8, start:'2022-09-14T19:45:00',end:'2022-09-14T21:00:00', timeRange:'7:45 - 9:00', practiceDays:'Wendsday', location:'OakBrook Park District'}),
+
+
+
+    ClassInfo.create({classTitle:'SPA', userId:5, start:'2022-09-13T16:30:00',end:'2022-09-13T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:5, start:'2022-09-13T17:45:00',end:'2022-09-13T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:5, start:'2022-09-13T19:00:00',end:'2022-09-13T20:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Tuesday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:5, start:'2022-09-13T20:15:00',end:'2022-09-13T21:30:00', timeRange:'8:15 - 9:30', practiceDays:'Tuesday', location:'OakBrook Park District'}),
+
+    ClassInfo.create({classTitle:'TRIPLE THREAT', userId:5, start:'2022-09-15T16:30:00',end:'2022-09-15T17:45:00',timeRange:'4:30 - 5:45',  practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'TRIPLE THREAT', userId:5, start:'2022-09-15T17:45:00',end:'2022-09-15T19:00:00',timeRange:'5:45 - 7:00',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'TRIPLE THREAT', userId:5, start:'2022-09-15T19:00:00',end:'2022-09-15T20:15:00',timeRange:'7:00 - 8:15',  practiceDays:'Tuesday', location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'TRIPLE THREAT', userId:5, start:'2022-09-15T20:15:00',end:'2022-09-15T21:30:00', timeRange:'8:15 - 9:30', practiceDays:'Tuesday', location:'OakBrook Park District'}),
+
+    
+    
+
     
     
     ClassRoster.create({playerProfileId:2, classInfoId:1}),

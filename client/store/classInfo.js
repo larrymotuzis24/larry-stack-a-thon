@@ -30,6 +30,15 @@ export const createClass = (classArr) => async(dispatch) => {
   dispatch({type:'CREATE_CLASS', newClass})
 }
 
+export const editClass = (c) => {
+  return async(dispatch) => {
+    const response = await axios.put(`/classes/${c.id}`, c );
+    const newclass = response.data;
+    console.log(newclass)
+
+  }
+}
+
 export default function(state = [], action) {
   switch (action.type) {
     case SET_CLASSES:

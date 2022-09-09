@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import {authenticate} from '../store'
 
 /**
@@ -63,6 +64,8 @@ const mapDispatch = dispatch => {
       const username = evt.target.username.value
       const password = evt.target.password.value
       dispatch(authenticate(username, password, formName))
+    //  window.location.href='/home'
+     history.push('/home')
     }
   }
 }
