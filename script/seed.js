@@ -105,10 +105,7 @@ async function seed() {
     ClassInfo.create({classTitle:'UA Experience', userId:3, start:'2022-09-13T18:00:00',end:'2022-09-13T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Tuesday',location:'OakBrook Park District'}),
     ClassInfo.create({classTitle:'UA Experience', userId:3, start:'2022-09-13T19:30:00',end:'2022-09-13T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Tuesday', location:'OakBrook Park District'}),
     
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T16:30:00',end:'2022-09-15T18:00:00',timeRange:'4:30 - 6:00',  practiceDays:'Thursday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T18:00:00',end:'2022-09-15T19:30:00',timeRange:'6:00 - 7:30',   practiceDays:'Thursday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'UA Experience', userId:Mirko.id, start:'2022-09-15T19:30:00',end:'2022-09-15T21:00:00', timeRange:'7:30 - 9:00', practiceDays:'Thursday', location:'OakBrook Park District'}),
-    
+  
     // //coach murk wed classes
     ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-14T16:30:00', end:'2022-09-14T18:00:00',timeRange:'4:30 - 6:00', practiceDays:'Wednsday', location:'Hinsdale Community House'}),
     ClassInfo.create({classTitle:'PREP SCHOOL', userId:Mirko.id, start:'2022-09-14T18:00:00',end:'2022-09-14T19:30:00', timeRange:'6:00 - 7:30',  practiceDays:'Wednsday', location:'Hinsdale Community House'}),
@@ -133,8 +130,8 @@ async function seed() {
 
         
     
-    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-16T16:30:00',end:'2022-09-16T17:30:00',timeRange:'4:30 - 5:30',  practiceDays:'Friday',location:'OakBrook Park District'}),
-    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-16T17:30:00',end:'2022-09-16T18:45:00',timeRange:'5:30 - 6:45',   practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-23T16:30:00',end:'2022-09-23T17:30:00',timeRange:'4:30 - 5:30',  practiceDays:'Friday',location:'OakBrook Park District'}),
+    ClassInfo.create({classTitle:'SPA', userId:Mirko.id, start:'2022-09-23T17:30:00',end:'2022-09-23T18:45:00',timeRange:'5:30 - 6:45',   practiceDays:'Friday',location:'OakBrook Park District'}),
 
 
     // //coach marko scheduel
@@ -547,7 +544,6 @@ async function seed() {
     ClassRoster.create({playerProfileId:269, classInfoId:23}),
     ClassRoster.create({playerProfileId:296, classInfoId:23}),
     ClassRoster.create({playerProfileId:117, classInfoId:23}),
-    ClassRoster.create({playerProfileId:266, classInfoId:23}),
     ClassRoster.create({playerProfileId:211, classInfoId:23}),
     ClassRoster.create({playerProfileId:22, classInfoId:23}),
     ClassRoster.create({playerProfileId:256, classInfoId:23}),

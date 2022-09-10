@@ -27,7 +27,7 @@ class EditClass extends Component {
         this.handleDelete = this.save.bind(this);
     }
     async handleDelete(){
-        console.log('clasdasdasdasdasdasdadas',  this.state.classId)
+        
     }
 
     async save(ev){

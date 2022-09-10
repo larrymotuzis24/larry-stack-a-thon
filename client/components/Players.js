@@ -49,7 +49,6 @@ class Players extends Component {
       }
 
       render() {
-        console.log('playersPAGE')
         const pageNumber = this.props.match.params.id * 1;
         const { players } = this.props;
         const { option } = this.state;

@@ -10,16 +10,14 @@ class ListView extends Component {
     constructor(){
         super();
         this.state={
-            selectedCoach:'',
             selectedCoachId:'',
-            classToDisplay:{},
             classesToDisplay:[],
             coachClasses:[],
-            gymFilter:'',
             classTimeFilter:'',
             classDayFilter:'',
             data:[],
             search:'',
+            gymFilter:'',
         }
     }
 
@@ -27,10 +25,17 @@ class ListView extends Component {
         this.setState({classesToDisplay:this.props.classes})
     }
       componentDidUpdate(prevProps, prevState){
-
-        if(prevState.selectedCoachId !== this.state.selectedCoachId || prevState.gymFilter !== this.state.gymFilter ){
-
+        
+        let classesToFilter = this.props.classes.filter(c => c.userId*1 === this.state.selectedCoachId*1)
+        if(prevState.selectedCoachId !== this.state.selectedCoachId && !this.state.gymFilter){
+            
             let classesToFilter = this.props.classes.filter(c => c.userId*1 === this.state.selectedCoachId*1)
+            this.setState({classesToDisplay:classesToFilter})
+        }
+
+
+        if(prevState.gymFilter !== this.state.gymFilter ){
+
         
             if(this.state.gymFilter === 'OakBrook Park District'){
                let coachClasses = classesToFilter.filter(c => c.userId*1 === this.state.selectedCoachId*1 );
@@ -100,7 +105,7 @@ class ListView extends Component {
         const allCoaches = this.props.coaches;
         const allClasses = this.state.classesToDisplay;
         const coachClasses = allClasses.filter(c => c.coachId*1 === this.state.selectedCoachId*1);
-        console.log(coachClasses)
+        console.log(this.state)
         return (
             <div>
                 <h2> List View </h2>
@@ -135,9 +140,7 @@ class ListView extends Component {
                         <tr>
                         <th>Class Name</th>
                         <th>Location</th>
-                        <th>Lead Coach </th>
                         <th>Class Days </th>
-                        <th> Class Time </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,9 +150,7 @@ class ListView extends Component {
                                     <tr key={c.id}>
                                     <td>{c.classTitle}</td>
                                     <td>{c.location}</td>
-                                    <td></td>
                                     <td>{c.practiceDays}</td>
-                                    <td> {c.timeRange }</td>
                                     </tr>
                                 )
                             })

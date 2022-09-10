@@ -57,7 +57,7 @@ class Coaches extends Component {
              onEventClick: async args => {
           
             const classToDisplay = this.props.classes.find(c => c.id === args.e.value());
-    
+              console.log(classToDisplay)
             this.setState({classId: args.e.value(), classToDisplay:classToDisplay, startDate:args.e.part.start.value, showRoster:true});
     
             }
@@ -169,6 +169,7 @@ class Coaches extends Component {
                                 padding:'10px'
                               }}>
                                 <Alert >
+                                  <a> Class: {this.state.classToDisplay.classTitle} on {this.state.classToDisplay.start.value.slice(0,10)}</a>
                                 <Table striped bordered hover variant="dark">
                               <thead>
                                 <tr>
