@@ -169,7 +169,7 @@ class Coaches extends Component {
                                 padding:'10px'
                               }}>
                                 <Alert >
-                                  <a> Class: {this.state.classToDisplay.classTitle} on {this.state.classToDisplay.start.value.slice(0,10)}</a>
+                                  <a> Class: {this.state.classToDisplay.classTitle} on {this.state.classToDisplay.start.value.slice(10)}</a>
                                 <Table striped bordered hover variant="dark">
                               <thead>
                                 <tr>

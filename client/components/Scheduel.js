@@ -111,8 +111,8 @@ class Scheduel extends Component {
   }
 
 
-  render() {
-         
+  render(auth) {
+         const userFirstName = this.props.auth.firstName
           const rosters = this.props.classRosters.filter(roster => {
            return roster.classInfoId*1 === this.state.classId*1
           })
@@ -129,6 +129,7 @@ class Scheduel extends Component {
         display:'flex',
         flexDirection:'column'
       }}>
+          <h2> Scheduel for Coach {userFirstName} </h2>
         <div>
           {
             this.state.showRoster ? (

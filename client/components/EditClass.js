@@ -31,19 +31,20 @@ class EditClass extends Component {
     }
 
     async save(ev){
+
         const updatedClass = {
             id: this.state.classId,
             classTitle: this.state.classTitle,
             userId:this.state.leadCoachId*1, 
             location:this.state.classLocation,
-            start:`${this.state.classDate}T${this.state.startTime}:00`,
-            end:`${this.state.classDate}T${this.state.endTime}:00`
+            start:this.state.startTime.length > 5 ? `${this.state.classDate}T${this.state.startTime}`: `${this.state.classDate}T${this.state.startTime}:00` ,
+            end:this.state.endTime.length > 5 ? `${this.state.classDate}T${this.state.endTime}`: `${this.state.classDate}T${this.state.endTime}:00`
         }
         
        
             this.setState({showSuccess:true})
               await this.props.editClass(updatedClass);
-            //   window.location.href ='/home'
+              
               
     }
     componentDidMount( ){
@@ -56,7 +57,7 @@ class EditClass extends Component {
         let updatedClassStart = classStart[1].slice(1);
 
         let updatedClassEnd = classEnd[1].slice(1);
-        console.log(classStart, updatedClassStart)
+
         
         this.setState({
             classTitle:classToEdit.classTitle, 
@@ -74,7 +75,7 @@ class EditClass extends Component {
     
     
     render(){
-        console.log(this.state)
+      
         
         const coachesToDisplay = this.props.coaches;
         const {classTitle, startTime, endTime, classDescription} = this.state;
@@ -160,7 +161,9 @@ class EditClass extends Component {
                     }}>
                         <a>StartTime:
                           <input 
-                            type='time'
+                            type='time' 
+                            min='08:00:00'
+                            max="20:00:00"
                             value={this.state.startTime}
                             onChange={(e) => this.setState({startTime:e.target.value})}
                          /> 

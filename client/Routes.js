@@ -35,16 +35,16 @@ class Routes extends Component {
         { auth.id ? (
          <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/home"  component={Home}/>
-            <Route path="/account" component={CoachAccount} />
+            <Route exact path="/home"  component={Home}/>
+            <Route exact path="/account" component={CoachAccount} />
             <Route  exact path="/allPlayers" component={Players} />
-            <Route path="/allPlayers/page/:id" component={Players} />
+            <Route exact path="/allPlayers/page/:id" component={Players} />
             <Route exact path="/allPlayers/:id" component={Players} />
                 
           
-                <Route path="/createClass" component={CreateClass} />
-                <Route path="/coaches" component={Coaches} />
-                <Route path="/class/edit/:id" component={EditClass} />
+                <Route exact path="/createClass" component={CreateClass} />
+                <Route exact path="/coaches" component={Coaches} />
+                <Route exact path="/class/edit/:id" component={EditClass} />
                 
                 <Redirect to="home" />
                 </Switch>
@@ -57,8 +57,8 @@ class Routes extends Component {
                 
                 <Switch>
                 <Route exact path='/' component={ Login } />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
                 </Switch>
                 
             
