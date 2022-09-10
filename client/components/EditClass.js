@@ -4,6 +4,7 @@ import DatePicker from "react-multi-date-picker";
 import { editClass } from "../store/classInfo";
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
+import { Redirect } from 'react-router-dom';
 class EditClass extends Component {
     constructor(){
         super();
@@ -19,12 +20,34 @@ class EditClass extends Component {
             startTimeDate:'',
             endTimeDate:'',
             showSuccess:false,
-            showDelete:false
+            showDelete:false, 
+            
         }
         this.save = this.save.bind(this);
         this.handleDelete = this.save.bind(this);
     }
-    componentDidMount(props){
+    async handleDelete(){
+        console.log('clasdasdasdasdasdasdadas',  this.state.classId)
+    }
+
+    async save(ev){
+        const updatedClass = {
+            id: this.state.classId,
+            classTitle: this.state.classTitle,
+            userId:this.state.leadCoachId*1, 
+            location:this.state.classLocation,
+            start:`${this.state.classDate}T${this.state.startTime}:00`,
+            end:`${this.state.classDate}T${this.state.endTime}:00`
+        }
+        
+       
+            this.setState({showSuccess:true})
+              await this.props.editClass(updatedClass);
+            //   window.location.href ='/home'
+              
+    }
+    componentDidMount( ){
+        console.log(this.state)
         const classToEdit = this.props?.classes.find(c => c.id*1 === this.props.match.params.id*1);
         const classStart = classToEdit?.start.value.split(/(?=[T])/);
         const classEnd = classToEdit?.end.value.split(/(?=[T])/);
@@ -37,7 +60,7 @@ class EditClass extends Component {
         
         this.setState({
             classTitle:classToEdit.classTitle, 
-            classId:classToEdit.id,
+            classId:classToEdit.id*1,
             leadCoachId:classToEdit.userId, 
             classLocation:classToEdit.location, 
             startTime:updatedClassStart,
@@ -46,41 +69,12 @@ class EditClass extends Component {
             showSuccess:false,
             showDelete:false
         })
+        
     }
-    async handleDelete(){
-        console.log('clasdasdasdasdasdasdadas',  this.state.classId)
-    }
-
-    async save(ev){
-        const updatedClass = {
-            id: this.state.classId,
-            classTitle: this.state.classTitle,
-            leadCoachId:this.state.leadCoachId, 
-            classLocation:this.state.classLocation,
-            start:`${this.state.classDate}T${this.state.startTime}:00`,
-            end:`${this.state.classDate}T${this.state.endTime}:00`
-        }
-        try {
-            if (
-              !/^[a-zA-Z ]*$/g.test(updatedClass.classTitle) ||
-              !/^[a-zA-Z ]*$/g.test(updatedClass.location)
-            ) {
-              throw 'First Name and Last Name must be alphabet characters';
-            } else {
-              await this.props.editClass(updatedClass);
-              this.setState({showSuccess:true})
-
-            }
-          } catch (error) {
-            if (typeof error === 'string') {
-              this.setState({ error: error });
-            } else {
-              this.setState({ error: error.response.data.err.errors[0].message });
-            }
-          }
-    }
-  
+    
+    
     render(){
+        console.log(this.state)
         
         const coachesToDisplay = this.props.coaches;
         const {classTitle, startTime, endTime, classDescription} = this.state;
@@ -145,7 +139,8 @@ class EditClass extends Component {
                             </select>
                             </a>
                             <a>Location:
-                            <select value={this.state.classLocation} onChange={(e) => this.setState({classLocation:e.target.value})}>
+                            <select value={this.state.classLocation} 
+                            onChange={(e) => this.setState({classLocation:e.target.value})}>
                                 <option value={''}>Location </option>
                                 <option value={'OakBrook Park District'}> OakBrook Park District </option>
                                 <option value={'Hinsdale Community House'}> Hinsdale Community House </option>
@@ -179,20 +174,7 @@ class EditClass extends Component {
                             />
                         
                         </a>              
-                        <div>
-                            <button 
-                            onClick={handleDelete}
-                            style={{
-                                backgroundColor:'red',
-                                marginTop:'10px'
-                            }}
-                            
-                            > 
-                            Delete Class 
-                            </button>
-
-
-                        </div>
+                   
                     </div>
                     <div style={{
                         display:'flex',
@@ -253,7 +235,7 @@ const mapStateToProps = (state) => {
     return state
 } 
 
-const mapDispatchToProps = (dispatch, { history }) => {
+const mapDispatchToProps = (dispatch, {history}) => {
     return {
         editClass:(c) => dispatch(editClass(c, history))
     }

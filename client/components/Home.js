@@ -25,7 +25,7 @@ export const Home = props => {
     { name: 'list', value: 'list' }
   ];
   
-  console.log(isLoggedIn, isAdmin)
+  
   
   return (
     <div>

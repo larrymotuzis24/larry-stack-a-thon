@@ -30,12 +30,13 @@ export const createClass = (classArr) => async(dispatch) => {
   dispatch({type:'CREATE_CLASS', newClass})
 }
 
-export const editClass = (c) => {
+export const editClass = (c, history) => {
   return async(dispatch) => {
     const response = await axios.put(`/classes/${c.id}`, c );
-    const newclass = response.data;
-    console.log(newclass)
-
+    const newClass = response.data;
+    console.log(newClass)
+    dispatch({type:'UPDATE_CLASS', newClass})
+    history.push('/home')
   }
 }
 
@@ -45,6 +46,9 @@ export default function(state = [], action) {
       return action.classes
       case 'CREATE_CLASS':
         return [...state, action.newClass]
+        case 'UPDATE_CLASS':
+          console.log(action, 'aCTIONNNNNN', state)
+        return state.map((c)=> c.id === action.newClass.id ? action.newClass : c)
     default:
       return state
   }

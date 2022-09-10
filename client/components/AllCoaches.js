@@ -182,7 +182,7 @@ class Coaches extends Component {
                                   {
                                     roster.map(player => {
                                       return (
-                                        <tr>
+                                        <tr key={player.id}>
                                           <th> {player.firstName}</th>
                                           <th> {player.lastName}</th>
                                           <th> {player.emergencyContact}</th>
@@ -200,7 +200,7 @@ class Coaches extends Component {
                               Close 
                               </Button>
                               <Button onClick={() => this.setState({showRoster:false})} variant="outline-success">
-                             <Link to={`/classes/${classDisplay.id}`} >  Edit Class </Link>
+                             <Link to={`/class/edit/${classDisplay.id}`} >  Edit Class </Link>
                               </Button>
 
                             </div>

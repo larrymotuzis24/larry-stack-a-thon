@@ -28,7 +28,7 @@ class Players extends Component {
     
       onChange(ev) {
         this.setState({ [ev.target.name]: ev.target.value });
-        if (window.location.href.includes('/page/')) {
+        if (window.location.href.includes('/allPlayers/')) {
           window.location.href = '/allPlayers/page/1';
         }
         const filters = document.getElementsByClassName('category-filters');
@@ -49,7 +49,7 @@ class Players extends Component {
       }
 
       render() {
-        console.log('321312312')
+        console.log('playersPAGE')
         const pageNumber = this.props.match.params.id * 1;
         const { players } = this.props;
         const { option } = this.state;

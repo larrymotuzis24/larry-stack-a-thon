@@ -37,12 +37,14 @@ class Routes extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/home"  component={Home}/>
             <Route path="/account" component={CoachAccount} />
-            <Route path="/allPlayers" component={Players} />
+            <Route  exact path="/allPlayers" component={Players} />
+            <Route path="/allPlayers/page/:id" component={Players} />
+            <Route exact path="/allPlayers/:id" component={Players} />
+                
           
                 <Route path="/createClass" component={CreateClass} />
                 <Route path="/coaches" component={Coaches} />
-                <Route path="/classes/:id" component={EditClass} />
-                <Route path="/coaches/:id" component={EditClass} />
+                <Route path="/class/edit/:id" component={EditClass} />
                 
                 <Redirect to="home" />
                 </Switch>

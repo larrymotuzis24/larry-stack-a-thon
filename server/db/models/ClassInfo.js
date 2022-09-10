@@ -1,7 +1,5 @@
-const { INTEGER } = require('sequelize');
-const { DATE } = require('sequelize');
+
 const { TEXT } = require('sequelize');
-const { TIME } = require('sequelize');
 const Sequelize = require('sequelize');
 const { STRING } = Sequelize;
 const db = require('../db');

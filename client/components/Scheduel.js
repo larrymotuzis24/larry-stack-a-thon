@@ -6,6 +6,7 @@
                     
   import {connect} from 'react-redux'
   import {DayPilot, DayPilotCalendar, DayPilotNavigator} from "daypilot-pro-react";
+  import Button from 'react-bootstrap/Button';
 
                            
 const styles = {
@@ -45,13 +46,14 @@ class Scheduel extends Component {
       timeRangeSelectedHandling: "Disabled",
       heightSpec:"Fixed",
       height:600,
+      showRoster:false,
 
   
      
 
       eventDeleteHandling: "Update",
       onEventClick: async args => {
-        this.setState({classId: args.e.value()});
+        this.setState({classId: args.e.value(), showRoster:true });
    
       },
       
@@ -128,33 +130,42 @@ class Scheduel extends Component {
         flexDirection:'column'
       }}>
         <div>
-           <Alert >
-          <Table striped bordered hover variant="dark">
-                       <thead>
-                           <tr>
-                             <th> firstName </th>
-                               <th> lastName </th>
-                               <th> Emergency Contact </th>
-                                 <th> Phone number </th>
+          {
+            this.state.showRoster ? (
+            <Alert >
+            <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                              <th> firstName </th>
+                                <th> lastName </th>
+                                <th> Emergency Contact </th>
+                                  <th> Phone number </th>
+                                </tr>
+                              </thead>
+                            <tbody>
+                                {
+                                  roster.map(player => {
+                                  return (
+                                    <tr>
+                                    <th> {player.firstName}</th>
+                                    <th> {player.lastName}</th>
+                                    <th> {player.emergencyContact}</th>
+                                    <th> {player.emergencyContactPhone}</th>
+    
                               </tr>
-                             </thead>
-                           <tbody>
-                               {
-                                roster.map(player => {
-                                return (
-                                  <tr>
-                                  <th> {player.firstName}</th>
-                                  <th> {player.lastName}</th>
-                                  <th> {player.emergencyContact}</th>
-                                  <th> {player.emergencyContactPhone}</th>
-  
-                             </tr>
-                             )
-                          })
-                        }
-                     </tbody>
-                 </Table>
-             </Alert>
+                              )
+                            })
+                          }
+                      </tbody>
+                  </Table>
+                    <Button 
+                    onClick={() => this.setState({showRoster:false})} variant="outline-success">
+                          Close 
+                      </Button>
+              </Alert>
+
+            ): null
+          }
 
         </div>
           <div style={{

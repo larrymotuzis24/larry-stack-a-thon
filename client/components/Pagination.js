@@ -12,7 +12,7 @@ const Pagination = ({ numPages, setCurrentPage, pageNumber }) => {
             <li key={pgNumber} className={pageNumber === pgNumber ? 'pageSelected' : ''}>
               <Link
                 onClick={() => setCurrentPage(pgNumber)}
-                to={`/players/page/${pgNumber}`}
+                to={`/allPlayers/page/${pgNumber}`}
               >
                 {pgNumber}
               </Link>

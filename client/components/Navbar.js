@@ -9,11 +9,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-const _Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
+const _Navbar = ({handleClick, isLoggedIn, isAdmin, auth}) => (
   <div>
      <Navbar bg="primary" variant="dark">
       {
-        isLoggedIn ? (
+        auth.id ? (
         <Container>
           <Navbar.Brand href="home">Breakaway Basketball </Navbar.Brand>
           <Nav className="me-auto">
@@ -21,7 +21,7 @@ const _Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
             <Nav.Link href="allPlayers">Find Player</Nav.Link>
             <Nav.Link href="account">Account</Nav.Link>
             {
-              isAdmin ? (
+             auth.isAdmin ? (
                 <Nav.Link href="createClass">Create Class </Nav.Link>
               ):null
             }
@@ -48,7 +48,8 @@ const _Navbar = ({handleClick, isLoggedIn, isAdmin}) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.auth.id,
-    isAdmin: state.auth.isAdmin
+    isAdmin: state.auth.isAdmin,
+    auth:state.auth
   }
 }
 

@@ -47,6 +47,7 @@ app.put('/classes/:id', async(req, res) => {
   try{
     const c = await ClassInfo.findByPk(req.params.id)
     await c.update(req.body)
+
     res.send(c)
   }
   catch(ex){
@@ -72,14 +73,22 @@ app.get('/allCoaches', async(req, res, next) => {
   }
 });
 
-app.post('/classes',async (req, res, next) => {
+app.post('/classes', (req, res, next) => {
   try{
-    const classesToCreate = req.body
-    let createdClasses = {...classesToCreate.map(async(c) => {
-      await ClassInfo.create(c) 
-    })}
+    let classArray = [];
     
-   res.send(createdClasses)
+      //   classesToCreate.map((c) =>  {
+      //     console.log('each classs', c)
+      //  let newClass = ClassInfo.create(c)
+      //  return newClass
+      //   } )
+      Promise.all(req.body.map(c => ClassInfo.create(c))).then((c) => {
+        // console.log('WAHT IS C', c)
+        // console.log('WAHT IS C', c.data)
+        //   classArray.push(...c)
+        res.send(c)
+        })
+   
    
   }
   catch(ex){
