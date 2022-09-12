@@ -15,25 +15,25 @@ const _Navbar = ({handleClick, isLoggedIn, isAdmin, auth}) => (
       {
         auth.id ? (
         <Container>
-          <Navbar.Brand href="home">Breakaway Basketball </Navbar.Brand>
+         
           <Nav className="me-auto">
             <Link className='navLinks' to={"/home"}>Home</Link>
             <Link className='navLinks' to={"/allPlayers"}>Find Player</Link>
-            <Link className='navLinks' to={"account"}>Account</Link>
+            <Link className='navLinks' to={"/account"}>Account</Link>
             {
              auth.isAdmin ? (
                 <Link className='navLinks' to={"/createClass"}>Create Class </Link>
               ):null
             }
-            <Link className='navLinks' to={''} onClick={handleClick}> Logout </Link>
+            <Link className='navLinks' to={'/'} onClick={handleClick}> Logout </Link>
           </Nav>
         </Container>
 
         ):
         (
           <div>
-            <Link className='navLinks' to={"login"}>Login</Link>
-            <Link className='navLinks' to={"signup"}>Sign Up</Link>
+            <Link className='navLinks' to={"/login"}>Login</Link>
+            <Link className='navLinks' to={"/signup"}>Sign Up</Link>
           </div>
         )
       }
