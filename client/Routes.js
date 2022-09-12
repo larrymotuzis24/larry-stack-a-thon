@@ -45,7 +45,8 @@ class Routes extends Component {
                 <Route exact path="/createClass" component={CreateClass} />
                 <Route exact path="/coaches" component={Coaches} />
                 <Route exact path="/class/edit/:id" component={EditClass} />
-
+                
+                <Redirect to="home" />
                 </Switch>
 
 
