@@ -17,7 +17,7 @@ const _Navbar = ({handleClick, isLoggedIn, isAdmin, auth}) => (
         <Container>
           <Navbar.Brand href="home">Breakaway Basketball </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="home">Home</Nav.Link>
+            <Nav.Link onClick={() => console.log(window.location)} href="home">Home</Nav.Link>
             <Nav.Link href="allPlayers">Find Player</Nav.Link>
             <Nav.Link href="account">Account</Nav.Link>
             {
